@@ -1,0 +1,175 @@
+* {
+  margin: 0px;
+  text-decoration: none;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE HEADER SECTION */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appTitle {
+  font-size: 350%;
+  padding: 0% 0%;
+  margin: 3.5% 0%;
+}
+
+.tagline {
+  font-size: 150%;
+  margin: 0.5% 0%;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.dashboard a {
+  font-size: 130%;
+  padding: 0% 1%;
+  margin: 1% 0%;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE HOME PAGE WHICH SHOWWCASES A COUPLE OF RECIPES*/
+/* FROM BOTH THE USER AND THE API BASED */
+.userrecipes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 2% 0%;
+  padding: 0% 0%;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE MAIN RECIPE PAGE AND SEARCH BAR */
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+.searchform {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.searchbar {
+  width: 20%;
+  margin: 0% 1%;
+  height: 25px;
+  border-radius: 31px;
+  padding: 5px 20px;
+}
+
+.recipeslist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.recipecard {
+  border-style: solid;
+  width: 15%;
+  padding: 1%;
+  margin: 2% 1%
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE USERS PROFILE INCLUDING THE FORM TO ADD A NEW RECIPE*/
+.userprofile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.usersrecipes {
+  display: flex;
+  flex-direction: column;
+  margin: 0% 2%;
+  padding: 0% 0%;
+}
+
+.recipes {
+  display: flex;
+  flex-direction: row;
+  margin: 2% 0%;
+}
+
+.recipeinfo, .ingredientslist, .directionlist {
+  padding: 0% 0.5%;
+}
+
+.recipeformsection {
+  width: 35%;
+  margin: 0.7% 1%;
+}
+
+.recipeform {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipeform input {
+  padding: 2%;
+  margin: 2%;
+}
+
+.recipeformbutton {
+  padding: 2%;
+  margin: 2%;
+  border-radius: 10px;
+}
+
+/* ************************************************************************* */
+/* THESE CUSTOMIZES THE LOGIN PAGE */
+.logincard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5%;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input {
+  width: 250%;
+  height: 20px;
+  padding: 5% 5%;
+  margin: 5% 0%;
+  border-radius: 10px;
+}
+
+.loginform button {
+  margin: 10% 0%;
+  padding: 5% 20%;
+  border-radius: 20px;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE SIGNUP PAGE */
+.signupcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5%;
+}
+
+.signupform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

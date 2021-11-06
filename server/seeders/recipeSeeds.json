@@ -1,0 +1,104 @@
+[
+    {
+        "title": "Zucchini Slice",
+        "servings": 15,
+        "totalTime": 45,
+        "ingredients": [
+            "5 egggs",
+            "1 cup self-raising flour",
+            "375g zucchini, grated",
+            "1 large Onion, finely chopped",
+            "200g rindless bacon, chopped",
+            "1 cup grated cheddar cheese",
+            "1/4 cup vegetable oil"
+        ],
+        "directions": [
+            "Step 1: Preheat oven to 170C.",
+            "Step 2: Beat the eggs in a large bowl until combined. Add the flour and beat until smooth.",
+            "Step 3: Add the zucchini, onion, bacon, cheese and oil and stir to combine.",
+            "Step 4: Grease your cooking pan and pour the mixture into the pan and bake for 30 mins."
+        ],
+        "postAuthor": "Alan Kay"
+    },
+    {
+        "title": "Easy Fried Rice",
+        "servings": 2,
+        "totalTime": 45,
+        "ingredients": [
+            "1 cup white long-grain rice",
+            "2 tsp vegetable oil",
+            "2 eggs, lightly whisked",
+            "2 bacon rashers, chopped",
+            "1 carrot, peeled and grated",            
+            "2 shallots, trimmed, finely sliced",            
+            "1/2 cup frozen peas, thawed",         
+            "1 tbsp soy sauce",         
+            "Sesame seeds, to serve",
+            "Shallots, sliced, extra, to serve"
+        ],
+        "directions": [
+            "Step 1: Cook the ricein a large saucepan of boiling water for 12 minutes or until tender. Drain and leave to cool.",
+            "Step 2: Heat oil in non-stick wok or large frying pan over medium heat. Add eggs and swirl over base to form an omelette. Cook for 2 minutes or until set.",
+            "Step 3: Transfer to a chopping board. Set aside to cool slightly.",
+            "Step 4: Add bacon to wok. Cook 4 minutes until light golden.",
+            "Step 5: Add carrot, shallots, peas and cooked rice and cook 3-4 minutes while stirring.",
+            "Step 6: Add egg and soy sauce and stir until heated through. Sprinkle with sesame seeds and extra shallots and serve immediately."
+        ],
+        "postAuthor": "Amiko"
+    },
+    {
+        "title": "Impossible Quiche",
+        "servings": 1,
+        "totalTime": 50,
+        "ingredients": [
+            "125g ham, chopped",
+            "1 small onion, finely chopped",   
+            "1 1/2 cups (180g) grated Devondale Tasty Cheese Block (500g)",           
+            "1/3 cup (50g) self-raising flour",          
+            "Salt & freshly ground pepper, to season",         
+            "4 eggs",    
+            "1 1/2 cups (375ml) milk"
+        ],
+        "directions": [
+            "Step 1: Preheat oven to 200°C. Grease a 5 cup capacity pie dish.",
+            "Step 2: Combine ham, onion, cheese, flour, salt and pepper in a medium bowl. Scatter over base of dish.",
+            "Step 3: Whisk eggs and milk together in a large jug and pour over ham mixture.",
+            "Step 4: Cook for about 40 minutes or until puffed and golden.",
+            "Step 5: Cool slightly. Serve warm or cold."
+        ],
+        "postAuthor": "Amiko"
+    },
+    {
+        "title": "Thai Beef Salad",
+        "servings": 4,
+        "totalTime": 30,
+        "ingredients": [
+            "1 1/2 tbsp fresh lime juice",
+            "1 garlic clove, crushed",        
+            "1 tbsp finely chopped palm sugar",
+            "1 tbsp fish sauce",
+            "2 tsp sesame oil",
+            "1 tsp soy sauce", 
+            "2 tsp finely grated fresh ginger", 
+            "1 (about 680g) beef rump steak",
+            "1 x 200g grape tomatoes, quartered",
+            "1 cucumber, halved lengthways, thinly sliced diagonally",
+            "1 red onion, halved, cut into thin wedges",
+            "2 long fresh red chillies, halved, deseeded, thinly sliced lengthways",
+            "1 bunch fresh mint, leaves picked, large leaves torn", 
+            "1 bunch fresh coriander, leaves picked",            
+            "1 bunch fresh Thai basil, leaves picked, large leaves torn",            
+            "1/3 cup toasted peanuts, coarsely chopped",
+            "4 kaffir lime leaves, centre veins removed, finely shredded"
+        ],
+        "directions": [
+            "Step 1: Whisk together lime juice, garlic, fish sauce, sesame oil, soy sauce, ginger and palm sugar in a jug.",
+            "Step 2: Place the steak in a glass or ceramic dish. Drizzle with half the dressing. Cover with plastic wrap and place in the fridge, turning occasionally, for 2 hours to develop the flavours.",
+            "Step 3: Transfer to a plate. Cover with foil and set aside for 10 minutes to rest.",
+            "Step 4: Place the tomato, cucumber, onion, chilli, mint, coriander, basil, peanuts and lime leaves in a large bowl.",
+            "Step 5: Thinly slice steak across the grain and add to the salad.",
+            "Step 6: Drizzle with remaining dressing and gently toss to combine. Divide salad among bowls and serve immediately."
+        ],
+        "postAuthor": "Brian Kernighan"
+    }
+]
