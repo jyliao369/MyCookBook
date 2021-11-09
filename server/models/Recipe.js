@@ -30,11 +30,11 @@ const recipeSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-    postAuthor: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+    // postAuthor: {
+    //     type: String,
+    //     required: "",
+    //     trim: true,
+    // },
 });
 
 const Recipe = model('Recipe', recipeSchema);

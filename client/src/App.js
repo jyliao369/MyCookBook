@@ -13,7 +13,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
 import Profile from './pages/Profile';
-import Recipespage from './pages/Recipespage'
+import Recipespage from './pages/Recipespage';
+import CreateRecipe from './pages/CreateRecipe';
 import SingleRecipe from './pages/SingleRecipe';
 
 import Header from './components/Header';
@@ -61,8 +62,16 @@ function App() {
             <Profile />
           </Route>
           
+          <Route exact path="/add">
+            <CreateRecipe />
+          </Route>
+
           <Route exact path="/recipes">
             <Recipespage />
+          </Route>
+
+          <Route exact path="/recipes/:recipeId">
+            <SingleRecipe />
           </Route>
           
         </div>

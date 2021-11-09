@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -17,48 +17,58 @@ const RecipeForm = () => {
         directions: [''],
     });
 
+    console.log("hi");
+
     console.log(newRecipe);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         if (name === "title") {
-            setNewRecipe({
+            setNewRecipe((prevState) => ({
+
+                ...prevState,
                 title: value,
-            })
+            }))
         }
 
         if (name === "servings") {
-            setNewRecipe({
+            setNewRecipe((prevState) => ({
+
+                ...prevState,
                 servings: value,
-            })
+            }))
         }
 
         if (name === "totalTime") {
-            setNewRecipe({
+            setNewRecipe((prevState) => ({
+
+                ...prevState,
                 totalTime: value,
-            })
+            }))
         }
 
         if (name === 'ingredients') {
             let ingredientsarray = [];
-            let testingredientsarray = value.split(". ");
+            let testingredientsarray = value.split(".");
             for (let a = 0; a < testingredientsarray.length; a++) {
                 ingredientsarray.push(testingredientsarray[a]);
-                setNewRecipe({
+                setNewRecipe((prevState) => ({
+                    ...prevState,
                     ingredients: ingredientsarray
-                })
+                }))
             };
         }
 
         if (name === 'directions') {
             let directionssarray = [];
-            let testdirectionsarray = value.split(". ");
+            let testdirectionsarray = value.split(".");
             for (let b = 0; b < testdirectionsarray.length; b++) {
                 directionssarray.push(testdirectionsarray[b]);
-                setNewRecipe({
+                setNewRecipe((prevState) => ({
+                    ...prevState,
                     directions: directionssarray
-                })
+                }))
             };
         }
     };
@@ -67,7 +77,6 @@ const RecipeForm = () => {
         update(cache, { data: { addRecipe } }) {
             try {
                 const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
-                console.log("user recipe " + recipes );
 
                 cache.writeQuery({
                     query: QUERY_RECIPES,
@@ -87,12 +96,14 @@ const RecipeForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("auth");
+        console.log(Auth.getProfile().data);
 
         try {
             const { data } = await addRecipe({
                 variables: { 
                     ...newRecipe, 
-                    postAuthor: Auth.getProfile().data.username,
+                    postAuthor: Auth.getProfile().data.email,
                 },
             });
 
@@ -104,7 +115,7 @@ const RecipeForm = () => {
                 directions: '',
             });
             
-            Auth.login(data.addRecipe)
+            // Auth.login(data.addRecipe)
         } catch (e) {
             console.error(e);
         }

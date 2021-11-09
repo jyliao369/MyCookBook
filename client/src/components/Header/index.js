@@ -27,12 +27,15 @@ const Header = () => {
           </Link>
           {Auth.loggedIn() ? (
             <>
-              <Link className="" to="/myprofile">
-                View My Profile
+              <Link className="" to="/add">
+                Add New Recipe
               </Link>
-              <button className="" onClick={logout}>
+              <Link className="" to="/myprofile">
+                My Cookbook
+              </Link>
+              <Link className="" onClick={logout} to="/">
                 Logout
-              </button>
+              </Link>
             </>
           ) : (
             <>

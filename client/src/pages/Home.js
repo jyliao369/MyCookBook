@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, {useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 // import { useQuery } from '@apollo/client';
 
 // import ProfileList from '../components/ProfileList';
@@ -36,29 +37,46 @@ const Home = () => {
 
   // THESE NEXT LINES SHOULD BE ABLE TO GET 10 RANDOMLY GENERATED USER
   // CREATED RECIPES TO DISPLAY ON THE HOMEPAGE
+  // THIS WILL RANDOMLY PICK 10 RANDOM RECIPES MADE BY USERS TO SHOW ON THE HOMEPAGE
+  // THIS ACTS AS A TEASER OR A SAMPLE
   const { loading, data } = useQuery(QUERY_RECIPES);
   const recipes = data?.recipes || [];
+  const randRecipe = [];
 
-  console.log(recipes);
+  const test = recipes.filter( function( item, index, inputArray ) {
+    return inputArray.indexOf(item) === index;
+  });
+  
+  console.log(test);
+
+  for (let a = 0; a < 5; a++) {
+    randRecipe.push(recipes[Math.floor(Math.random() * recipes.length)]);
+  }
+  // console.log(randRecipe);
+  
 
   return (
     <div className="homepage">
       {/* <div className="onlinerecipes">
-        {randrecipe.map((recipe) => (
+        {randRecipe.map((recipe) => (
           <div key={recipe._id} className="recipepost">
-            <p>{ recipe.recipe.label }</p>
-            <p>Servings: { recipe.recipe.yield } </p>
-            <p>Total Cook Time: { recipe.recipe.totalTime }</p>
+            <Link to={`/recipes/${recipe._id}`}>
+              <p>{ recipe.title }</p>
+              <p>Servings: { recipe.servings } </p>
+              <p>Total Cook Time: { recipe.totalTime }</p>
+            </Link>
           </div>
         ))} 
       </div> */}
       <div className="userrecipes">
         {recipes.map((recipe) => (
-          <div key={recipe._id} className="recipepost">
-            <h3>{ recipe.title }</h3>
-            <p>Servings: { recipe.servings }</p>
-            <p>Total Cook Time: { recipe.totalTime } mins</p>
-            <p>Chef: { recipe.postAuthor }</p>
+          <div key={ recipe._id } className="recipepost">
+            <Link to={`/recipes/${ recipe._id }`}>
+              <h3>{ recipe.title }</h3>
+              <p>Servings: { recipe.servings }</p>
+              <p>Total Cook Time: { recipe.totalTime } mins</p>
+              <p>Chef: { recipe.postAuthor }</p>
+            </Link>
           </div>
         ))}
       </div>

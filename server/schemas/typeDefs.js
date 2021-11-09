@@ -40,8 +40,8 @@ const typeDefs = gql`
         removeUser: User
         login(email: String!, password: String!): Auth
 
-        addRecipe(recipeId: ID!, title: String!, servings: String!, totalTime: String!, ingredients: [String]!, directions:[String!]): Recipe
-        removeRecipe(recipeId: ID!, title: String!, servings: String!, totalTime: String!, ingredients: [String]!, directions:[String!]): Recipe
+        addRecipe(title: String!, servings: String!, totalTime: String!, ingredients: [String]!, directions:[String]!): Recipe
+        removeRecipe(recipeId: ID!): Recipe
     }
 `;
 

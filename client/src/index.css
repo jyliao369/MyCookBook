@@ -12,9 +12,9 @@
 }
 
 .appTitle {
-  font-size: 350%;
+  font-size: 440%;
   padding: 0% 0%;
-  margin: 3.5% 0%;
+  margin: 10.5% 0%;
 }
 
 .tagline {
@@ -43,8 +43,15 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 2% 0%;
+  margin: 2% 15%;
   padding: 0% 0%;
+}
+
+.recipepost {
+  padding: 2%;
+  margin: 1%;
+  border-style: solid;
+  width: 20%;
 }
 
 /* ************************************************************************* */
@@ -74,13 +81,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin: 0% 10%;
+  padding: 3% 0%;
 }
 
 .recipecard {
   border-style: solid;
   width: 15%;
   padding: 1%;
-  margin: 2% 1%
+  margin: 2% 1%;
+  height: 250px;
 }
 
 /* ************************************************************************* */
@@ -90,23 +100,38 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
+  margin: 0% 10%;
+  padding: 0% 0%;
 }
 
 .usersrecipes {
   display: flex;
-  flex-direction: column;
-  margin: 0% 2%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 2% 2%;
   padding: 0% 0%;
+  justify-content: center;
 }
 
-.recipes {
+.recipes a{
   display: flex;
   flex-direction: row;
-  margin: 2% 0%;
+  margin: 2% 2%;
+  border-style: solid;
+  padding: 2%;
+  height: 300px;
 }
 
-.recipeinfo, .ingredientslist, .directionlist {
-  padding: 0% 0.5%;
+.recipeinfo, .directionlist {
+  padding: 0% 1.5%;
+}
+
+.recipeinfo {
+  width: 225px;
+}
+
+.directionlist {
+  width: 415px
 }
 
 .recipeformsection {
@@ -122,6 +147,12 @@
 .recipeform input {
   padding: 2%;
   margin: 2%;
+}
+
+.recipeform textarea {
+  padding: 2%;
+  margin: 2%;
+  height: 125px;
 }
 
 .recipeformbutton {
@@ -172,4 +203,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE CREATE RECIPE PAGE */
+.createform {
+  display: flex;
+  justify-content: center;
+}
+
+/* ************************************************************************* */
+/* THIS CUSTOMIZES THE SINGLERECIPE PAGE */
+.singlerecipepage {
+  display: flex;
+  flex-direction: column;
+  margin: 3.5% 20%;
+  padding: 2%;
+  border-style: solid;
+}
+
+.titlecard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.generalInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 150%;
+  margin: 2% 0%;
+  padding: 0% 0%;
+}
+
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 100%;
+  height: 300px;
+  margin: 2% 0%;
+  padding: 0%;
+}
+
+.ingredientsList p {
+  font-size: 150%;
+  padding: 1% 0%;
+  margin: 0% 0%;
+}
+
+.directionsList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 100%;
+  margin: 2% 0%;
+  padding: 0%;
+}
+
+.directionsList p {
+  font-size: 150%;
+  padding: 1% 0%;
+  margin: 0% 0%;
 }
