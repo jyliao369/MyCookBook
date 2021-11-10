@@ -1,6 +1,8 @@
 * {
   margin: 0px;
   text-decoration: none;
+  color: #292f36;
+  font-family: 'Mochiy Pop One', sans-serif;
 }
 
 /* ************************************************************************* */
@@ -9,6 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #F15152;
 }
 
 .appTitle {
@@ -19,7 +22,8 @@
 
 .tagline {
   font-size: 150%;
-  margin: 0.5% 0%;
+  margin: 0% 0%;
+  padding: 1% 0%;
 }
 
 .dashboard {
@@ -27,23 +31,32 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  background-color: #4ecdc4;
 }
 
 .dashboard a {
   font-size: 130%;
-  padding: 0% 1%;
-  margin: 1% 0%;
+  padding: .5% 1.5%;
+  margin: .8% 2%;
+  border-style: solid;
+  border-radius: 35px;
+  background-color: #f5f5f5;
 }
 
 /* ************************************************************************* */
 /* THIS CUSTOMIZES THE HOME PAGE WHICH SHOWWCASES A COUPLE OF RECIPES*/
 /* FROM BOTH THE USER AND THE API BASED */
+.homepage {
+  background-color: #f5f5f5;
+  padding: 3% 0%;
+}
+
 .userrecipes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 2% 15%;
+  margin: 0% 15%;
   padding: 0% 0%;
 }
 
@@ -56,6 +69,10 @@
 
 /* ************************************************************************* */
 /* THIS CUSTOMIZES THE MAIN RECIPE PAGE AND SEARCH BAR */
+.recipespage {
+  background-color: #f5f5f5;
+}
+
 .search {
   display: flex;
   justify-content: center;
@@ -66,6 +83,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 1.5% 0%;
 }
 
 .searchbar {
@@ -80,17 +98,41 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0% 15%;
+  padding: 1% 0%;
   justify-content: space-evenly;
-  margin: 0% 10%;
-  padding: 3% 0%;
 }
 
 .recipecard {
   border-style: solid;
-  width: 15%;
+  border-width: 7.5px;
+  width: 18%;
   padding: 1%;
-  margin: 2% 1%;
-  height: 250px;
+  margin: 1% 1%;
+  height: 400px;
+  border-radius: 15px;
+  background-color: #edb183;
+  border-color: ivory;
+}
+
+.recipeimage {
+  display: flex;
+  height: 45%;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 70%;
+  height: 75%;
+  border-style: solid;
+  border-radius: 40px;
+  border-width: 7.5px;
+  border-color: ivory;
+}
+
+.generalinfo {
+
 }
 
 /* ************************************************************************* */
@@ -100,8 +142,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
-  margin: 0% 10%;
-  padding: 0% 0%;
+  padding: 0% 10%;
+  background-color: #f5f5f5;
 }
 
 .usersrecipes {
@@ -111,6 +153,11 @@
   margin: 2% 2%;
   padding: 0% 0%;
   justify-content: center;
+}
+
+.recipes {
+  width: 30%;
+  height: 350px;
 }
 
 .recipes a{
@@ -163,11 +210,15 @@
 
 /* ************************************************************************* */
 /* THESE CUSTOMIZES THE LOGIN PAGE */
+.loginpage {
+  background-color: #f5f5f5;
+}
+
 .logincard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5%;
+  padding: 5% 0%;
 }
 
 .loginform {
@@ -192,11 +243,23 @@
 
 /* ************************************************************************* */
 /* THIS CUSTOMIZES THE SIGNUP PAGE */
+.signuppage {
+  display: flex;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
 .signupcard {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5%;
+  padding: 3%;
+  width: 39%;
+  /* border-style: solid;
+  border-radius: 140px;
+  border-width: 7px;
+  border-color: ivory; */
 }
 
 .signupform {

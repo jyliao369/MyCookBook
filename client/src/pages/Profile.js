@@ -79,21 +79,21 @@ const Profile = () => {
                                     <p>Servings: { recipe.servings }</p>
                                     <p>Total Time: { recipe.totalTime }</p>
                                     <br />
-                                    <div className="ingredientslist">
-                                        {recipe.ingredients.map((ingredient) => (
-                                            <p>{ ingredient }</p>
-                                        ))}    
-                                    </div>
+                                </div>
+                                <div className="ingredientslist">
+                                    {recipe.ingredients.map((ingredient) => (
+                                        <p>{ ingredient }</p>
+                                    ))}    
                                 </div>
                                 {/* <div className="directionlist">
                                     {recipe.directions.map((direction) => (
                                         <p>{ direction }</p>
                                     ))}
                                 </div> */}
+                                <div>
+                                    <button>Remove</button>
+                                </div>
                             </Link>
-                            <div>
-                                <button>Remove</button>
-                            </div>
                         </div>
                     ))}
                 </div>

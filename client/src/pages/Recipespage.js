@@ -37,8 +37,24 @@ const Recipespage = () => {
     const { loading, data } = useQuery(QUERY_RECIPES);
     const recipes = data?.recipes || [];
 
-    // console.log("hi");
-    // console.log(recipes);
+    // THESE SETS OF CODE SHOULD BE ABLE TO TAKE THE RECIPES SECTION AND
+    // CREATE A A NEW RECIPE ARRAY THAT HAS NO DUPLICATES BASED ON THE TITLE
+    // THIS CAN RAISE ANOTHER PROBLEM IF TITLES ARE THE SAME BUT ID IS NOT
+    const uniqueRecipes = [];
+    for (let a = 0; a < recipes.length; a++) {
+        let exists = false;
+        for (let b = 0; b < uniqueRecipes.length; b++) {
+            if (recipes[a].title === uniqueRecipes[b].title) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            uniqueRecipes.push(recipes[a]);
+        }
+    }
+
+    // console.log(uniqueRecipes);
 
     return (
         <div className="recipespage">
@@ -49,12 +65,18 @@ const Recipespage = () => {
                 </form>
             </div>
             <div className="recipeslist">
-                {recipes.map((recipe) => (
+                {uniqueRecipes.map((recipe) => (
                     <div key={recipe._id} className="recipecard">
                         <Link to={`/recipes/${ recipe._id }`}>
-                            <h2>{recipe.title}</h2>
-                            <p>Total Servings: {recipe.servings}</p>
-                            <p>totalTime: {recipe.totalTime} mins</p>
+                            <div className="recipeimage">
+                                <div className="img"></div>
+                            </div>
+                            <div className="generalinfo">
+                                <h2>{recipe.title}</h2>
+                                <p>Total Servings: {recipe.servings}</p>
+                                <p>totalTime: {recipe.totalTime} mins</p>
+                            </div>
+                            
                             {/* {recipe.recipe.ingredientLines.map((ingredient) => (
                                 <div>
                                     {ingredient}
