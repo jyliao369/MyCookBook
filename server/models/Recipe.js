@@ -7,6 +7,10 @@ const recipeSchema = new Schema({
         required: true,
         trim: true,
     },
+    category: {
+        type: String,
+        required: true,
+    },
     servings:{
         type: String,
         required: true,
@@ -25,6 +29,10 @@ const recipeSchema = new Schema({
         required: true,
         trim: true,
     }],
+    imageid: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

@@ -25,13 +25,32 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_RECIPE = gql`
-    mutation addRecipe($title: String!, $servings: String!, $totalTime: String!, $ingredients:[String]!, $directions:[String]!) {
-        addRecipe(title: $title, servings: $servings, totalTime: $totalTime, ingredients: $ingredients, directions: $directions) {
+    mutation addRecipe($title:String!, $category:String!, $servings:String!, $totalTime:String!, $ingredients:[String]!, $directions:[String]!, $imageid:String ) {
+        addRecipe(title:$title, category:$category, servings:$servings, totalTime:$totalTime, ingredients:$ingredients, directions:$directions, imageid:$imageid) {
             title
+            category
             servings
             totalTime
             ingredients
             directions
+            imageid
+            createdAt
+            postAuthor
+        }
+    }
+`;
+
+export const REMOVE_RECIPE = gql`
+    mutation removeRecipe($recipeId: String!) {
+        removeRecipe(recipeId: $recipeId) {
+            _id
+            title
+            category
+            servings
+            totalTime
+            ingredients
+            directions
+            imageid
             createdAt
             postAuthor
         }

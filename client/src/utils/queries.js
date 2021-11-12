@@ -19,10 +19,12 @@ export const QUERY_SINGLE_USER = gql`
             recipes {
                 _id
                 title
+                category
                 servings
                 totalTime
                 ingredients
                 directions
+                imageid
                 createdAt
                 postAuthor
             }
@@ -39,10 +41,12 @@ export const QUERY_MYPROFILE = gql`
             recipes {
                 _id
                 title
+                category
                 servings
                 totalTime
                 ingredients
                 directions
+                imageid
                 createdAt
                 postAuthor
             }
@@ -55,10 +59,12 @@ export const QUERY_RECIPES = gql`
         recipes {
             _id
             title
+            category
             servings
             totalTime
             ingredients
             directions
+            imageid
             createdAt
             postAuthor
         }
@@ -70,10 +76,12 @@ export const QUERY_SINGLE_RECIPE = gql`
         recipe(recipeId: $recipeId) {
             _id
             title
+            category
             servings
             totalTime
             ingredients
             directions
+            imageid
             createdAt
             postAuthor
         }

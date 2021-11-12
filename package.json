@@ -17,6 +17,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "cloudinary-react": "^1.7.0",
     "graphql": "^15.7.2"
   }
 }

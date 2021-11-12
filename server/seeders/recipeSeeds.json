@@ -1,6 +1,7 @@
 [
     {
         "title": "Zucchini Slice",
+        "category": "Appetizer",
         "servings": 15,
         "totalTime": 45,
         "ingredients": [
@@ -18,10 +19,13 @@
             "Step 3: Add the zucchini, onion, bacon, cheese and oil and stir to combine.",
             "Step 4: Grease your cooking pan and pour the mixture into the pan and bake for 30 mins."
         ],
+        "imageid": "",
         "postAuthor": "Alan Kay"
     },
+
     {
         "title": "Easy Fried Rice",
+        "category": "Entres",
         "servings": 2,
         "totalTime": 45,
         "ingredients": [
@@ -44,10 +48,13 @@
             "Step 5: Add carrot, shallots, peas and cooked rice and cook 3-4 minutes while stirring.",
             "Step 6: Add egg and soy sauce and stir until heated through. Sprinkle with sesame seeds and extra shallots and serve immediately."
         ],
+        "imageid": "",
         "postAuthor": "Amiko"
     },
+
     {
         "title": "Impossible Quiche",
+        "category": "Entres",
         "servings": 1,
         "totalTime": 50,
         "ingredients": [
@@ -66,10 +73,13 @@
             "Step 4: Cook for about 40 minutes or until puffed and golden.",
             "Step 5: Cool slightly. Serve warm or cold."
         ],
+        "imageid": "",
         "postAuthor": "Amiko"
     },
+
     {
         "title": "Thai Beef Salad",
+        "category": "Appetizer",
         "servings": 4,
         "totalTime": 30,
         "ingredients": [
@@ -101,8 +111,10 @@
         ],
         "postAuthor": "Brian Kernighan"
     },
+
     {
         "title": "Baked ricotta cake",
+        "category": "Dessert",
         "servings": 12,
         "totalTime": 45,
         "ingredients": [
@@ -130,10 +142,13 @@
             "Place pan on a baking tray and bake for 1 hour 20 minutes or until edges are set with a very slight wobble in the centre (it may crack a little, but will settle when it cools).",
             "Turn off the oven and set the door ajar with a wooden spoon. Leave the cake to cool completely in the oven, then chill for 6 hours to set. Use the baking paper overhang to carefully lift cake out of the pan. Dust cake with icing sugar to serve."
         ],
+        "imageid": "",
         "postAuthor": "Amiko"
     },
+
     {
         "title": "Fried Ice Cream",
+        "category": "Dessert",
         "servings": 4,
         "totalTime": 45,
         "ingredients": [
@@ -153,10 +168,13 @@
             "Remove from heat and stir in sugar. Place on a shallow bowl and let cool.",
             "Remove ice cream balls from freezer and roll in cereal mixture. Top with whipped cream, sprinkles, and a cherry, and serve immediately."
         ],
+        "imageid": "",
         "postAuthor": "Kent Beck"
     },
+
     {
         "title": "No-Bake Jalapeno Popper Cheese Balls with Bacon & Chives",
+        "category": "Appetizer",
         "servings": 4,
         "totalTime": 50,
         "ingredients": [
@@ -179,10 +197,13 @@
             "Using a tablespoon or small cookie scoop as your guide, portion out a small amount of the filling and form it into a ball. Roll the cheese ball through the bacon and repeat until all of the mixture is gone.",
             "Refrigerate until you’re ready to serve."
         ],
+        "imageid": "",
         "postAuthor": "Amiko"
     },
+
     {
         "title": "Greek Spinach and Cheese Parcels (Spanakopita)",
+        "category": "Appetizer",
         "servings": 5,
         "totalTime": 35,
         "ingredients": [
@@ -209,10 +230,13 @@
             "Bake for about 10 minutes - or until they turn golden brown.",
             "Serve with Tzatziki sauce."
         ],
+        "imageid": "",
         "postAuthor": "Edward V. Berard"
     },
+
     {
         "title": "Sex in the Driveway",
+        "category": "Drink",
         "servings": 1,
         "totalTime": 3,
         "ingredients": [
@@ -227,10 +251,13 @@
             "Stir and serve with a straw.",
             "Garnish with a lemon wheel."
         ],
+        "imageid": "",
         "postAuthor": "Edward V. Berard"
     },
+
     {
         "title": "Easy Apple Cider",
+        "category": "Drink",
         "servings": 8,
         "totalTime": 65,
         "ingredients": [
@@ -245,6 +272,7 @@
             "Wrap allspice and cloves in a small piece of cheesecloth, and add to pot.", 
             "Stir in brown sugar. Bring to a boil over high heat. Reduce heat, and keep warm."
         ],
+        "imageid": "",
         "postAuthor": "Brian Kernighan"
     }
 ]

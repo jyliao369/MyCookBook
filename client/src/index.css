@@ -131,10 +131,6 @@
   border-color: ivory;
 }
 
-.generalinfo {
-
-}
-
 /* ************************************************************************* */
 /* THIS CUSTOMIZES THE USERS PROFILE INCLUDING THE FORM TO ADD A NEW RECIPE*/
 .userprofile {
@@ -329,4 +325,10 @@
   font-size: 150%;
   padding: 1% 0%;
   margin: 0% 0%;
+}
+
+/* ************************************************************************* */
+.imagepreview {
+  width: 50%;
+  height: 0%;
 }
