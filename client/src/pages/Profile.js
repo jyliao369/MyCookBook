@@ -28,7 +28,7 @@ const Profile = () => {
     );
     const user = data?.myprofile || data?.user || {};
     const recipes = user.recipes;
-    console.log(user);
+    // console.log(user);
     // console.log("hi");
     // console.log(recipes);
     
@@ -68,62 +68,34 @@ const Profile = () => {
 
     if (!user?.username) {
         return (
-          <h4>
+          <h4 className="profileloggedout">
             You need to be logged in to see your profile page. Use the navigation
             links above to sign up or log in!
           </h4>
         );
     }
 
-//     let testsample =    `An ambulance takes Perry away, and the police demand Lori's help to catch Max
-// Later that night, Max returns and kills the officers watching the house
-// In an attempt to get him back, Jarret kidnaps Lori and Spike in hopes that Max will follow them to the EMAX building which he does
-// She first discovers him in the laboratory. Max relinquishes his aggressive, homicidal nature and begins to kiss Lori's hand
-// Jarret shoots Max with a shotgun before being knocked onto a large electrical cage, which kills him
-// Lori pets Max's head as he dies`
-
-//     let result = testsample.split("\n");
-
-//     const sentencearray = [];
-
-//     for (let a = 0; a < result.length; a++) {
-//         sentencearray.push(result[a]);
-//     };
-
-//     console.log("hi");
-//     console.log(sentencearray);
-
-
     return (
-            <div className="userprofile">
+            <div className="userprofilepage">
                 <div className="usersrecipes">
                     {recipes.map((recipe) => (
                         <div key={recipe._id} className="recipes">
+
+                            <Image cloudName="du119g90a" public_id={ recipe.imageid }/>
+                            
                             <Link to={`/recipes/${recipe._id}`}>
-                                <Image cloudName="du119g90a" public_id={ recipe.imageid }/>
-                                <div className="recipeinfo">
-                                    <h3>{ recipe.title }</h3>
-                                    <p>Servings: { recipe.servings }</p>
-                                    <p>Total Time: { recipe.totalTime }</p>
-                                    <br />
-                                </div>
-                                <div className="ingredientslist">
-                                    {recipe.ingredients.map((ingredient) => (
-                                        <p>{ ingredient }</p>
-                                    ))}    
-                                </div>
-                                <div>
-                                    
-                                </div>
-                                {/* <div className="directionlist">
-                                    {recipe.directions.map((direction) => (
-                                        <p>{ direction }</p>
-                                    ))}
-                                </div> */}
+                                <h3>{ recipe.title }</h3>
+                                <p>Servings: { recipe.servings }</p>
+                                <p>Total Time: { recipe.totalTime }</p>
                             </Link>
-                            <div>
-                                <button id={recipe._id} onClick={handleDelete}>Remove</button>
-                            </div>
+                        {/* <div className="ingredientslist">
+                            {recipe.ingredients.map((ingredient) => (
+                                <p>{ ingredient }</p>
+                            ))}    
+                        </div> */}
+                        <div className="deletebutton">
+                            <button id={recipe._id} onClick={handleDelete}>Remove</button>                            
+                        </div>
                         </div>
                     ))}
                 </div>

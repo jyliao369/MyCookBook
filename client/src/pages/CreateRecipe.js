@@ -3,9 +3,10 @@ import Recipeform from '../components/RecipeForm'
 const CreateRecipe = () => {
 
     return (
-        <div className="createform">
+        <div className="createrecipepage">
             <Recipeform />
         </div>
+
     );
 };
 

@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import React, {useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 // import { useQuery } from '@apollo/client';
 
 import { QUERY_RECIPES } from '../utils/queries';
@@ -31,14 +32,65 @@ const Home = () => {
     }
   };
   // console.log("new");
-  // console.log(uniqueRecipes);
-  
+  console.log(uniqueRecipes);
 
+  // THESE ARRAYS SHOULD HOLD RECIPES BASED ON THE CATEGORY
+  // THINK OF IT LIKE AN FILTERING
+  const drinks = [];
+  const appetizers =[];
+  const entres = [];
+  const desserts = [];
+  for (let a = 0; a < uniqueRecipes.length; a++) {
+    if (uniqueRecipes[a].category === "Drinks") {
+      drinks.push(uniqueRecipes[a])
+    }
+    if (uniqueRecipes[a].category === "Appetizer") {
+      appetizers.push(uniqueRecipes[a])
+    }
+    if (uniqueRecipes[a].category === "Entres") {
+      entres.push(uniqueRecipes[a])
+    }if (uniqueRecipes[a].category === "Dessert") {
+      desserts.push(uniqueRecipes[a])
+    }
+  }
+
+  const teaserdrinks = [];
+  const teaserentres = [];
+  const teaseappetizers = [];
+  const teaserdesserts = [];
+  for (let b = 0; b < 3; b++) {
+    teaserdrinks.push(drinks[b])
+  }
+  for (let b = 0; b < 2; b++) {
+    teaserentres.push(entres[b])
+  }
+  for (let b = 0; b < 2; b++) {
+    teaseappetizers.push(appetizers[b])
+  }
+  for (let b = 0; b < 3; b++) {
+    teaserdesserts.push(desserts[b])
+  }
+  console.log("a");
+  console.log(teaserdrinks);
+  console.log("b");
+  console.log(teaserentres);
+  console.log("c");
+  console.log(teaseappetizers);
+  console.log("d");
+  console.log(teaserdesserts);
+
+
+  
   return (
     <div className="homepage">
       <div className="userrecipes">
         {uniqueRecipes.map((recipe) => (
           <div key={ recipe._id } className="recipepost">
+            { recipe.imageid ? (
+              <Image cloudName="du119g90a" public_id={ recipe.imageid } />
+            ) : (
+              <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
+            )}
             <Link to={`/recipes/${ recipe._id }`}>
               <h3>{ recipe.title }</h3>
               <p>Servings: { recipe.servings }</p>

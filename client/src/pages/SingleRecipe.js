@@ -6,6 +6,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import { QUERY_SINGLE_RECIPE, QUERY_MYPROFILE } from '../utils/queries';
 
+import { Image } from 'cloudinary-react';
+
 import Auth from '../utils/auth';
 
 const SingleRecipe = () => {
@@ -22,11 +24,11 @@ const SingleRecipe = () => {
     // FROM ABOVE AND ADD TO THE USER THAT IS CURRENTLY LOGGED. THAT'S WHAT THE
     // BELOW CODE SHOULD DO
 
-    const [ addedrecipe , setAddedrecipe ] = useState({
-        title: 'hello'
-    });
-    console.log("testing");
-    console.log(addedrecipe);
+    // const [ addedrecipe , setAddedrecipe ] = useState({
+    //     title: 'hello'
+    // });
+    // console.log("testing");
+    // console.log(addedrecipe);
 
     const [addRecipe, { error }] = useMutation(ADD_RECIPE, {
         update(cache, { data: { addRecipe } }) {
@@ -78,18 +80,27 @@ const SingleRecipe = () => {
                         </>
                     )}
                 </div>
+                <hr/>
                 <div className="generalInfo">
+                    <p>Category: {recipe.category}</p>
                     <p>Number of Servings: {recipe.servings}</p>
                     <p>Total Cook Time: {recipe.totalTime}</p>
                 </div>
-                <h1>Ingredients</h1>
-                <div className="ingredientsList">
-                    {recipe.ingredients.map((ingredient) => (
-                        <p>{ingredient}</p>
-                    ))}
+                <hr/>
+                <div className="middlepart">
+                    <div className="ingredientsList">
+                        <h1>Ingredients</h1>
+                        {recipe.ingredients.map((ingredient) => (
+                            <p>{ingredient}</p>
+                        ))}
+                    </div>
+                    <div className="recipeImg">
+                        <Image cloudName="du119g90a" public_id={recipe.imageid} />
+                    </div>
                 </div>
-                <h1>Directions</h1>
+                <hr/>
                 <div className="directionsList">
+                    <h1>Directions</h1>
                     {recipe.directions.map((direction) => (
                         <p>{direction}</p>
                     ))}

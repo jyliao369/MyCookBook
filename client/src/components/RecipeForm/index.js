@@ -169,40 +169,49 @@ const RecipeForm = () => {
 
     return (
         <div className="recipeformsection">
-            <div className="uploadImage">
-                <input 
-                    title=" "
-                    type="file" 
-                    onChange={(event) => {
-                        uploadImage(event.target.files[0]);
-                        setImageSelected(event.target.files[0]);
-                    }}
-                />
-                <div className="previewImage">
-                    {imageSelected ? (
-                        <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
-                    ) : (
-                        <h1>No Image</h1>
-                    )}
-                </div>
-            </div>
+            
             <form onSubmit={handleSubmit} className="recipeform">
-                <input placeholder="Recipe Name" name="title" onChange={handleChange}></input>
-                <input placeholder="Category" name="category" onChange={handleChange}></input>
-                <input placeholder="Servings" name="servings" onChange={handleChange}></input>
-                <input placeholder="Total Time to Cook" name="totalTime" onChange={handleChange}></input>
-                <textarea placeholder="Ingredients" name="ingredients" onChange={handleChange}></textarea>
-                <textarea placeholder="Instructions" name="directions" onChange={handleChange}></textarea>
+                <div className="tophalf">
+                    <div className="basicinfo">
+                        <input placeholder="Recipe Name" name="title" onChange={handleChange}></input>
+                        <select placeholder="Category" name="category" onChange={handleChange}>
+                            <option value="">Choose a Category</option>
+                            <option value="Appetizer">Appetizer</option>
+                            <option value="Entres">Entres</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Drinks">Drinks</option>
+                        </select>
+                        <input placeholder="Servings" name="servings" onChange={handleChange}></input>
+                        <input placeholder="Total Time in Mins" name="totalTime" onChange={handleChange}></input>
+                    </div>
+                    <div className="uploadImage">
+                        <div className="previewImage">
+                            {imageSelected ? (
+                                <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
+                            ) : (
+                                <h1>No Image</h1>
+                            )}
+                        </div>
+                        <input 
+                            title=" "
+                            type="file" 
+                            onChange={(event) => {
+                                uploadImage(event.target.files[0]);
+                                setImageSelected(event.target.files[0]);
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className="ingred-instr">
+                    <textarea placeholder="Ingredients" name="ingredients" onChange={handleChange}></textarea>
+                    <textarea placeholder="Instructions" name="directions" onChange={handleChange}></textarea>
+                </div>
                 <div className="">
                     <button className="recipeformbutton" type="submit">
                         Add Recipe
                     </button>
-
                 </div>
             </form>
-            <button onClick={uploadImage}>
-                Add Recipe
-            </button>
         </div>
     );
 }
