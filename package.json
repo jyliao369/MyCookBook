@@ -24,6 +24,7 @@
     "axios": "^0.24.0",
     "cloudinary-react": "^1.7.0",
     "graphql": "^15.7.2",
-    "node": "^17.1.0"
+    "node": "^17.1.0",
+    "react-scripts": "^4.0.3"
   }
 }
