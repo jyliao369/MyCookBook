@@ -1,5 +1,5 @@
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/myFirstDatabase',
+  process.env.MONGODB_URI || 'mongodb://localhost/testdb',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
