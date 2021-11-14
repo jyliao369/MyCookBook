@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+require("dotenv").config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -6,20 +8,10 @@ const { typeDefs, resolvers } = require('./schemas');
 // Import `authMiddleware()` function to be configured with the Apollo Server
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
+const { Mongoose } = require('mongoose');
 
-// const PORT = process.env.PORT || 3000;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 const app = express();
-
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/testdb',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-);
 
 const server = new ApolloServer({
   typeDefs,
