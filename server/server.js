@@ -1,13 +1,3 @@
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/testdb',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-);
-
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -17,8 +7,19 @@ const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/testdb',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+);
 
 const server = new ApolloServer({
   typeDefs,
