@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
-  "homepage": "http://jyliao369.github.io/MyCookBook",
   "scripts": {
     "start": "node server/server.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",

@@ -1,3 +1,13 @@
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/myFirstDatabase',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+);
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
