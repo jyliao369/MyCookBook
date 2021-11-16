@@ -14,6 +14,19 @@ import { Image } from 'cloudinary-react';
 
 import Auth from '../utils/auth';
 
+// MUI COMPONENTS FOR LOGIN AND SIGNUP
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button'
+import { Collapse } from '@mui/material';
+
 const Profile = () => {
 
     const { userId } = useParams();
@@ -72,6 +85,24 @@ const Profile = () => {
         setUserRecipe(newlist);
     }
 
+    const ExpandMore = styled((props) => {
+        
+        const { expand, ...other } = props;
+        return <IconButton {...other} />;
+    })(({ theme, expand }) => ({
+        transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.shortest,
+        }),
+    }));
+
+    const [ expanded, setExpanded ] = useState(false);
+
+    const handleExpand = () => {
+        setExpanded(!expanded);
+    };
+
     if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
         return <Redirect to="/myprofile" />;
     }
@@ -91,7 +122,7 @@ const Profile = () => {
 
     return (
             <div className="userprofilepage">
-                <div className="usersrecipes">
+                {/* <div className="usersrecipes">
                     {userrecipe && userrecipe.map((recipe) => (
                         <div key={recipe._id} className="recipes">
                             { recipe.imageid ? (
@@ -112,7 +143,7 @@ const Profile = () => {
                                 <p>{ ingredient }</p>
                             ))}    
                         </div> */}
-                            <div className="deletebutton">
+                            {/* <div className="deletebutton">
                                 <button id={recipe._id} onClick={handleDelete}>Remove</button>                            
                             </div>
                         </div>
@@ -123,8 +154,97 @@ const Profile = () => {
                     <button value="Appetizers" onClick={handleFilter}>Appetizers</button>   
                     <button value="Entres" onClick={handleFilter}>Entres</button>     
                     <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
-                </div>
-            </div>         
+                </div> */}
+            
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+                    {userrecipe && userrecipe.map((recipe) => (
+                        <Card sx={{ display: 'flex', flexDirection: 'column', width: 475, p: 1, m: 1 }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                <CardHeader 
+                                    title={ recipe.title } 
+                                    subheader={ recipe.createdAt }
+                                    height='100'
+                                />
+                                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                    <CardMedia sx={{ width: 250 }}>
+                                        { recipe.imageid ? (
+                                            <Image
+                                                width="100%"
+                                                cloudName="du119g90a" 
+                                                public_id={ recipe.imageid }
+                                            />
+                                        ): (
+                                            <Image 
+                                                width="100%"
+                                                cloudName="du119g90a" 
+                                                public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                            />
+                                        )}
+                                    </CardMedia>
+                                    <CardContent>
+                                        <Typography>Servings: { recipe.servings } </Typography>
+                                        <Typography>Total Time: { recipe.totalTime }</Typography>
+                                        <Typography>Category: { recipe.category }</Typography>
+                                    </CardContent>
+                                    {/* <CardContent>
+                                        <Typography paragraph>
+                                            Ingredients
+                                        </Typography>
+                                        { recipe.ingredients.map((ingredient) => (
+                                            <Typography sx={{ lineHeight: 'normal', m: 1 }} paragraph>
+                                                { ingredient }
+                                            </Typography>
+                                        ))}
+                                    </CardContent> */}
+                                </Box>
+
+                                {/* <Box sx={{ width: 175 }}>
+                                    <CardContent>
+                                        <Typography>Servings: { recipe.servings } </Typography>
+                                        <Typography>Total Time: { recipe.totalTime }</Typography>
+                                        <Typography>Category: { recipe.category }</Typography>
+                                    </CardContent>
+
+                                    <CardContent>
+                                        <Typography paragraph>
+                                            Ingredients
+                                        </Typography>
+                                        { recipe.ingredients.map((ingredient) => (
+                                            <Typography paragraph>
+                                                { ingredient }
+                                            </Typography>
+                                        ))}
+                                    </CardContent>
+
+                                    <CardActions>
+                                        <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpand}
+                                        >
+                                        ^
+                                        </ExpandMore>
+                                    </CardActions>
+                                </Box> */}
+                            </Box>
+
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                    <Typography paragraph>
+                                        Instructions
+                                    </Typography>
+                                    { recipe.directions.map((direction) => (
+                                        <Typography paragraph>
+                                            { direction }
+                                        </Typography>
+                                    ))}
+                                </CardContent>
+                            </Collapse>
+                        </Card>
+                    ))}
+
+                </Box> 
+            </div>   
+     
     );
     
 
