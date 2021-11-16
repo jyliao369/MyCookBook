@@ -13,6 +13,14 @@ import Axios from 'axios';
 
 import Auth from '../../utils/auth';
 
+// MUI COMPONENTS FOR LOGIN AND SIGNUP
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel'
+
 const RecipeForm = () => {
 
     const [newRecipe, setNewRecipe] = useState({
@@ -170,7 +178,7 @@ const RecipeForm = () => {
     return (
         <div className="recipeformsection">
             
-            <form onSubmit={handleSubmit} className="recipeform">
+            {/* <form onSubmit={handleSubmit} className="recipeform">
                 <div className="tophalf">
                     <div className="basicinfo">
                         <input placeholder="Recipe Name" name="title" onChange={handleChange}></input>
@@ -211,7 +219,91 @@ const RecipeForm = () => {
                         Add Recipe
                     </button>
                 </div>
-            </form>
+            </form> */}
+            {/* <br />
+            <br />
+            <br /> */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', p: 1.5 }}>
+                        <TextField 
+                            sx={{ m: 1, width: 500 }}
+                            label="Recipe Name"
+                            variant="outlined"
+                            name="title"
+                            onChange={handleChange}                   
+                        />
+                        <Select
+                            sx={{ m: 1, width: 500 }}
+                            variant="outlined"
+                            name="category"
+                            onChange={handleChange}
+                            placeholder="Category"
+                        >
+                            <MenuItem value="Drinks">Drinks</MenuItem>
+                            <MenuItem value="Appetizer">Appetizer</MenuItem>
+                            <MenuItem value="Entres">Entres</MenuItem>
+                            <MenuItem value="Dessert">Dessert</MenuItem>
+                        </Select>
+                        <TextField 
+                            sx={{ m: 1, width: 500 }}
+                            label="Servings"
+                            variant="outlined"                   
+                            name="servings"
+                            onChange={handleChange}
+                        />
+                        <TextField 
+                            sx={{ m: 1, width: 500 }}
+                            label="Total Cook Time (mins)"
+                            variant="outlined"
+                            name="totalTime"
+                            onChange={handleChange}                 
+                        />
+                    </Box>
+                    <Box sx={{ width: 225, p: 1.5, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            {imageSelected ? (
+                                <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
+                            ) : (
+                                <h1>No Image</h1>
+                            )}
+                        </Box>
+                        <input 
+                            title=" "
+                            type="file" 
+                            onChange={(event) => {
+                                uploadImage(event.target.files[0]);
+                                setImageSelected(event.target.files[0]);
+                            }}
+                        />
+                    </Box>
+                </Box> 
+
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <TextField 
+                        sx={{ m: 1, width: 750 }}
+                        label="Ingredients"
+                        variant="outlined"
+                        name="ingredients"
+                        onChange={handleChange}
+                        multiline  
+                        rows={5}                 
+                    />
+                    <TextField 
+                        sx={{ m: 1, width: 750  }}
+                        label="Instructions"
+                        variant="outlined"
+                        name="directions"
+                        onChange={handleChange}
+                        multiline
+                        rows={5}
+                    />
+                </Box>
+
+                <Button variant="contained" onClick={handleSubmit}>Add Recipe</Button>       
+            </Box>
+
         </div>
     );
 }

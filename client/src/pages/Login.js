@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
+// MUI COMPONENTS FOR LOGIN AND SIGNUP
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'
+
 const Login = (props) => {
 
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -41,7 +46,9 @@ const Login = (props) => {
 
     return (
       <div className="loginpage">
-        <div className="logincard">
+
+        {/* THIS IS THE ORINGAL LOGIN CARD THROUGH CSS */}
+        {/* <div className="logincard">
           <h4 className="card-header">Login</h4>
           
           <div className="loginbody">
@@ -79,7 +86,39 @@ const Login = (props) => {
               </div>
             )}
           </div>
-        </div>
+        </div> */}
+
+        {/* THIS IS THE LOGIN FORM BASED ON MUI */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <TextField 
+            sx={{ m: 1, width: 500 }}
+            id="outlined-basic"
+            label="Email" 
+            variant="outlined"                   
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange} 
+          />
+          <TextField
+            sx={{ m: 1, width: 500 }} 
+            id="outlined-basic" 
+            label="Password" 
+            variant="outlined"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />  
+          <Button variant="contained" onClick={handleSubmit}>Login</Button>
+        </Box>
+        
+        {error && (
+          <div className="my-3 p-3 bg-danger text-white">
+            {error.message}
+          </div>
+        )}
+        
       </div>
     );
 };

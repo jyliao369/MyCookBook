@@ -6,6 +6,12 @@ import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+// MUI COMPONENTS FOR LOGIN AND SIGNUP
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+
 const Signup = () => {
     const [formState, setFormState] = useState({
         username: '',
@@ -41,7 +47,9 @@ const Signup = () => {
 
     return (
       <div className="signuppage">
-        <div className="signupcard">
+
+        {/* THIS IS BASED ON PURE CSS */}
+        {/* <div className="signupcard">
           <h4 className="signupheader">Sign Up</h4>
           <div className="signupbody">
             { data ? (
@@ -80,7 +88,43 @@ const Signup = () => {
               </form>
             )}
           </div>
-        </div>
+        </div> */}
+
+        {/* THIS IS BASED ON MUI CSS */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <TextField 
+            sx={{ m: 1, width: 500 }}
+            id="outlined-basic"
+            label="Username" 
+            variant="outlined"                   
+            name="username"
+            type="username"
+            value={formState.username}
+            onChange={handleChange} 
+          />
+          <TextField 
+            sx={{ m: 1, width: 500 }} 
+            id="outlined-basic" 
+            label="Password" 
+            variant="outlined"
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}            
+          />
+          <TextField
+            sx={{ m: 1, width: 500 }} 
+            id="outlined-basic" 
+            label="Password" 
+            variant="outlined"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange} 
+          />
+          <Button variant="contained" onClick={handleSubmit}>Sign Up</Button>
+        </Box>
+
       </div>
     );
 };
