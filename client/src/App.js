@@ -16,7 +16,7 @@ import Profile from './pages/Profile';
 import Recipespage from './pages/Recipespage';
 import CreateRecipe from './pages/CreateRecipe';
 import SingleRecipe from './pages/SingleRecipe';
-import TestPicUpload from './pages/TestPicupload';
+import Test from './pages/Test';
 
 import Header from './components/Header';
 
@@ -75,8 +75,8 @@ function App() {
             <SingleRecipe />
           </Route>
 
-          <Route exact path="/pic">
-            <TestPicUpload />
+          <Route exact path='/test'>
+            <Test />
           </Route>
           
         </div>
