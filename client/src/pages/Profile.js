@@ -16,9 +16,6 @@ import Auth from '../utils/auth';
 
 const Profile = () => {
 
-    useEffect(() => {
-    }, []);
-
     const { userId } = useParams();
     const { loading, data } = useQuery(
         userId ? QUERY_SINGLE_USER : QUERY_MYPROFILE,
@@ -26,24 +23,38 @@ const Profile = () => {
             variables: { userId: userId },
         }
     );
-    const user = data?.myprofile || data?.user || {};
-    const recipes = user.recipes;
+
+    let user = data?.myprofile || data?.user || {};
+    let recipes = user.recipes;
+    
     // console.log(user);
-    // console.log("hi");
     // console.log(recipes);
+
+    const [ userrecipe, setUserRecipe ] = useState('');
+    
+    useEffect(() => {
+        setUserRecipe(recipes);
+    }, [recipes]);
     
     // THESE NEXT LINES OF CODE SHOULD BE ABLE TO DELETE ANY RECIPES WITHIN
     // THE PROFILE PAGE WHICH MEANS ANY RECIPE HELD IN THE USERS RECIPES ARRAY
     // THIS TECHNICALLY SHOULD'T DELETE ANY DUPLICATES OR WHEN A USER ADDS ANOTHER
     // USERS RECIPE OR BASIALLY IT WONT DELETE THE ORIGINAL POST... I THINK
     const [ removeRecipe ] = useMutation(REMOVE_RECIPE);
-    // const [ recipeId, setRecipeID ] = useState('');
+
+    const handleFilter = async (event) => {
+        let recipecategory = event.target.value;
+        let newlist = recipes.filter(recipe => recipe.category === recipecategory)
+
+        setUserRecipe(newlist);
+    }
 
     const handleDelete = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         let recipeId = event.target.id;
-        console.log( recipeId );
-        console.log( typeof recipeId );
+        // console.log( recipeId );
+        // console.log( typeof recipeId );
+        let newlist = recipes.filter(recipe => recipe._id !== recipeId);
 
         try {
             await removeRecipe({
@@ -51,11 +62,14 @@ const Profile = () => {
             });
 
             console.log("success recipe removed");
+
             console.log()
         } catch (e) {
             console.error(e);
             console.log("it didnt work");
         }
+
+        setUserRecipe(newlist);
     }
 
     if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
@@ -78,10 +92,15 @@ const Profile = () => {
     return (
             <div className="userprofilepage">
                 <div className="usersrecipes">
-                    {recipes.map((recipe) => (
+                    {userrecipe && userrecipe.map((recipe) => (
                         <div key={recipe._id} className="recipes">
+                            { recipe.imageid ? (
+                                <Image cloudName="du119g90a" public_id={ recipe.imageid }/>
+                            ): (
+                                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
+                            )}
 
-                            <Image cloudName="du119g90a" public_id={ recipe.imageid }/>
+                            
                             
                             <Link to={`/recipes/${recipe._id}`}>
                                 <h3>{ recipe.title }</h3>
@@ -93,11 +112,17 @@ const Profile = () => {
                                 <p>{ ingredient }</p>
                             ))}    
                         </div> */}
-                        <div className="deletebutton">
-                            <button id={recipe._id} onClick={handleDelete}>Remove</button>                            
-                        </div>
+                            <div className="deletebutton">
+                                <button id={recipe._id} onClick={handleDelete}>Remove</button>                            
+                            </div>
                         </div>
                     ))}
+                </div>
+                <div className="filterbutton">
+                    <button value="Drinks" onClick={handleFilter}>Drinks</button>   
+                    <button value="Appetizers" onClick={handleFilter}>Appetizers</button>   
+                    <button value="Entres" onClick={handleFilter}>Entres</button>     
+                    <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
                 </div>
             </div>         
     );

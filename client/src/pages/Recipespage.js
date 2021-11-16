@@ -30,23 +30,33 @@ const Recipespage = () => {
             uniqueRecipes.push(recipes[a]);
         }
     }
-    // console.log(uniqueRecipes);
+    console.log("uniqueRecipes");
+    console.log(uniqueRecipes);
+    const [ recipeslist, setRecipeslist ] = useState(uniqueRecipes);
+    console.log("recipeslist");
+    console.log(recipeslist);
 
-    // THIS SHOULD HELP PRINT ONLY A FEW AT A TIME
-    let test = [];
-    let d = 0;
-    const handleNext = () => {
-        test = [];
-        console.log("hi");
-        for (let c = 0 + d; c <=4 + d ; c++) {
-            test.push(uniqueRecipes[c]);
-            console.log("hi");
-            console.log(test);
+    const test = [];
+    const handlefilter = (event) => {
+        event.preventDefault();
+        console.log(event.target.value);
+
+        for (let a = 0; a < uniqueRecipes.length; a++) {
+            if (uniqueRecipes[a].category === event.target.value) {
+                test.push(uniqueRecipes[a]);
+                console.log("test");
+                console.log(test);
+            }
         }
-        d += 5;
-        return test;
+        console.log("test");
+        console.log(test);
+        setRecipeslist(test);
     }
-    handleNext();
+    console.log("testlist");
+    console.log(test);
+    console.log("newrecipelist");
+    console.log(recipeslist);
+
 
     return (
         <div className="recipespage">
@@ -59,17 +69,15 @@ const Recipespage = () => {
             <div className="recipeslist">
                 {uniqueRecipes.map((recipe) => (
                     <div key={recipe._id} className="recipecard">
+                        { recipe.imageid ? (
+                            <Image cloudName="du119g90a" public_id={ recipe.imageid } />
+                        ) : (
+                            <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
+                        )}
                         <Link to={`/recipes/${ recipe._id }`}>
-                            { recipe.imageid ? (
-                                <Image cloudName="du119g90a" public_id={ recipe.imageid } />
-                            ) : (
-                                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
-                            )}
-                            <div className="generalinfo">
-                                <h3>{recipe.title}</h3>
-                                <p>Total Servings: {recipe.servings}</p>
-                                <p>totalTime: {recipe.totalTime} mins</p>
-                            </div>
+                            <h3>{recipe.title}</h3>
+                            <p>Total Servings: {recipe.servings}</p>
+                            <p>totalTime: {recipe.totalTime} mins</p>
                             
                             {/* {recipe.recipe.ingredientLines.map((ingredient) => (
                                 <div>
@@ -81,7 +89,7 @@ const Recipespage = () => {
                 ))}
             </div>
             <div>
-                <button onClick={handleNext}>hi</button>
+                <button value="Drinks" onClick={handlefilter}>hi</button>
             </div>
         </div>
     )

@@ -52,38 +52,70 @@
 
 .userrecipes {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.drinkstease {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.drinkstease .recipepost{
+  display: flex;
+  border-style: solid;
+  height: 140px;
+  width: 40%;
+  margin: 0% 5% 2% 0%;
+}
+
+.seperators {
+  height: 100px;
+}
+
+.entrestease {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.entrestease .recipepost {
+  display: flex;
+  border-style: solid;
+  height: 190px;
+  width: 30%;
+  margin: 0% 0% 2% 3.1%;
+  flex-direction: row;
+}
+
+.desserttease {
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.recipepost {
+.desserttease .recipepost {
   display: flex;
   border-style: solid;
-  margin: 0.5%;
-  width: 31%;
-  height: 175px;
+  height: 150px;
+  width: 26%;
+  margin: 0% 5% 2% 0%;
 }
 
-.imageholder {
+/* .recipepost {
   display: flex;
-}
-
-.imageholder img{
-  width: 250px;
-  height: 100%;
-}
+  border-style: solid;
+  height: 140px;
+  width: 40%;
+  margin: 0% 5% 2% 0%;
+} */
 
 .recipepost a {
-  padding: 2% 2%;
-}
-
-.recipepost h3 {
-  font-size: 100%;
-}
-
-.recipepost p {
-  font-size: 100%;
+  padding: 1.5%
 }
 
 /* ************************************************************************* */
@@ -105,19 +137,23 @@
 }
 
 .recipecard {
+  display: flex;
   border-style: solid;
-  height: 375px;
-  width: 14%;
-  margin: 1% 1%;
+  height: auto;
+  width: 15%;
+  margin: 1% 0.5%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .recipecard img {
   width: 100%;
 }
 
-.generalinfo {
-  padding: 3% 5%;
+.recipecard a { 
+  padding: 7%;
 }
+
 
 /* ************************************************************************* */
 /* THIS CUSTOMIZES THE USERS PROFILE */

@@ -37,68 +37,93 @@ const Home = () => {
   // THESE ARRAYS SHOULD HOLD RECIPES BASED ON THE CATEGORY
   // THINK OF IT LIKE AN FILTERING
   const drinks = [];
+  const drinknum = 4;
   const appetizers =[];
+  const appnum = 4;
   const entres = [];
+  const entresnum = 4;
   const desserts = [];
+  const desnum = 5;
   for (let a = 0; a < uniqueRecipes.length; a++) {
-    if (uniqueRecipes[a].category === "Drinks") {
+    if (uniqueRecipes[a].category === "Drinks" && drinks.length < drinknum) {
       drinks.push(uniqueRecipes[a])
     }
-    if (uniqueRecipes[a].category === "Appetizer") {
+    if (uniqueRecipes[a].category === "Appetizer" && appetizers.length < appnum) {
       appetizers.push(uniqueRecipes[a])
     }
-    if (uniqueRecipes[a].category === "Entres") {
+    if (uniqueRecipes[a].category === "Entres" && entres.length < entresnum) {
       entres.push(uniqueRecipes[a])
-    }if (uniqueRecipes[a].category === "Dessert") {
+    }if (uniqueRecipes[a].category === "Dessert" && desserts.length < desnum) {
       desserts.push(uniqueRecipes[a])
     }
   }
-
-  const teaserdrinks = [];
-  const teaserentres = [];
-  const teaseappetizers = [];
-  const teaserdesserts = [];
-  for (let b = 0; b < 3; b++) {
-    teaserdrinks.push(drinks[b])
-  }
-  for (let b = 0; b < 2; b++) {
-    teaserentres.push(entres[b])
-  }
-  for (let b = 0; b < 2; b++) {
-    teaseappetizers.push(appetizers[b])
-  }
-  for (let b = 0; b < 3; b++) {
-    teaserdesserts.push(desserts[b])
-  }
-  console.log("a");
-  console.log(teaserdrinks);
-  console.log("b");
-  console.log(teaserentres);
-  console.log("c");
-  console.log(teaseappetizers);
-  console.log("d");
-  console.log(teaserdesserts);
 
 
   
   return (
     <div className="homepage">
       <div className="userrecipes">
-        {uniqueRecipes.map((recipe) => (
-          <div key={ recipe._id } className="recipepost">
-            { recipe.imageid ? (
-              <Image cloudName="du119g90a" public_id={ recipe.imageid } />
-            ) : (
-              <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
-            )}
-            <Link to={`/recipes/${ recipe._id }`}>
-              <h3>{ recipe.title }</h3>
-              <p>Servings: { recipe.servings }</p>
-              <p>Total Cook Time: { recipe.totalTime } mins</p>
-              <p>Chef: { recipe.postAuthor }</p>
-            </Link>
-          </div>
-        ))}
+        <div>
+
+        </div>
+        <div className="drinkstease">
+          {drinks.map((drink) => (
+            <div key={ drink._id } className="recipepost">
+              { drink.imageid ? (
+                <Image cloudName="du119g90a" public_id={ drink.imageid } />
+              ) : (
+                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
+              )}
+              <Link to={`/recipes/${ drink._id }`}>
+                <h3>{ drink.title }</h3>
+                <p>Servings: { drink.servings }</p>
+                <p>Total Time: { drink.totalTime } mins</p>
+                <p>Chef: { drink.postAuthor }</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <div className="seperators"></div>
+
+        <div className="entrestease">
+          {entres.map((recipe) => (
+            <div key={ recipe._id } className="recipepost">
+              { recipe.imageid ? (
+                <Image cloudName="du119g90a" public_id={ recipe.imageid } />
+              ) : (
+                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
+              )}
+              <Link to={`/recipes/${ recipe._id }`}>
+                <h3>{ recipe.title }</h3>
+                <p>Servings: { recipe.servings }</p>
+                <p>Total Time: { recipe.totalTime } mins</p>
+                <p>Chef: { recipe.postAuthor }</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <div className="seperators"></div>
+
+        <div className="desserttease">
+          {desserts.map((dessert) => (
+            <div key={ dessert._id } className="recipepost">
+              { dessert.imageid ? (
+                <Image cloudName="du119g90a" public_id={ dessert.imageid } />
+              ) : (
+                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg" />
+              )}
+              <Link to={`/recipes/${ dessert._id }`}>
+                <h3>{ dessert.title }</h3>
+                <p>Servings: { dessert.servings }</p>
+                <p>Total Time: { dessert.totalTime } mins</p>
+                <p>Chef: { dessert.postAuthor }</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );

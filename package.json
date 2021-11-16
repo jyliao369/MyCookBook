@@ -4,14 +4,12 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "server": "nodemon server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +20,6 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cloudinary-react": "^1.7.0",
-    "dotenv": "^10.0.0",
     "graphql": "^15.7.2"
   }
 }
