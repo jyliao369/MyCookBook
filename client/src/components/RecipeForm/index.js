@@ -1,6 +1,7 @@
 import React from 'react';
 // import { useContext } from 'react';
 import { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 // import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -236,6 +237,7 @@ const RecipeForm = () => {
                         />
                         <Select
                             sx={{ m: 1, width: 500 }}
+                            // label="Category"
                             variant="outlined"
                             name="category"
                             onChange={handleChange}
@@ -243,7 +245,7 @@ const RecipeForm = () => {
                         >
                             <MenuItem value="Drinks">Drinks</MenuItem>
                             <MenuItem value="Appetizer">Appetizer</MenuItem>
-                            <MenuItem value="Entres">Entres</MenuItem>
+                            <MenuItem value="Entree">Entree</MenuItem>
                             <MenuItem value="Dessert">Dessert</MenuItem>
                         </Select>
                         <TextField 
@@ -288,7 +290,7 @@ const RecipeForm = () => {
                         name="ingredients"
                         onChange={handleChange}
                         multiline  
-                        rows={5}                 
+                        rows={7}                 
                     />
                     <TextField 
                         sx={{ m: 1, width: 750  }}
@@ -297,11 +299,11 @@ const RecipeForm = () => {
                         name="directions"
                         onChange={handleChange}
                         multiline
-                        rows={5}
+                        rows={7}
                     />
                 </Box>
 
-                <Button variant="contained" onClick={handleSubmit}>Add Recipe</Button>       
+                <Button variant="contained" onClick={handleSubmit} type='submit'>Add Recipe</Button>       
             </Box>
 
         </div>

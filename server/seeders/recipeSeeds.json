@@ -25,7 +25,7 @@
 
     {
         "title": "Easy Fried Rice",
-        "category": "Entres",
+        "category": "entree",
         "servings": 2,
         "totalTime": 45,
         "ingredients": [
@@ -54,7 +54,7 @@
 
     {
         "title": "Impossible Quiche",
-        "category": "Entres",
+        "category": "entree",
         "servings": 1,
         "totalTime": 50,
         "ingredients": [

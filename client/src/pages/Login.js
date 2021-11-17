@@ -110,7 +110,7 @@ const Login = (props) => {
             value={formState.password}
             onChange={handleChange}
           />  
-          <Button variant="contained" onClick={handleSubmit}>Login</Button>
+          <Button variant="contained" type='submit' onClick={handleSubmit}>Login</Button>
         </Box>
         
         {error && (

@@ -152,7 +152,7 @@ const Profile = () => {
                 <div className="filterbutton">
                     <button value="Drinks" onClick={handleFilter}>Drinks</button>   
                     <button value="Appetizers" onClick={handleFilter}>Appetizers</button>   
-                    <button value="Entres" onClick={handleFilter}>Entres</button>     
+                    <button value="entree" onClick={handleFilter}>entree</button>     
                     <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
                 </div> */}
 

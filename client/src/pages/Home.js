@@ -61,7 +61,7 @@ const Home = () => {
     if (uniqueRecipes[a].category === "Appetizer" && appetizers.length < appnum) {
       appetizers.push(uniqueRecipes[a])
     }
-    if (uniqueRecipes[a].category === "Entres" && entrees.length < entreesnum) {
+    if (uniqueRecipes[a].category === "Entree" && entrees.length < entreesnum) {
       entrees.push(uniqueRecipes[a])
     }if (uniqueRecipes[a].category === "Dessert" && desserts.length < desnum) {
       desserts.push(uniqueRecipes[a])
@@ -88,9 +88,10 @@ const Home = () => {
                     />
                   ) : (
                     <Image 
-                    cloudName="du119g90a"
-                    public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                  />
+                      width='100%' 
+                      cloudName="du119g90a"
+                      public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                    />
                   )}
                 </CardMedia>
                 <CardHeader
@@ -166,9 +167,9 @@ const Home = () => {
       <br /><br /><br /><br />
       
       {/* THIS IS FOR THE DESSERTS*/}
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around'}}>
         {desserts.map((dessert) => (
-          <Card sx={{ width: 1.1/5, height: 230, m: 2, mr: 3, ml: 3, display: 'flex', alignItems: 'center' }}>
+          <Card sx={{ width: 425, height: 250, m: 3, display: 'flex', alignItems: 'center' }}>
             <Link to={`/recipes/${ dessert._id }`}>
               <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                 <CardMedia sx={{ width: 250, p:1.5 }}>
@@ -217,7 +218,7 @@ const Home = () => {
 
         {/* <div className="seperators"></div>
 
-        <div className="entrestease">
+        <div className="entreetease">
           {entrees.map((entree) => (
             <div key={ recipe._id } className="recipepost">
               { recipe.imageid ? (

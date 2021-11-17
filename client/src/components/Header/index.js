@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="">
 
-      <div className="header">
+      {/* <div className="header">
 
         <Link className="" to="/">
           <h1 className="appTitle">MyCookBook</h1>
@@ -54,36 +54,44 @@ const Header = () => {
             </>
           )}
         </div>
-      </div>
+      </div> */}
       
-      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <Link to="/">
-          <h1 className="appTitle">mmmBook</h1>
-        </Link>
+      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', pt: 1, pb: 1}}>
+        <Box sx={{ pl: 5 }}>
+          <Link to="/">
+            <Typography sx={{ fontSize: 35 }}>mmmBook</Typography>
+          </Link>
+        </Box>
         {Auth.loggedIn() ? (
             <>
-              <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pr: 5 }}>
+                <Link to="/recipes">
+                  <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Recipes</Typography>
+                </Link>
                 <Link className="" to="/add">
-                  <Typography sx={{ fontSize: 25 }}>Add New Recipe</Typography>
+                  <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Add New Recipe</Typography>
                 </Link>
                 <Link className="" to="/myprofile">
-                  <Typography sx={{ fontSize: 25 }}>My Cookbook</Typography>
+                  <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>My Cookbook</Typography>
                 </Link>
                 <Link className="" onClick={logout} to="/">
-                 <Typography sx={{ fontSize: 25 }}>Log out</Typography>
+                 <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Log out</Typography>
                 </Link>
               </Box>
             </>
           ) : (
             <>
-              <ButtonGroup>
-                <Link className="" to="/login">
-                  <Typography sx={{ fontSize: 25 }}>Log In</Typography>
-                  </Link>
-                  <Link className="" to="/signup">
-                    <Typography sx={{ fontSize: 25 }}>Sign Up </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pr: 5 }}>
+                <Link to="/recipes">
+                  <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Recipes</Typography>
                 </Link>
-              </ButtonGroup>
+                <Link className="" to="/login">
+                  <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Log In</Typography>
+                </Link>
+                <Link className="" to="/signup">
+                    <Typography sx={{ fontSize: 15, pl: 1.5, pr: 1.5 }}>Sign Up </Typography>
+                </Link>
+              </Box>
             </>
           )}
       </Box>

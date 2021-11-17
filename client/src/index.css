@@ -75,14 +75,14 @@
   height: 100px;
 }
 
-.entrestease {
+.entreetease {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.entrestease .recipepost {
+.entreetease .recipepost {
   display: flex;
   border-style: solid;
   height: 190px;
