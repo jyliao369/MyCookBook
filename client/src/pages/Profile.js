@@ -24,6 +24,7 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button'
 import { Collapse } from '@mui/material';
 
@@ -55,9 +56,11 @@ const Profile = () => {
     // USERS RECIPE OR BASIALLY IT WONT DELETE THE ORIGINAL POST... I THINK
     const [ removeRecipe ] = useMutation(REMOVE_RECIPE);
 
+    // THIS DOES THE FILTERING
+    let newlist = [];
     const handleFilter = async (event) => {
         let recipecategory = event.target.value;
-        let newlist = recipes.filter(recipe => recipe.category === recipecategory)
+        newlist = recipes.filter(recipe => recipe.category === recipecategory)
 
         setUserRecipe(newlist);
     }
@@ -65,8 +68,8 @@ const Profile = () => {
     const handleDelete = async (event) => {
         // event.preventDefault();
         let recipeId = event.target.id;
-        // console.log( recipeId );
-        // console.log( typeof recipeId );
+        console.log( recipeId );
+        console.log( typeof recipeId );
         let newlist = recipes.filter(recipe => recipe._id !== recipeId);
 
         try {
@@ -85,6 +88,7 @@ const Profile = () => {
         setUserRecipe(newlist);
     }
 
+    // THESE CODES ARE FOR THE EXTEND AND COLLAPSE
     const ExpandMore = styled((props) => {
         
         const { expand, ...other } = props;
@@ -96,9 +100,7 @@ const Profile = () => {
           duration: theme.transitions.duration.shortest,
         }),
     }));
-
     const [ expanded, setExpanded ] = useState(false);
-
     const handleExpand = () => {
         setExpanded(!expanded);
     };
@@ -106,11 +108,9 @@ const Profile = () => {
     if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
         return <Redirect to="/myprofile" />;
     }
-
     if (loading) {
         return <div>Loading...</div>;
     }
-
     if (!user?.username) {
         return (
           <h4 className="profileloggedout">
@@ -155,7 +155,18 @@ const Profile = () => {
                     <button value="Entres" onClick={handleFilter}>Entres</button>     
                     <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
                 </div> */}
-            
+
+                <Box>
+                    <ButtonGroup sx={{ display: 'flex', justifyContent: 'center'}} variant="text">
+                        <Button >Show All</Button>
+                        <Button value="Drinks" onClick={handleFilter}>Drinks</Button>
+                        <Button value="Appetizers" onClick={handleFilter}>Appetizers</Button>
+                        <Button value="Entree" onClick={handleFilter}>Entree</Button>
+                        <Button value="Dessert" onClick={handleFilter}>Dessert</Button>
+                    </ButtonGroup>
+                </Box>
+
+                {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     {userrecipe && userrecipe.map((recipe) => (
                         <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
@@ -186,15 +197,27 @@ const Profile = () => {
                                         <Typography>Total Time: { recipe.totalTime }</Typography>
                                         <Typography>Category: { recipe.category }</Typography>
                                     </CardContent>
-                                    <CardActions>
+                                </Box>
+                                <CardActions>
+                                        <IconButton
+                                            id={recipe._id}
+                                            onClick={handleDelete}
+                                        >
+                                            Remove
+                                        </IconButton>
                                         <ExpandMore
                                             expand={expanded}
                                             onClick={handleExpand}
                                         >
-                                        ^
+                                            Ingredients
+                                        </ExpandMore>
+                                        <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpand}
+                                        >
+                                            Instructions
                                         </ExpandMore>
                                     </CardActions>
-                                </Box>
 
                                 {/* <Box sx={{ width: 175 }}>
                                     <CardContent>
