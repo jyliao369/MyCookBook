@@ -102,31 +102,33 @@ const Recipespage = () => {
                 ))} */}
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                     {uniqueRecipes.map((recipe) => (
-                        <Card sx={{ width: 275, m: 1 }}>
-                            <CardHeader
-                                title={ recipe.title }
-                                subheader={ recipe.createdAt }
-                            />
-                            <CardMedia sx={{ p: 1 }}>
-                                { recipe.imageid ? (
-                                    <Image
-                                        width="100%"
-                                        cloudName="du119g90a" 
-                                        public_id={ recipe.imageid }
-                                    />
-                                ): (
-                                    <Image 
-                                        width="100%"
-                                        cloudName="du119g90a" 
-                                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                                    />
-                                )}
-                            </CardMedia>
-                            <CardContent>
-                                <Typography>Category: { recipe.category }</Typography>
-                                <Typography>Servings: { recipe.servings } </Typography>
-                                <Typography>Total Time: { recipe.totalTime }</Typography>
-                            </CardContent>
+                        <Card sx={{ width: 300, m: 1 }}>
+                            <Link to={`/recipes/${ recipe._id }`}>
+                                <CardMedia sx={{ p: 1 }}>
+                                    { recipe.imageid ? (
+                                        <Image
+                                            width="100%"
+                                            cloudName="du119g90a" 
+                                            public_id={ recipe.imageid }
+                                        />
+                                    ): (
+                                        <Image 
+                                            width="100%"
+                                            cloudName="du119g90a" 
+                                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                        />
+                                    )}
+                                </CardMedia>
+                                <CardHeader
+                                    title={ recipe.title }
+                                    subheader={ recipe.createdAt }
+                                />
+                                <CardContent>
+                                    <Typography>Category: { recipe.category }</Typography>
+                                    <Typography>Servings: { recipe.servings } </Typography>
+                                    <Typography>Total Time: { recipe.totalTime }</Typography>
+                                </CardContent>
+                            </Link>
                         </Card>
                     ))}
 
