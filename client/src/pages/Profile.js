@@ -158,7 +158,7 @@ const Profile = () => {
             
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     {userrecipe && userrecipe.map((recipe) => (
-                        <Card sx={{ display: 'flex', flexDirection: 'column', width: 475, p: 1, m: 1 }}>
+                        <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardHeader 
                                     title={ recipe.title } 
@@ -186,25 +186,17 @@ const Profile = () => {
                                         <Typography>Total Time: { recipe.totalTime }</Typography>
                                         <Typography>Category: { recipe.category }</Typography>
                                     </CardContent>
-                                    {/* <CardContent>
-                                        <Typography paragraph>
-                                            Ingredients
-                                        </Typography>
-                                        { recipe.ingredients.map((ingredient) => (
-                                            <Typography sx={{ lineHeight: 'normal', m: 1 }} paragraph>
-                                                { ingredient }
-                                            </Typography>
-                                        ))}
-                                    </CardContent> */}
+                                    <CardActions>
+                                        <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpand}
+                                        >
+                                        ^
+                                        </ExpandMore>
+                                    </CardActions>
                                 </Box>
 
                                 {/* <Box sx={{ width: 175 }}>
-                                    <CardContent>
-                                        <Typography>Servings: { recipe.servings } </Typography>
-                                        <Typography>Total Time: { recipe.totalTime }</Typography>
-                                        <Typography>Category: { recipe.category }</Typography>
-                                    </CardContent>
-
                                     <CardContent>
                                         <Typography paragraph>
                                             Ingredients

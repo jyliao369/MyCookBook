@@ -8,6 +8,19 @@ import { QUERY_RECIPES } from '../utils/queries';
 // import Axios from 'axios';
 import { Image } from 'cloudinary-react';
 
+// MUI COMPONENTS FOR LOGIN AND SIGNUP
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button'
+import { Collapse } from '@mui/material';
+
 const Recipespage = () => {
     // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
     // BY THE USER
@@ -67,7 +80,7 @@ const Recipespage = () => {
                 </form>
             </div>
             <div className="recipeslist">
-                {uniqueRecipes.map((recipe) => (
+                {/* {uniqueRecipes.map((recipe) => (
                     <div key={recipe._id} className="recipecard">
                         { recipe.imageid ? (
                             <Image cloudName="du119g90a" public_id={ recipe.imageid } />
@@ -84,9 +97,40 @@ const Recipespage = () => {
                                     {ingredient}
                                 </div>
                             ))} */}
-                        </Link>
+                        {/*</Link>
                     </div>
-                ))}
+                ))} */}
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                    {uniqueRecipes.map((recipe) => (
+                        <Card sx={{ width: 275, m: 1 }}>
+                            <CardHeader
+                                title={ recipe.title }
+                                subheader={ recipe.createdAt }
+                            />
+                            <CardMedia sx={{ p: 1 }}>
+                                { recipe.imageid ? (
+                                    <Image
+                                        width="100%"
+                                        cloudName="du119g90a" 
+                                        public_id={ recipe.imageid }
+                                    />
+                                ): (
+                                    <Image 
+                                        width="100%"
+                                        cloudName="du119g90a" 
+                                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                    />
+                                )}
+                            </CardMedia>
+                            <CardContent>
+                                <Typography>Category: { recipe.category }</Typography>
+                                <Typography>Servings: { recipe.servings } </Typography>
+                                <Typography>Total Time: { recipe.totalTime }</Typography>
+                            </CardContent>
+                        </Card>
+                    ))}
+
+                </Box>
             </div>
             <div>
                 <button value="Drinks" onClick={handlefilter}>hi</button>
