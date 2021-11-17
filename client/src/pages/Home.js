@@ -7,6 +7,7 @@ import { Image } from 'cloudinary-react';
 import { QUERY_RECIPES } from '../utils/queries';
 
 // THESE ARE FOR THE MUI COMPONENTS
+import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -73,9 +74,9 @@ const Home = () => {
     <div className="homepage">
       
       {/* THIS IS FOR THE DRINKS */}
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center'}}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around'}}>
         {drinks.map((drink) => (
-          <Card sx={{ width: 375, m: 1 }}>
+          <Card sx={{ width: 400, height: 250, m: 1/4, display: 'flex', alignItems: 'center' }}>
             <Link to={`/recipes/${ drink._id }`}>
               <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                 <CardMedia sx={{ width: 250, p:0.5 }}>
@@ -131,7 +132,6 @@ const Home = () => {
               />
             </Link>
           </Card>
-          
           ))}
         </Box>
 
@@ -166,12 +166,12 @@ const Home = () => {
       <br /><br /><br /><br />
       
       {/* THIS IS FOR THE DESSERTS*/}
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center'}}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
         {desserts.map((dessert) => (
-          <Card sx={{ width: 375, m: 1 }}>
+          <Card sx={{ width: 1.1/5, height: 230, m: 2, mr: 3, ml: 3, display: 'flex', alignItems: 'center' }}>
             <Link to={`/recipes/${ dessert._id }`}>
               <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                <CardMedia sx={{ width: 250, p:0.5 }}>
+                <CardMedia sx={{ width: 250, p:1.5 }}>
                   {dessert.imageid ? (
                     <Image 
                       width='100%'
