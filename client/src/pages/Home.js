@@ -48,7 +48,7 @@ const Home = () => {
   // THESE ARRAYS SHOULD HOLD RECIPES BASED ON THE CATEGORY
   // THINK OF IT LIKE AN FILTERING
   const drinks = [];
-  const drinknum = 4;
+  const drinknum = 5;
   const appetizers =[];
   const appnum = 4;
   const entrees = [];

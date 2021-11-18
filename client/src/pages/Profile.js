@@ -24,8 +24,7 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 import { Collapse } from '@mui/material';
 
 const Profile = () => {
@@ -63,6 +62,10 @@ const Profile = () => {
         newlist = recipes.filter(recipe => recipe.category === recipecategory)
 
         setUserRecipe(newlist);
+    }
+
+    const showAll = async () => {
+        setUserRecipe(recipes);
     }
 
     const handleDelete = async (event) => {
@@ -156,14 +159,12 @@ const Profile = () => {
                     <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
                 </div> */}
 
-                <Box>
-                    <ButtonGroup sx={{ display: 'flex', justifyContent: 'center'}} variant="text">
-                        <Button >Show All</Button>
-                        <Button value="Drinks" onClick={handleFilter}>Drinks</Button>
-                        <Button value="Appetizers" onClick={handleFilter}>Appetizers</Button>
-                        <Button value="Entree" onClick={handleFilter}>Entree</Button>
-                        <Button value="Dessert" onClick={handleFilter}>Dessert</Button>
-                    </ButtonGroup>
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    <Button onClick={showAll}>Show All</Button>
+                    <Button value="Drinks" onClick={handleFilter}>Drinks</Button>
+                    <Button value="Appetizers" onClick={handleFilter}>Appetizers</Button>
+                    <Button value="Entree" onClick={handleFilter}>Entree</Button>
+                    <Button value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
 
                 {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
