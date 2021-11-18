@@ -124,7 +124,10 @@ const Profile = () => {
     }
 
     return (
-            <div className="userprofilepage">
+            <div>
+                <Box>
+                    <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_943,w_1920/v1637261536/headerimage4_kwi90d.jpg"/>
+                </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
                     <Button sx={{ fontSize: 20 }} onClick={showAll}>Show All</Button>
                     <Button sx={{ fontSize: 20 }} value="Drinks" onClick={handleFilter}>Drinks</Button>
@@ -134,7 +137,7 @@ const Profile = () => {
                 </Box>
 
                 {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', pl: 2, pr: 2 }}>
                     {userrecipe && userrecipe.map((recipe) => (
                         <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -182,28 +185,6 @@ const Profile = () => {
                                         <Typography sx={{ fontSize: 20 }}>Ingredients</Typography>
                                     </ExpandMore>
                                 </CardActions>
-
-                                {/* <Box sx={{ width: 175 }}>
-                                    <CardContent>
-                                        <Typography paragraph>
-                                            Ingredients
-                                        </Typography>
-                                        { recipe.ingredients.map((ingredient) => (
-                                            <Typography paragraph>
-                                                { ingredient }
-                                            </Typography>
-                                        ))}
-                                    </CardContent>
-
-                                    <CardActions>
-                                        <ExpandMore
-                                            expand={expanded}
-                                            onClick={handleExpand}
-                                        >
-                                        ^
-                                        </ExpandMore>
-                                    </CardActions>
-                                </Box> */}
                             </Box>
 
                             <Collapse in={expanded} timeout="auto" unmountOnExit>

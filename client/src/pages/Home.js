@@ -72,10 +72,13 @@ const Home = () => {
 
   
   return (
-    <div className="homepage">
-
+    
+    <div>
+      <Box>
+        <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1637260922/headerimage1_abzfej.jpg"/>
+      </Box>
       {/* THIS IS FOR DRINKS */}
-      <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+      <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 2}}>
         {drinks.map((drink) => (
           <Grid item xs={12} sm={6} lg={3.5}>
             <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 225}}>
@@ -118,7 +121,7 @@ const Home = () => {
         ))}
       </Grid>
     
-      <br /><br /><br /><br />
+      <br /><br />
       
       {/* THIS IS FOR THE APPETIZERS*/}
       <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} xs={12}>
@@ -208,7 +211,7 @@ const Home = () => {
           ))}
       </Grid>
       
-      <br /><br /><br /><br />
+      <br /><br />
       
       {/* THIS IS FOR THE DESSERTS*/}
       <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>

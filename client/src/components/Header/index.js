@@ -22,7 +22,7 @@ const Header = () => {
       <Box sx={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', pt: 1, pb: 1}}>
         <Box>
           <Link to="/">
-            <Typography sx={{ fontSize: 35, p: 2 }}>mmmBook</Typography>
+            <Typography sx={{ fontSize: 35 }}>mmmBook</Typography>
           </Link>
         </Box>
         {Auth.loggedIn() ? (
