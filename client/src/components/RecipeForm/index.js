@@ -177,66 +177,20 @@ const RecipeForm = () => {
 
 
     return (
-        <div className="recipeformsection">
-            
-            {/* <form onSubmit={handleSubmit} className="recipeform">
-                <div className="tophalf">
-                    <div className="basicinfo">
-                        <input placeholder="Recipe Name" name="title" onChange={handleChange}></input>
-                        <select placeholder="Category" name="category" onChange={handleChange}>
-                            <option value="">Choose a Category</option>
-                            <option value="Appetizer">Appetizer</option>
-                            <option value="Entres">Entres</option>
-                            <option value="Dessert">Dessert</option>
-                            <option value="Drinks">Drinks</option>
-                        </select>
-                        <input placeholder="Servings" name="servings" onChange={handleChange}></input>
-                        <input placeholder="Total Time in Mins" name="totalTime" onChange={handleChange}></input>
-                    </div>
-                    <div className="uploadImage">
-                        <div className="previewImage">
-                            {imageSelected ? (
-                                <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
-                            ) : (
-                                <h1>No Image</h1>
-                            )}
-                        </div>
-                        <input 
-                            title=" "
-                            type="file" 
-                            onChange={(event) => {
-                                uploadImage(event.target.files[0]);
-                                setImageSelected(event.target.files[0]);
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className="ingred-instr">
-                    <textarea placeholder="Ingredients" name="ingredients" onChange={handleChange}></textarea>
-                    <textarea placeholder="Instructions" name="directions" onChange={handleChange}></textarea>
-                </div>
-                <div className="">
-                    <button className="recipeformbutton" type="submit">
-                        Add Recipe
-                    </button>
-                </div>
-            </form> */}
-            {/* <br />
-            <br />
-            <br /> */}
+        <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', p: 1.5 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', width: 350}}>
                         <TextField 
-                            sx={{ m: 1, width: 500 }}
+                            sx={{ m: 1, width: 95/100 }}
                             label="Recipe Name"
                             variant="outlined"
                             name="title"
                             onChange={handleChange}                   
                         />
                         <Select
-                            sx={{ m: 1, width: 500 }}
+                            sx={{ m: 1, width: 95/100 }}
                             // label="Category"
                             variant="outlined"
                             name="category"
@@ -249,42 +203,44 @@ const RecipeForm = () => {
                             <MenuItem value="Dessert">Dessert</MenuItem>
                         </Select>
                         <TextField 
-                            sx={{ m: 1, width: 500 }}
+                            sx={{ m: 1, width: 95/100 }}
                             label="Servings"
                             variant="outlined"                   
                             name="servings"
                             onChange={handleChange}
                         />
                         <TextField 
-                            sx={{ m: 1, width: 500 }}
+                            sx={{ m: 1, width: 95/100 }}
                             label="Total Cook Time (mins)"
                             variant="outlined"
                             name="totalTime"
                             onChange={handleChange}                 
                         />
                     </Box>
-                    <Box sx={{ width: 225, p: 1.5, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 285 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5 }}>
                             {imageSelected ? (
                                 <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
                             ) : (
                                 <h1>No Image</h1>
                             )}
                         </Box>
-                        <input 
-                            title=" "
-                            type="file" 
-                            onChange={(event) => {
+                        <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5 }}>
+                            <input 
+                                title=" "
+                                type="file" 
+                                onChange={(event) => {
                                 uploadImage(event.target.files[0]);
                                 setImageSelected(event.target.files[0]);
-                            }}
-                        />
+                                }}
+                            />
+                        </Box>
                     </Box>
                 </Box> 
 
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', width: 10/10 }}>
                     <TextField 
-                        sx={{ m: 1, width: 750 }}
+                        sx={{ m: 1 }}
                         label="Ingredients"
                         variant="outlined"
                         name="ingredients"
@@ -293,7 +249,7 @@ const RecipeForm = () => {
                         rows={7}                 
                     />
                     <TextField 
-                        sx={{ m: 1, width: 750  }}
+                        sx={{ m: 1 }}
                         label="Instructions"
                         variant="outlined"
                         name="directions"

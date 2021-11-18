@@ -91,7 +91,7 @@ const Login = (props) => {
         {/* THIS IS THE LOGIN FORM BASED ON MUI */}
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <TextField 
-            sx={{ m: 1, width: 500 }}
+            sx={{ m: 1, width: 3/4 }}
             id="outlined-basic"
             label="Email" 
             variant="outlined"                   
@@ -101,7 +101,7 @@ const Login = (props) => {
             onChange={handleChange} 
           />
           <TextField
-            sx={{ m: 1, width: 500 }} 
+            sx={{ m: 1, width: 3/4 }} 
             id="outlined-basic" 
             label="Password" 
             variant="outlined"

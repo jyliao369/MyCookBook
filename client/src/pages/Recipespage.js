@@ -134,9 +134,6 @@ const Recipespage = () => {
 
                 </Box>
             </div>
-            <div>
-                <button value="Drinks" onClick={handlefilter}>hi</button>
-            </div>
         </div>
     )
         

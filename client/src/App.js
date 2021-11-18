@@ -46,7 +46,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Header />
-        <div className="restofpage">
+        
           <Route exact path="/">
             <Home />
           </Route>
@@ -79,7 +79,6 @@ function App() {
             <Test />
           </Route>
           
-        </div>
       </Router>
     </ApolloProvider>
   );

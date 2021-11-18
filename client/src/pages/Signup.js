@@ -93,7 +93,7 @@ const Signup = () => {
         {/* THIS IS BASED ON MUI CSS */}
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField 
-            sx={{ m: 1, width: 500 }}
+            sx={{ m: 1, width: 3/4 }}
             id="outlined-basic"
             label="Username" 
             variant="outlined"                   
@@ -103,7 +103,7 @@ const Signup = () => {
             onChange={handleChange} 
           />
           <TextField 
-            sx={{ m: 1, width: 500 }} 
+            sx={{ m: 1, width: 3/4 }} 
             id="outlined-basic" 
             label="Password" 
             variant="outlined"
@@ -113,7 +113,7 @@ const Signup = () => {
             onChange={handleChange}            
           />
           <TextField
-            sx={{ m: 1, width: 500 }} 
+            sx={{ m: 1, width: 3/4 }} 
             id="outlined-basic" 
             label="Password" 
             variant="outlined"
