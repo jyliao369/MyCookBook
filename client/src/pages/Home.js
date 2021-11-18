@@ -75,13 +75,13 @@ const Home = () => {
     <div className="homepage">
 
       {/* THIS IS FOR DRINKS */}
-      <Grid container spacing={2} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+      <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
         {drinks.map((drink) => (
-          <Grid item xs={12} sm={6} lg={4}>
-            <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 200}}>
+          <Grid item xs={12} sm={6} lg={3.5}>
+            <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 225}}>
               <Link to={`/recipes/${ drink._id }`}>
-                <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                  <CardMedia sx={{ width: 150, p:1 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                  <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
                     {drink.imageid ? (
                       <Image 
                         width='100%'
@@ -96,9 +96,21 @@ const Home = () => {
                       />
                     )}
                   </CardMedia>
-                  <Typography>
-                    {drink.title}
-                  </Typography>
+                  <Box sx={{ p:2 }}>
+                    <Typography sx={{ fontSize: 20 }}>
+                      {drink.title}
+                    </Typography>
+                    <br/>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Category {drink.category}
+                    </Typography>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Servings: {drink.servings}
+                    </Typography>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Total Cook Time: {drink.totalTime} min
+                    </Typography>
+                  </Box>
                 </Box>
               </Link>
             </Card>
@@ -109,28 +121,42 @@ const Home = () => {
       <br /><br /><br /><br />
       
       {/* THIS IS FOR THE APPETIZERS*/}
-      <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} xs={12}>
+      <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} xs={12}>
           {appetizers.map((appetizer) => (
             <Grid item>
-              <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 400}}>
-                <CardMedia sx={{ p: 2 }}>
-                  {appetizer.imageid ? (
-                    <Image
-                      width="100%" 
-                      cloudName="du119g90a" 
-                      public_id={ appetizer.imageid }
-                    />
-                  ) : ( 
-                    <Image 
-                      width="100%"
-                      cloudName="du119g90a" 
-                      public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                    />
-                  )}
-                </CardMedia>
-                <Typography>
-                  {appetizer.title}
-                </Typography>
+              <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
+                <Link to={`/recipes/${ appetizer._id }`}>
+                  <CardMedia sx={{ p: 2 }}>
+                    {appetizer.imageid ? (
+                      <Image
+                        width="100%" 
+                        cloudName="du119g90a" 
+                        public_id={ appetizer.imageid }
+                      />
+                    ) : ( 
+                      <Image 
+                        width="100%"
+                        cloudName="du119g90a" 
+                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                      />
+                    )}
+                  </CardMedia>
+                  <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
+                      <Typography sx={{ fontSize: 20 }}>
+                        {appetizer.title}
+                      </Typography>
+                      <br/>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Category {appetizer.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Servings: {appetizer.servings}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Total Cook Time: {appetizer.totalTime} min
+                      </Typography>
+                    </Box>
+                </Link>
               </Card>
             </Grid>
           ))}
@@ -139,28 +165,44 @@ const Home = () => {
       <br /><br />
         
       {/* THIS IS FOR THE ENTREES*/}
-      <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} xs={12}>
+      <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} xs={12}>
           {entrees.map((entree) => (
             <Grid item>
-              <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 400}}>
-                <CardMedia sx={{ p: 2 }}>
-                  {entree.imageid ? (
-                    <Image
-                      width="100%" 
-                      cloudName="du119g90a" 
-                      public_id={ entree.imageid }
-                    />
-                  ) : ( 
-                    <Image 
-                      width="100%"
-                      cloudName="du119g90a" 
-                      public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                    />
-                  )}
-                </CardMedia>
-                <Typography>
-                  {entree.title}
-                </Typography>
+              <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
+                <Link to={`/recipes/${ entree._id }`}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                    <CardMedia sx={{ p: 2 }}>
+                      {entree.imageid ? (
+                        <Image
+                          width="100%" 
+                          cloudName="du119g90a" 
+                          public_id={ entree.imageid }
+                        />
+                      ) : ( 
+                        <Image 
+                          width="100%"
+                          cloudName="du119g90a" 
+                          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                        />
+                      )}
+                    </CardMedia>
+                    <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
+                      <Typography sx={{ fontSize: 20 }}>
+                        {entree.title}
+                      </Typography>
+                      <br/>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Category {entree.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Servings: {entree.servings}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Total Cook Time: {entree.totalTime} min
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Link>
               </Card>
             </Grid>
           ))}
@@ -169,13 +211,13 @@ const Home = () => {
       <br /><br /><br /><br />
       
       {/* THIS IS FOR THE DESSERTS*/}
-      <Grid container spacing={2} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+      <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
         {desserts.map((dessert) => (
-          <Grid item xs={12} sm={6} lg={4}>
-            <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 200}}>
+          <Grid item xs={12} sm={6} lg={3.5}>
+            <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 250}}>
               <Link to={`/recipes/${ dessert._id }`}>
-                <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                  <CardMedia sx={{ width: 150, p:1 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                  <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
                     {dessert.imageid ? (
                       <Image 
                         width='100%'
@@ -190,9 +232,21 @@ const Home = () => {
                       />
                     )}
                   </CardMedia>
-                  <Typography>
-                    {dessert.title}
-                  </Typography>
+                  <Box sx={{ p:2 }}>
+                    <Typography sx={{ fontSize: 20 }}>
+                      {dessert.title}
+                    </Typography>
+                    <br/>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Category {dessert.category}
+                    </Typography>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Servings: {dessert.servings}
+                    </Typography>
+                    <Typography sx={{ fontSize: 15 }}>
+                      Total Cook Time: {dessert.totalTime} min
+                    </Typography>
+                  </Box>
                 </Box>
               </Link>
             </Card>

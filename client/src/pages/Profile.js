@@ -125,46 +125,12 @@ const Profile = () => {
 
     return (
             <div className="userprofilepage">
-                {/* <div className="usersrecipes">
-                    {userrecipe && userrecipe.map((recipe) => (
-                        <div key={recipe._id} className="recipes">
-                            { recipe.imageid ? (
-                                <Image cloudName="du119g90a" public_id={ recipe.imageid }/>
-                            ): (
-                                <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
-                            )}
-
-                            
-                            
-                            <Link to={`/recipes/${recipe._id}`}>
-                                <h3>{ recipe.title }</h3>
-                                <p>Servings: { recipe.servings }</p>
-                                <p>Total Time: { recipe.totalTime }</p>
-                            </Link>
-                        {/* <div className="ingredientslist">
-                            {recipe.ingredients.map((ingredient) => (
-                                <p>{ ingredient }</p>
-                            ))}    
-                        </div> */}
-                            {/* <div className="deletebutton">
-                                <button id={recipe._id} onClick={handleDelete}>Remove</button>                            
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="filterbutton">
-                    <button value="Drinks" onClick={handleFilter}>Drinks</button>   
-                    <button value="Appetizers" onClick={handleFilter}>Appetizers</button>   
-                    <button value="entree" onClick={handleFilter}>entree</button>     
-                    <button value="Dessert" onClick={handleFilter}>Dessert</button>                          
-                </div> */}
-
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                    <Button onClick={showAll}>Show All</Button>
-                    <Button value="Drinks" onClick={handleFilter}>Drinks</Button>
-                    <Button value="Appetizers" onClick={handleFilter}>Appetizers</Button>
-                    <Button value="Entree" onClick={handleFilter}>Entree</Button>
-                    <Button value="Dessert" onClick={handleFilter}>Dessert</Button>
+                    <Button sx={{ fontSize: 20 }} onClick={showAll}>Show All</Button>
+                    <Button sx={{ fontSize: 20 }} value="Drinks" onClick={handleFilter}>Drinks</Button>
+                    <Button sx={{ fontSize: 20 }} value="Appetizers" onClick={handleFilter}>Appetizers</Button>
+                    <Button sx={{ fontSize: 20 }} value="Entree" onClick={handleFilter}>Entree</Button>
+                    <Button sx={{ fontSize: 20 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
 
                 {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
@@ -172,53 +138,50 @@ const Profile = () => {
                     {userrecipe && userrecipe.map((recipe) => (
                         <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <CardHeader 
-                                    title={ recipe.title } 
-                                    subheader={ recipe.createdAt }
-                                    height='100'
-                                />
-                                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                    <CardMedia sx={{ width: 250 }}>
-                                        { recipe.imageid ? (
-                                            <Image
-                                                width="100%"
-                                                cloudName="du119g90a" 
-                                                public_id={ recipe.imageid }
-                                            />
-                                        ): (
-                                            <Image 
-                                                width="100%"
-                                                cloudName="du119g90a" 
-                                                public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                                            />
-                                        )}
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography>Servings: { recipe.servings } </Typography>
-                                        <Typography>Total Time: { recipe.totalTime }</Typography>
-                                        <Typography>Category: { recipe.category }</Typography>
-                                    </CardContent>
-                                </Box>
-                                <CardActions>
-                                        <IconButton
-                                            id={recipe._id}
-                                            onClick={handleDelete}
-                                        >
-                                            Remove
-                                        </IconButton>
-                                        <ExpandMore
-                                            expand={expanded}
-                                            onClick={handleExpand}
-                                        >
-                                            Ingredients
-                                        </ExpandMore>
-                                        <ExpandMore
-                                            expand={expanded}
-                                            onClick={handleExpand}
-                                        >
-                                            Instructions
-                                        </ExpandMore>
-                                    </CardActions>
+                                <Link to={`/recipes/${ recipe._id }`}>
+                                    <Box>
+                                        <CardHeader 
+                                            title={ recipe.title } 
+                                            subheader={ recipe.createdAt }
+                                        />
+                                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                                            <CardMedia sx={{ width: 200 }}>
+                                                { recipe.imageid ? (
+                                                    <Image
+                                                        width="100%"
+                                                        cloudName="du119g90a" 
+                                                        public_id={ recipe.imageid }
+                                                    />
+                                                ): (
+                                                    <Image 
+                                                        width="100%"
+                                                        cloudName="du119g90a" 
+                                                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                                    />
+                                                )}
+                                            </CardMedia>
+                                            <CardContent>
+                                                <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings } </Typography>
+                                                <Typography sx={{ fontSize: 20 }}>Total Time: { recipe.totalTime }</Typography>
+                                                <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
+                                            </CardContent>
+                                        </Box>
+                                    </Box>
+                                </Link>
+                                <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
+                                    <IconButton
+                                        id={recipe._id}
+                                        onClick={handleDelete}
+                                    >
+                                        <Typography sx={{ fontSize: 20 }}>Remove</Typography>
+                                    </IconButton>
+                                    <ExpandMore
+                                        expand={expanded}
+                                        onClick={handleExpand}
+                                    >
+                                        <Typography sx={{ fontSize: 20 }}>Ingredients</Typography>
+                                    </ExpandMore>
+                                </CardActions>
 
                                 {/* <Box sx={{ width: 175 }}>
                                     <CardContent>
