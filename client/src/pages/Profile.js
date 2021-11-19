@@ -136,73 +136,74 @@ const Profile = () => {
                     <Button sx={{ fontSize: 20 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
 
-                {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', pl: 2, pr: 2 }}>
-                    {userrecipe && userrecipe.map((recipe) => (
-                        <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <Link to={`/recipes/${ recipe._id }`}>
-                                    <Box>
-                                        <CardHeader 
-                                            title={ recipe.title } 
-                                            subheader={ recipe.createdAt }
-                                        />
-                                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-                                            <CardMedia sx={{ width: 200 }}>
-                                                { recipe.imageid ? (
-                                                    <Image
-                                                        width="100%"
-                                                        cloudName="du119g90a" 
-                                                        public_id={ recipe.imageid }
-                                                    />
-                                                ): (
-                                                    <Image 
-                                                        width="100%"
-                                                        cloudName="du119g90a" 
-                                                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                                                    />
-                                                )}
-                                            </CardMedia>
-                                            <CardContent>
-                                                <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings } </Typography>
-                                                <Typography sx={{ fontSize: 20 }}>Total Time: { recipe.totalTime }</Typography>
-                                                <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
-                                            </CardContent>
+                <Box sx={{ background: '#cbf7ed', p:2 }}>
+                    {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
+                    <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', pl: 2, pr: 2 }}>
+                        {userrecipe && userrecipe.map((recipe) => (
+                            <Card sx={{ display: 'flex', flexDirection: 'column', width: 450, p: 1, m: 1 }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Link to={`/recipes/${ recipe._id }`}>
+                                        <Box>
+                                            <CardHeader 
+                                                title={ recipe.title } 
+                                                subheader={ recipe.createdAt }
+                                            />
+                                            <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                                                <CardMedia sx={{ width: 200 }}>
+                                                    { recipe.imageid ? (
+                                                        <Image
+                                                            width="100%"
+                                                            cloudName="du119g90a" 
+                                                            public_id={ recipe.imageid }
+                                                        />
+                                                    ): (
+                                                        <Image 
+                                                            width="100%"
+                                                            cloudName="du119g90a" 
+                                                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                                        />
+                                                    )}
+                                                </CardMedia>
+                                                <CardContent>
+                                                    <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings } </Typography>
+                                                    <Typography sx={{ fontSize: 20 }}>Total Time: { recipe.totalTime }</Typography>
+                                                    <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
+                                                </CardContent>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                </Link>
-                                <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
-                                    <IconButton
-                                        id={recipe._id}
-                                        onClick={handleDelete}
-                                    >
-                                        <Typography sx={{ fontSize: 20 }}>Remove</Typography>
-                                    </IconButton>
-                                    <ExpandMore
-                                        expand={expanded}
-                                        onClick={handleExpand}
-                                    >
-                                        <Typography sx={{ fontSize: 20 }}>Ingredients</Typography>
-                                    </ExpandMore>
-                                </CardActions>
-                            </Box>
+                                    </Link>
+                                    <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
+                                        <IconButton
+                                            id={recipe._id}
+                                            onClick={handleDelete}
+                                        >
+                                            <Typography sx={{ fontSize: 20 }}>Remove</Typography>
+                                        </IconButton>
+                                        <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpand}
+                                        >
+                                            <Typography sx={{ fontSize: 20 }}>Ingredients</Typography>
+                                        </ExpandMore>
+                                    </CardActions>
+                                </Box>
 
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>
-                                        Instructions
-                                    </Typography>
-                                    { recipe.directions.map((direction) => (
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent>
                                         <Typography paragraph>
-                                            { direction }
+                                            Instructions
                                         </Typography>
-                                    ))}
-                                </CardContent>
-                            </Collapse>
-                        </Card>
-                    ))}
-
-                </Box> 
+                                        { recipe.directions.map((direction) => (
+                                            <Typography paragraph>
+                                                { direction }
+                                            </Typography>
+                                        ))}
+                                    </CardContent>
+                                </Collapse>
+                            </Card>
+                        ))}
+                    </Box> 
+                </Box>
             </div>   
      
     );

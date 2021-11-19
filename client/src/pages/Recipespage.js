@@ -91,49 +91,52 @@ const Recipespage = () => {
                 <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_943,w_1920/v1637261149/headerimage0_djjzmj.jpg"/>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                <Button onClick={handleShowAll} sx={{ fontSize: 20 }}>Show All</Button>
-                <Button value="Drinks" onClick={handlefilter} sx={{ fontSize: 20 }}>Drinks</Button>
-                <Button value="Appetizer" onClick={handlefilter} sx={{ fontSize: 20 }}>Appetizers</Button>
-                <Button value="Entree" onClick={handlefilter} sx={{ fontSize: 20 }}>Entrees</Button>
-                <Button value="Dessert" onClick={handlefilter} sx={{ fontSize: 20 }}>Desserts</Button>
+                <Button onClick={handleShowAll} sx={{ fontSize: 18 }}>Show All</Button>
+                <Button value="Drinks" onClick={handlefilter} sx={{ fontSize: 18 }}>Drinks</Button>
+                <Button value="Appetizer" onClick={handlefilter} sx={{ fontSize: 18 }}>Appetizers</Button>
+                <Button value="Entree" onClick={handlefilter} sx={{ fontSize: 18 }}>Entrees</Button>
+                <Button value="Dessert" onClick={handlefilter} sx={{ fontSize: 18 }}>Desserts</Button>
             </Box>
-
-            <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-                {recipeslist.map((recipe) => (
-                    <Grid item>
-                        <Card sx={{ width: 300, m: 1, height: 550, display: 'flex', justifyContent: 'space-around' }}>
-                            <Link to={`/recipes/${ recipe._id }`}>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <CardHeader
-                                        title={ recipe.title }
-                                        subheader={ recipe.createdAt }
-                                    />
-                                    <CardMedia sx={{ pl: 2, pr: 2, pt: 1, pb: 1 }}>
-                                        { recipe.imageid ? (
-                                            <Image
-                                                width="175"
-                                                cloudName="du119g90a" 
-                                                public_id={ recipe.imageid }
-                                            />
-                                        ): (
-                                            <Image 
-                                                width="100%"
-                                                cloudName="du119g90a" 
-                                                public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                                            />
-                                        )}
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography sx={{ fontSize: 23 }}>Category: { recipe.category }</Typography>
-                                        <Typography sx={{ fontSize: 23 }}>Servings: { recipe.servings } </Typography>
-                                        <Typography sx={{ fontSize: 23 }}>Total Time: { recipe.totalTime }</Typography>
-                                    </CardContent>
-                                </Box>
-                            </Link>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
+            
+            <Box sx={{ background: '#8ea8c3', pt:5, pb:5 }}>
+               <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+                    {recipeslist.map((recipe) => (
+                        <Grid item>
+                            <Card sx={{ width: 300, m: 1, height: 550, display: 'flex', justifyContent: 'space-around' }}>
+                                <Link to={`/recipes/${ recipe._id }`}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <CardHeader
+                                            title={ recipe.title }
+                                            subheader={ recipe.createdAt }
+                                        />
+                                        <CardMedia sx={{ pl: 2, pr: 2, pt: 1, pb: 1 }}>
+                                            { recipe.imageid ? (
+                                                <Image
+                                                    width="175"
+                                                    cloudName="du119g90a" 
+                                                    public_id={ recipe.imageid }
+                                                />
+                                            ): (
+                                                <Image 
+                                                    width="100%"
+                                                    cloudName="du119g90a" 
+                                                    public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                                />
+                                            )}
+                                        </CardMedia>
+                                        <CardContent>
+                                            <Typography sx={{ fontSize: 23 }}>Category: { recipe.category }</Typography>
+                                            <Typography sx={{ fontSize: 23 }}>Servings: { recipe.servings } </Typography>
+                                            <Typography sx={{ fontSize: 23 }}>Total Time: { recipe.totalTime }</Typography>
+                                        </CardContent>
+                                    </Box>
+                                </Link>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid> 
+            </Box>
+            
         </div>
     );
         

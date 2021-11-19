@@ -10,6 +10,12 @@ import { Image } from 'cloudinary-react';
 
 import Auth from '../utils/auth';
 
+// MUI COMPONENTS
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
 const SingleRecipe = () => {
     const { recipeId } = useParams();
 
@@ -65,48 +71,55 @@ const SingleRecipe = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div className="singlerecipepage">
-            
-            <div>
-                <div className="titlecard">
-                    <h1>{recipe.title}</h1>
-                    {Auth.loggedIn() ? (
-                        <>
-                            <button onClick={handleAddto} enabled>Add to Cookbook</button>
-                        </>
-                    ): (
-                        <>
-                            <button disabled>Add to Cookbook</button>
-                        </>
-                    )}
-                </div>
-                <hr/>
-                <div className="generalInfo">
-                    <p>Category: {recipe.category}</p>
-                    <p>Number of Servings: {recipe.servings}</p>
-                    <p>Total Cook Time: {recipe.totalTime}</p>
-                </div>
-                <hr/>
-                <div className="middlepart">
-                    <div className="ingredientsList">
-                        <h1>Ingredients</h1>
-                        {recipe.ingredients.map((ingredient) => (
-                            <p>{ingredient}</p>
-                        ))}
-                    </div>
-                    <div className="recipeImg">
-                        <Image cloudName="du119g90a" public_id={recipe.imageid} />
-                    </div>
-                </div>
-                <hr/>
-                <div className="directionsList">
-                    <h1>Directions</h1>
-                    {recipe.directions.map((direction) => (
-                        <p>{direction}</p>
-                    ))}
-                </div>
-            </div>
-            
+        <div>
+            <Box sx={{ background: '#161925' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3}}>
+                    <Grid item xs={12} md={8}>
+                    <Paper sx={{p: 2}}>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                            <Box sx={{ width: 325 }}>
+                                { recipe.imageid ? ( 
+                                    <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid} />
+                                ) : (
+                                    <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
+                                )}
+                            </Box>
+                            
+                            <Box sx={{ display: 'flex', flexDirection: 'column', pl: 3, pr: 2.5, width: 325 }}>
+                                <Typography sx={{ fontSize: 25 }}>{ recipe.title }</Typography>
+                                <br />
+                                <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
+                                <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings }</Typography>
+                                <Typography sx={{ fontSize: 20 }}>Total Cook Time: { recipe.totalTime } mins</Typography>
+                            </Box>  
+                        </Box>
+                        
+                        <br/>
+
+                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
+                            <Box sx={{ width: 343, p: 1}}>
+                                <Typography sx={{ fontSize: 30 }}>Instructions</Typography>
+                                {recipe.ingredients.map((ingredient) => (
+                                    <Typography sx={{ fontSize: 18, p: 0.7 }}>{ingredient}</Typography>
+                                ))}
+                            </Box>
+
+                            <br></br>
+                            
+                            <Box sx={{width: 350, p: 1 }}>
+                                <Typography sx={{ fontSize: 30 }}>Directions</Typography>
+                                {recipe.directions.map((direction) => (
+                                    <Typography sx={{ fontSize: 15, p: 0.7}}>{direction}</Typography>
+                                ))}
+                            </Box>
+                        </Box>
+                        <Box>
+                            
+                        </Box>
+                    </Paper>
+                    </Grid>
+                </Box>
+            </Box>
         </div>
     );
 };

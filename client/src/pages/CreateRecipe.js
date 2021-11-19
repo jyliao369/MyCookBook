@@ -1,11 +1,13 @@
 import React from 'react';
-import Recipeform from '../components/RecipeForm'
+import Recipeform from '../components/RecipeForm';
+
+import Box from '@mui/material/Box';
 
 const CreateRecipe = () => {
 
     return (
-        <div className="createrecipepage">
-            <Recipeform />
+        <div>
+            <Recipeform />    
         </div>
 
     );

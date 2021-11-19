@@ -20,6 +20,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel'
 
 const RecipeForm = () => {
@@ -178,89 +180,97 @@ const RecipeForm = () => {
 
     return (
         <div>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Box sx={{ background: '#6b2737' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p:3 }}>
+                    <Grid item xs={12} md={8}>
+                    <Paper sx={{ p:2 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', width: 350}}>
+                                <TextField 
+                                    sx={{ m: 1, width: 95/100 }}
+                                    label="Recipe Name"
+                                    variant="outlined"
+                                    name="title"
+                                    onChange={handleChange}                   
+                                />
+                                <Select
+                                    sx={{ m: 1, width: 95/100 }}
+                                    // label="Category"
+                                    variant="outlined"
+                                    name="category"
+                                    onChange={handleChange}
+                                    placeholder="Category"
+                                >
+                                    <MenuItem value="Drinks">Drinks</MenuItem>
+                                    <MenuItem value="Appetizer">Appetizer</MenuItem>
+                                    <MenuItem value="Entree">Entree</MenuItem>
+                                    <MenuItem value="Dessert">Dessert</MenuItem>
+                                </Select>
+                                <TextField 
+                                    sx={{ m: 1, width: 95/100 }}
+                                    label="Servings"
+                                    variant="outlined"                   
+                                    name="servings"
+                                    onChange={handleChange}
+                                    rows={2}
+                                />
+                                <TextField 
+                                    sx={{ m: 1, width: 95/100 }}
+                                    label="Total Cook Time (mins)"
+                                    variant="outlined"
+                                    name="totalTime"         
+                                   onChange={handleChange}               
+                                />
+                            </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 285 }}>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 95/100 }}>
+                                    {imageSelected ? (
+                                        <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
+                                    ) : (
+                                        <h1>No Image</h1>
+                                    )}
+                                  </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 95/100 }}>
+                                    <input 
+                                        title=" "
+                                        type="file" 
+                                        onChange={(event) => {
+                                        uploadImage(event.target.files[0]);
+                                        setImageSelected(event.target.files[0]);
+                                        }}
+                                    />
+                                </Box>
+                            </Box>
+                        </Box> 
 
-                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', width: 350}}>
-                        <TextField 
-                            sx={{ m: 1, width: 95/100 }}
-                            label="Recipe Name"
-                            variant="outlined"
-                            name="title"
-                            onChange={handleChange}                   
-                        />
-                        <Select
-                            sx={{ m: 1, width: 95/100 }}
-                            // label="Category"
-                            variant="outlined"
-                            name="category"
-                            onChange={handleChange}
-                            placeholder="Category"
-                        >
-                            <MenuItem value="Drinks">Drinks</MenuItem>
-                            <MenuItem value="Appetizer">Appetizer</MenuItem>
-                            <MenuItem value="Entree">Entree</MenuItem>
-                            <MenuItem value="Dessert">Dessert</MenuItem>
-                        </Select>
-                        <TextField 
-                            sx={{ m: 1, width: 95/100 }}
-                            label="Servings"
-                            variant="outlined"                   
-                            name="servings"
-                            onChange={handleChange}
-                        />
-                        <TextField 
-                            sx={{ m: 1, width: 95/100 }}
-                            label="Total Cook Time (mins)"
-                            variant="outlined"
-                            name="totalTime"
-                            onChange={handleChange}                 
-                        />
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 285 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5 }}>
-                            {imageSelected ? (
-                                <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
-                            ) : (
-                                <h1>No Image</h1>
-                            )}
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5 }}>
-                            <input 
-                                title=" "
-                                type="file" 
-                                onChange={(event) => {
-                                uploadImage(event.target.files[0]);
-                                setImageSelected(event.target.files[0]);
-                                }}
+                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <TextField 
+                                sx={{ m: 1 }}
+                                label="Ingredients"
+                                variant="outlined"
+                                name="ingredients"
+                                onChange={handleChange}
+                                multiline  
+                                rows={10}                 
+                            />
+                            <TextField 
+                                sx={{ m: 1 }}
+                                label="Instructions"
+                                variant="outlined"
+                                name="directions"
+                                onChange={handleChange}
+                                multiline
+                                rows={10}
                             />
                         </Box>
-                    </Box>
-                </Box> 
-
-                <Box sx={{ display: 'flex', flexDirection: 'column', width: 10/10 }}>
-                    <TextField 
-                        sx={{ m: 1 }}
-                        label="Ingredients"
-                        variant="outlined"
-                        name="ingredients"
-                        onChange={handleChange}
-                        multiline  
-                        rows={7}                 
-                    />
-                    <TextField 
-                        sx={{ m: 1 }}
-                        label="Instructions"
-                        variant="outlined"
-                        name="directions"
-                        onChange={handleChange}
-                        multiline
-                        rows={7}
-                    />
+                        <Box sx={{ display: 'flex', justifyContent: 'center', p:3 }}>
+                            <Button variant="contained" onClick={handleSubmit} type='submit'>Add Recipe</Button>
+                        </Box>
+                    </Paper>
+                    </Grid>
                 </Box>
-
-                <Button variant="contained" onClick={handleSubmit} type='submit'>Add Recipe</Button>       
             </Box>
+            
 
         </div>
     );

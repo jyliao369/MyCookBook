@@ -16,7 +16,6 @@ import Profile from './pages/Profile';
 import Recipespage from './pages/Recipespage';
 import CreateRecipe from './pages/CreateRecipe';
 import SingleRecipe from './pages/SingleRecipe';
-import Test from './pages/Test';
 
 import Header from './components/Header';
 
@@ -47,37 +46,33 @@ function App() {
       <Router>
         <Header />
         
-          <Route exact path="/">
-            <Home />
-          </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
 
-          <Route exact path="/login">
-            <Login />
-          </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
           
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
           
-          <Route exact path="/myprofile">
-            <Profile />
-          </Route>
-          
-          <Route exact path="/add">
-            <CreateRecipe />
-          </Route>
+        <Route exact path="/myprofile">
+          <Profile />
+        </Route>
+        
+        <Route exact path="/add">
+          <CreateRecipe />
+        </Route>
 
-          <Route exact path="/recipes">
-            <Recipespage />
-          </Route>
+        <Route exact path="/recipes">
+          <Recipespage />
+        </Route>
 
-          <Route exact path="/recipes/:recipeId">
-            <SingleRecipe />
-          </Route>
-
-          <Route exact path='/test'>
-            <Test />
-          </Route>
+        <Route exact path="/recipes/:recipeId">
+          <SingleRecipe />
+        </Route>
           
       </Router>
     </ApolloProvider>
