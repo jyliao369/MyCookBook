@@ -229,8 +229,8 @@ const RecipeForm = () => {
                                     ) : (
                                         <h1>No Image</h1>
                                     )}
-                                  </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 95/100 }}>
+                                </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 250 }}>
                                     <input 
                                         title=" "
                                         type="file" 

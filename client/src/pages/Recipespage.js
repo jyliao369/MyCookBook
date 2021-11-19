@@ -88,8 +88,8 @@ const Recipespage = () => {
     return (
         <div>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Typography sx={{ fontSize: 55, fontWeight: 'bold', position: 'absolute', background: 'white', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>ALL DRINKS and RECIPES</Typography>
-                <Image height='800' width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637260922/headerimage1_abzfej.jpg"/>
+                <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: 'white', p: 1.5, color: 'primary.dark', border:2, borderRadius: 10 }}>ALL DRINKS and RECIPES</Typography>
+                <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637260922/headerimage1_abzfej.jpg"/>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p:1, background: '#456990'}}>
                 <Button variant="contained" onClick={handleShowAll} color="info" sx={{ fontSize: 13, m: 1}}>Show All</Button>

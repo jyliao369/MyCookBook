@@ -126,8 +126,8 @@ const Profile = () => {
     return (
             <div>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography sx={{ fontSize: 55, fontWeight: 'bold', position: 'absolute', background: 'white', p: 3, color: '#114b5f', border:1, borderRadius: 10 }}>My Cookbook</Typography>
-                    <Image height='800' width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_crop,h_720,w_1270/v1637261536/headerimage4_kwi90d.jpg"/>
+                    <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: 'white', p: 1, color: '#114b5f', border:2, borderRadius: 10 }}>My Cookbook</Typography>
+                    <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_crop,h_720,w_1270/v1637261536/headerimage4_kwi90d.jpg"/>
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 1 , background: '#114b5f'}}>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} onClick={showAll}>Show All</Button>

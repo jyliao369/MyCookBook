@@ -29,16 +29,16 @@ const Header = () => {
             <>
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
                 <Link to="/recipes">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
+                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
                 </Link>
                 <Link className="" to="/add">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Add Recipe</Typography>
+                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Add Recipe</Typography>
                 </Link>
                 <Link className="" to="/myprofile">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>My Cookbook</Typography>
+                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>My Cookbook</Typography>
                 </Link>
                 <Link className="" onClick={logout} to="/">
-                 <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log Out</Typography>
+                 <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log Out</Typography>
                 </Link>
               </Box>
             </>
