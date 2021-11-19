@@ -75,8 +75,9 @@ const Home = () => {
     
     <div>
       <Box sx={{ background: '#406e8e' }}>
-        <Box>
-          <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1637260922/headerimage1_abzfej.jpg"/>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Typography sx={{ fontSize: 55, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
+          <Image height='800' width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
         </Box>
         {/* THIS IS FOR DRINKS */}
         <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 2 }}>

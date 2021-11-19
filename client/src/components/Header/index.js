@@ -22,7 +22,7 @@ const Header = () => {
       <Box sx={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'flex-end', pt: 1, pb: 1}}>
         <Box>
           <Link to="/">
-            <Typography sx={{ fontSize: 35, fontWeight: 'bold', color: 'primary.dark' }}>mmmBook</Typography>
+            <Typography sx={{ fontSize: 35, fontWeight: 'bold', color: 'primary.dark' }}>mmm!Book</Typography>
           </Link>
         </Box>
         {Auth.loggedIn() ? (
@@ -46,13 +46,13 @@ const Header = () => {
             <>
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
                 <Link to="/recipes">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Recipes</Typography>
+                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
                 </Link>
                 <Link className="" to="/login">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Log In</Typography>
+                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log In</Typography>
                 </Link>
                 <Link className="" to="/signup">
-                    <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Sign Up </Typography>
+                    <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Sign Up </Typography>
                 </Link>
               </Box>
             </>
