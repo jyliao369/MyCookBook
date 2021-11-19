@@ -117,7 +117,7 @@ const SingleRecipe = () => {
                         {Auth.loggedIn() ? ( 
                             <>
                                 <Box>
-                                    <Button variant="contained" color="error">
+                                    <Button onClick={handleAddto} variant="contained" color="error">
                                         <Typography sx={{ color: 'white', fontSize: 20 }}>Add to Cookbook</Typography>
                                     </Button>
                                 </Box>
