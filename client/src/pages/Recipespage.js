@@ -90,12 +90,12 @@ const Recipespage = () => {
             <Box>
                 <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_943,w_1920/v1637261149/headerimage0_djjzmj.jpg"/>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                <Button onClick={handleShowAll} sx={{ fontSize: 18 }}>Show All</Button>
-                <Button value="Drinks" onClick={handlefilter} sx={{ fontSize: 18 }}>Drinks</Button>
-                <Button value="Appetizer" onClick={handlefilter} sx={{ fontSize: 18 }}>Appetizers</Button>
-                <Button value="Entree" onClick={handlefilter} sx={{ fontSize: 18 }}>Entrees</Button>
-                <Button value="Dessert" onClick={handlefilter} sx={{ fontSize: 18 }}>Desserts</Button>
+            <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p:1, background: '#456990'}}>
+                <Button variant="contained" onClick={handleShowAll} color="info" sx={{ fontSize: 13, m: 1}}>Show All</Button>
+                <Button variant="contained" value="Drinks" onClick={handlefilter} sx={{ fontSize: 13, m: 1}}>Drinks</Button>
+                <Button variant="contained" value="Appetizer" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Appetizers</Button>
+                <Button variant="contained" value="Entree" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Entrees</Button>
+                <Button variant="contained" value="Dessert" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Desserts</Button>
             </Box>
             
             <Box sx={{ background: '#8ea8c3', pt:5, pb:5 }}>

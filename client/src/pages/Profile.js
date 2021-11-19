@@ -128,12 +128,12 @@ const Profile = () => {
                 <Box>
                     <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_943,w_1920/v1637261536/headerimage4_kwi90d.jpg"/>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                    <Button sx={{ fontSize: 20 }} onClick={showAll}>Show All</Button>
-                    <Button sx={{ fontSize: 20 }} value="Drinks" onClick={handleFilter}>Drinks</Button>
-                    <Button sx={{ fontSize: 20 }} value="Appetizers" onClick={handleFilter}>Appetizers</Button>
-                    <Button sx={{ fontSize: 20 }} value="Entree" onClick={handleFilter}>Entree</Button>
-                    <Button sx={{ fontSize: 20 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 1 , background: '#114b5f'}}>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} onClick={showAll}>Show All</Button>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Drinks" onClick={handleFilter}>Drinks</Button>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Appetizers" onClick={handleFilter}>Appetizers</Button>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Entree" onClick={handleFilter}>Entree</Button>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
 
                 <Box sx={{ background: '#cbf7ed', p:2 }}>

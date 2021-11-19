@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 
 const SingleRecipe = () => {
     const { recipeId } = useParams();
@@ -81,7 +82,7 @@ const SingleRecipe = () => {
                                 { recipe.imageid ? ( 
                                     <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid} />
                                 ) : (
-                                    <Image cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
+                                    <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
                                 )}
                             </Box>
                             
@@ -98,7 +99,7 @@ const SingleRecipe = () => {
 
                         <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
                             <Box sx={{ width: 343, p: 1}}>
-                                <Typography sx={{ fontSize: 30 }}>Instructions</Typography>
+                                <Typography sx={{ fontSize: 30 }}>Ingredients</Typography>
                                 {recipe.ingredients.map((ingredient) => (
                                     <Typography sx={{ fontSize: 18, p: 0.7 }}>{ingredient}</Typography>
                                 ))}
@@ -113,9 +114,18 @@ const SingleRecipe = () => {
                                 ))}
                             </Box>
                         </Box>
-                        <Box>
-                            
-                        </Box>
+                        {Auth.loggedIn() ? ( 
+                            <>
+                                <Box>
+                                    <Button variant="contained" color="error">
+                                        <Typography sx={{ color: 'white', fontSize: 20 }}>Add to Cookbook</Typography>
+                                    </Button>
+                                </Box>
+                            </>
+                        ) : ( 
+                            <>
+                            </>
+                        )}
                     </Paper>
                     </Grid>
                 </Box>
