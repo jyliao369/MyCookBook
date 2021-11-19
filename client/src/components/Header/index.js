@@ -19,26 +19,26 @@ const Header = () => {
 
   return (
     <header className="">
-      <Box sx={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', pt: 1, pb: 1}}>
+      <Box sx={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'flex-end', pt: 1, pb: 1}}>
         <Box>
           <Link to="/">
-            <Typography sx={{ fontSize: 35 }}>mmmBook</Typography>
+            <Typography sx={{ fontSize: 35, fontWeight: 'bold', color: 'primary.dark' }}>mmmBook</Typography>
           </Link>
         </Box>
         {Auth.loggedIn() ? (
             <>
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
                 <Link to="/recipes">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Recipes</Typography>
+                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
                 </Link>
                 <Link className="" to="/add">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Add Recipe</Typography>
+                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Add Recipe</Typography>
                 </Link>
                 <Link className="" to="/myprofile">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>My Cookbook</Typography>
+                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>My Cookbook</Typography>
                 </Link>
                 <Link className="" onClick={logout} to="/">
-                 <Typography sx={{ fontSize: 17, mr: .7, ml: .7 }}>Log Out</Typography>
+                 <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log Out</Typography>
                 </Link>
               </Box>
             </>
