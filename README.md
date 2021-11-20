@@ -91,6 +91,6 @@
 
   Github Repo: https://github.com/jyliao369/MyCookBook
 
-  Deployed Link: https://github.com/jyliao369/MyCookBook
+  Deployed Link: https://mmmbook.herokuapp.com/
 
   
