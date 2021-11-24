@@ -8,15 +8,17 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-
+// THESE ARE ALL OF THE PAGES THAT MAKES UP THE ENTIRE APPLICATION
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
 import Profile from './pages/Profile';
 import Recipespage from './pages/Recipespage';
-import CreateRecipe from './pages/CreateRecipe';
 import SingleRecipe from './pages/SingleRecipe';
+import CreateRecipe from './pages/CreateRecipe';
+import UpdateRecipe from './pages/UpdateRecipe';
 
+// THESE ARE THE COMPONENTS
 import Header from './components/Header';
 
 const httpLink = createHttpLink({
@@ -61,10 +63,6 @@ function App() {
         <Route exact path="/myprofile">
           <Profile />
         </Route>
-        
-        <Route exact path="/add">
-          <CreateRecipe />
-        </Route>
 
         <Route exact path="/recipes">
           <Recipespage />
@@ -72,6 +70,14 @@ function App() {
 
         <Route exact path="/recipes/:recipeId">
           <SingleRecipe />
+        </Route>
+
+        <Route exact path="/add">
+          <CreateRecipe />
+        </Route>
+
+        <Route exact path='/update/:recipeId'>
+          <UpdateRecipe />
         </Route>
           
       </Router>

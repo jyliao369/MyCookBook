@@ -22,7 +22,6 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel'
 
 const RecipeForm = () => {
 

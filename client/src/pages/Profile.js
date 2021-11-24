@@ -27,6 +27,9 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { Collapse } from '@mui/material';
 
+
+// IMPORTING COMPONENTS
+
 const Profile = () => {
 
     const { userId } = useParams();
@@ -136,7 +139,7 @@ const Profile = () => {
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Entree" onClick={handleFilter}>Entree</Button>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
-
+                
                 <Box sx={{ background: '#cbf7ed', p:2 }}>
                     {/* THIS SECTION SHOWS ALL OF THE USERS RECIPE THEY HAVE EITHER CREATED OR SAVED */}
                     <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', pl: 2, pr: 2 }}>
@@ -179,6 +182,13 @@ const Profile = () => {
                                         >
                                             <Typography id={recipe._id} sx={{ fontSize: 20 }}>Remove</Typography>
                                         </IconButton>
+
+                                        <Link to={`/update/${recipe._id}`} >
+                                            <IconButton>
+                                                <Typography sx={{ fontSize: 20 }}>Update</Typography>
+                                            </IconButton>
+                                        </Link> 
+
                                         <ExpandMore
                                             expand={expanded}
                                             onClick={handleExpand}
