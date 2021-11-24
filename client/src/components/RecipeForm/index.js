@@ -105,9 +105,9 @@ const RecipeForm = () => {
 
         if (name === 'ingredients') {
             let ingredientsarray = [];
-            let testingredientsarray = value.split("\n");
-            for (let a = 0; a < testingredientsarray.length; a++) {
-                ingredientsarray.push(testingredientsarray[a]);
+            let ingredients = value.split("\n");
+            for (let a = 0; a < ingredients.length; a++) {
+                ingredientsarray.push(ingredients[a]);
                 setNewRecipe((prevState) => ({
                     ...prevState,
                     ingredients: ingredientsarray
@@ -117,9 +117,9 @@ const RecipeForm = () => {
 
         if (name === 'directions') {
             let directionssarray = [];
-            let testdirectionsarray = value.split("\n");
-            for (let b = 0; b < testdirectionsarray.length; b++) {
-                directionssarray.push(testdirectionsarray[b]);
+            let directions = value.split("\n");
+            for (let b = 0; b < directions.length; b++) {
+                directionssarray.push(directions[b]);
                 setNewRecipe((prevState) => ({
                     ...prevState,
                     directions: directionssarray

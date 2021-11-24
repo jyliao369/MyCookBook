@@ -48,14 +48,15 @@ const UpdateRecipe = () => {
     // THESE NEXT CODES SHOULD, IN MOST BASIC TERMS, USE A USESTATE TO BASICALLY 
     // CREATE AN UPDATED RECIPE. SHOULD HAVE THE SAME CODE AS THE ADD/CREATE NEW RECIPE
     const [updateRecipe, setUpdateRecipe] = useState({
-        title: '',
-        category: '',
-        servings: '',
-        totalTime: '',
-        ingredients: [''],
-        directions: [''],
-        imageid: '',
+        title: recipe.title,
+        category: `${recipe.category}`,
+        servings: `${recipe.servings}`,
+        totalTime: `${recipe.totalTime}`,
+        ingredients: recipe.ingredients,
+        directions: recipe.directions,
+        imageid: `${recipe.imageid}`,
     });
+
 
     console.log('updateRecipe');
     console.log(updateRecipe);
@@ -95,6 +96,29 @@ const UpdateRecipe = () => {
             }))
         }
 
+        if (name === 'ingredients') {
+            let ingredientsarray = [];
+            let ingredients = value.split("\n");
+            for (let a = 0; a < ingredients.length; a++) {
+                ingredientsarray.push(ingredients[a]);
+                setUpdateRecipe((prevState) => ({
+                    ...prevState,
+                    ingredients: ingredientsarray
+                }))
+            };
+        }
+
+        if (name === 'directions') {
+            let directionssarray = [];
+            let directions = value.split("\n");
+            for (let b = 0; b < directions.length; b++) {
+                directionssarray.push(directions[b]);
+                setUpdateRecipe((prevState) => ({
+                    ...prevState,
+                    directions: directionssarray
+                }))
+            };
+        }
     };
 
     
@@ -120,7 +144,7 @@ const UpdateRecipe = () => {
                                 label="Category"
                                 sx={{ m: 2 }}
                                 defaultValue={recipe.category}
-                                name="cateogry"
+                                name="category"
                                 onChange={handleChange} 
                             ></TextField>
                             <TextField 
@@ -153,6 +177,8 @@ const UpdateRecipe = () => {
                             multiline
                             rows={10}
                             defaultValue={ingredientList}
+                            name="ingredients" 
+                            onChange={handleChange} 
                         ></TextField>
                         <TextField
                             label="Directions"
@@ -160,6 +186,8 @@ const UpdateRecipe = () => {
                             multiline
                             rows={10}
                             defaultValue={directionList}
+                            name="directions" 
+                            onChange={handleChange} 
                         ></TextField>
                     </Grid>
                 </Paper>
