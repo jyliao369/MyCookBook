@@ -16,11 +16,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import CardActions from '@mui/material/CardActions';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button'
-import { Collapse } from '@mui/material';
 
 const Recipespage = () => {
     // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE

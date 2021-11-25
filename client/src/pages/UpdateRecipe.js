@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+// import { useMutation } from '@apollo/client'
 
 import { QUERY_SINGLE_RECIPE } from '../utils/queries';
 
@@ -77,7 +78,6 @@ const UpdateRecipe = () => {
 
         if (name === "title") {
             setUpdateRecipe((prevState) => ({
-
                 ...prevState,
                 title: value,
             }))
@@ -85,7 +85,6 @@ const UpdateRecipe = () => {
 
         if (name === "category") {
             setUpdateRecipe((prevState) => ({
-
                 ...prevState,
                 category: value,
             }))
@@ -93,7 +92,6 @@ const UpdateRecipe = () => {
 
         if (name === "servings") {
             setUpdateRecipe((prevState) => ({
-
                 ...prevState,
                 servings: value,
             }))
@@ -101,7 +99,6 @@ const UpdateRecipe = () => {
 
         if (name === "totalTime") {
             setUpdateRecipe((prevState) => ({
-
                 ...prevState,
                 totalTime: value,
             }))
@@ -142,7 +139,6 @@ const UpdateRecipe = () => {
     
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-
             <Grid item xs={12} md={6}>
                 <Paper sx={{ p: 3 }}>
                     <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
@@ -236,7 +232,6 @@ const UpdateRecipe = () => {
                     </Grid>
                 </Paper>
             </Grid>
-
         </Box>
     );
 };
