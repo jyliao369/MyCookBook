@@ -43,8 +43,10 @@ const Profile = () => {
     let user = data?.myprofile || data?.user || {};
     let recipes = user.recipes;
     
-    // console.log(user);
-    // console.log(recipes);
+    console.log('User');
+    console.log(user);
+    console.log('recipes');
+    console.log(recipes);
 
     const [ userrecipe, setUserRecipe ] = useState('');
     

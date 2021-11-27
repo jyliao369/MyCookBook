@@ -15,8 +15,8 @@ const typeDefs = gql`
         category: String
         servings: String   
         totalTime: String
-        ingredients: [String]!
-        directions: [String]!
+        ingredients: [String]
+        directions: [String]
         imageid: String
         createdAt: String
         postAuthor: String
@@ -44,6 +44,8 @@ const typeDefs = gql`
 
         addRecipe(title: String!, category: String!,  servings: String!, totalTime: String!, ingredients: [String]!, directions: [String]!, imageid: String): Recipe
         removeRecipe(recipeId: String!): Recipe
+
+        updateRecipe(recipeId: String!, title: String, category: String, servings: String, totalTime: String, ingredients: [String], directions: [String], imageid: String): Recipe
     }
 `;
 

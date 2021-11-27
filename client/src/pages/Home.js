@@ -72,7 +72,6 @@ const Home = () => {
 
   
   return (
-    
     <div>
       <Box sx={{ background: '#406e8e' }}>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

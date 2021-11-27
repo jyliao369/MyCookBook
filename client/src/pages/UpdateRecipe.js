@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-// import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client';
 
 import { QUERY_SINGLE_RECIPE } from '../utils/queries';
+import { UPDATE_RECIPE } from '../utils/mutations';
 
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -60,7 +61,7 @@ const UpdateRecipe = () => {
         setUpdateRecipe({...recipe})
     }, [recipe]);
     
-    const [updateRecipe, setUpdateRecipe] = useState({
+    const [updatedRecipe, setUpdateRecipe] = useState({
         title: recipe.title,
         category: recipe.cateogry,
         servings: recipe.servings,
@@ -71,7 +72,7 @@ const UpdateRecipe = () => {
     });
 
     console.log('updateRecipe');
-    console.log(updateRecipe);
+    console.log(updatedRecipe);
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -132,6 +133,24 @@ const UpdateRecipe = () => {
     // THESE CODES SHOULD HELP UPLOAD A NEW IMAGE JUST IN CASE USERS WANT TO 
     // UPLOAD A NEW IMAGE FOR THE RECIPE
     const [ imageSelected, setImageSelected ] = useState("");
+
+
+    const [updateRecipe] = useMutation(UPDATE_RECIPE);
+
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        let recipeId = updatedRecipe._id
+        console.log("hello")
+
+        try {
+            updateRecipe({
+                variables : { recipeId, ...updatedRecipe }
+            })
+        }   catch (e) {
+            console.log(e);
+        }
+    };
+
     
     if (loading) {
         return <h1>Loading</h1>
@@ -229,6 +248,9 @@ const UpdateRecipe = () => {
                             name="directions" 
                             onChange={handleChange} 
                         ></TextField>
+                    </Grid>
+                    <Grid>
+                        <button onClick={handleUpdate}>Update Recipe</button>
                     </Grid>
                 </Paper>
             </Grid>

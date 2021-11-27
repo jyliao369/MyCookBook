@@ -88,7 +88,7 @@ const resolvers = {
                     postAuthor: context.user.username,
                 });
 
-                await User.findOneAndUpdate(
+                await User.findOneAndUpdate (
                     { _id: context.user._id },
                     { $pull: { recipes: recipe._id } }
                 );
@@ -96,6 +96,19 @@ const resolvers = {
                 return recipe;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        updateRecipe: async (parent, { recipeId, title, category, servings, totalTime, ingredients, directions, imageid }, context) => {
+            const recipe = await Recipe.find({ id: recipeId });
+            if (!recipe) {
+                throw new Error(`No recipes matches the id: ${recipeId}`);
+            }
+
+            await Recipe.findOneAndUpdate(
+                { _id: recipeId },
+                { $set: { title: title, category: category, servings: servings, totalTime: totalTime, ingredients: ingredients, directions: directions, imageid: imageid } }
+            );
+            
+            return recipe;
         },
     },
 };

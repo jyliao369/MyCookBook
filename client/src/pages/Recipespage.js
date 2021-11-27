@@ -81,6 +81,10 @@ const Recipespage = () => {
         setRecipeslist(uniqueRecipes);
     };
 
+    if (loading) {
+        return <h1>Loading</h1>
+    }
+
     return (
         <div>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

@@ -56,3 +56,20 @@ export const REMOVE_RECIPE = gql`
         }
     }
 `;
+
+export const UPDATE_RECIPE = gql`
+    mutation updateRecipe($recipeId: String!, $title: String, $category: String, $servings: String, $totalTime: String, $ingredients: [String], $directions: [String], $imageid: String) {
+        updateRecipe(recipeId:$recipeId , title:$title, category:$category, servings:$servings, totalTime:$totalTime, ingredients:$ingredients, directions:$directions, imageid:$imageid) {
+            _id
+            title
+            category
+            servings
+            totalTime
+            ingredients
+            directions
+            imageid
+            createdAt
+            postAuthor
+        }
+    }
+`;
