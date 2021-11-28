@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -47,7 +50,8 @@ const Recipespage = () => {
 
     useEffect(() => {
         setRecipeslist(uniqueRecipes)
-    }, []);
+    }, [recipes]);
+
     console.log("recipeslist");
     console.log(recipeslist);
 

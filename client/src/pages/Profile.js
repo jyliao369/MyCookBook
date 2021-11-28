@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { Redirect, useParams, Link } from 'react-router-dom';
 
 // IMPORTING EVERYTHING FOR QUERIES
@@ -27,8 +29,6 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { Collapse } from '@mui/material';
 
-
-// IMPORTING COMPONENTS
 
 const Profile = () => {
 
@@ -137,7 +137,7 @@ const Profile = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 1 , background: '#114b5f'}}>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} onClick={showAll}>Show All</Button>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Drinks" onClick={handleFilter}>Drinks</Button>
-                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Appetizers" onClick={handleFilter}>Appetizers</Button>
+                    <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Appetizer" onClick={handleFilter}>Appetizer</Button>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Entree" onClick={handleFilter}>Entree</Button>
                     <Button variant="contained" color="success" sx={{ fontSize: 15, m:1 }} value="Dessert" onClick={handleFilter}>Dessert</Button>
                 </Box>
