@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import { useEffect } from 'react';
+// import { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
+
 import { useQuery, useMutation } from '@apollo/client';
 
 import { ADD_RECIPE } from '../utils/mutations';
-import { QUERY_SINGLE_RECIPE, QUERY_MYPROFILE } from '../utils/queries';
+import { QUERY_SINGLE_RECIPE } from '../utils/queries';
+import { QUERY_MYPROFILE } from '../utils/queries';
 
 import { Image } from 'cloudinary-react';
 
@@ -24,8 +28,8 @@ const SingleRecipe = () => {
         variables: { recipeId: recipeId },
     });
     const recipe = data?.recipe || {};
-    // console.log(recipe)
-    // console.log(recipe.title);
+    console.log(recipe)
+    console.log(recipe.title);
 
     // THIS SHOULD, ON PAPER ADD THE CURRENT OBJECT WHICH IS THE 'recipe'
     // FROM ABOVE AND ADD TO THE USER THAT IS CURRENTLY LOGGED. THAT'S WHAT THE
@@ -92,6 +96,8 @@ const SingleRecipe = () => {
                                 <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
                                 <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings }</Typography>
                                 <Typography sx={{ fontSize: 20 }}>Total Cook Time: { recipe.totalTime } mins</Typography>
+                                <Typography sx={{ fontSize: 20 }}>Cuisine: { recipe.cuisine }</Typography>
+                                <Typography sx={{ fontSize: 20 }}>Diet: { recipe.diettype }</Typography>
                             </Box>  
                         </Box>
                         

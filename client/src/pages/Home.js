@@ -1,10 +1,10 @@
-import { useQuery } from '@apollo/client';
 import React, {useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
-import { Image } from 'cloudinary-react';
-// import { useQuery } from '@apollo/client';
 
+import { useQuery } from '@apollo/client';
 import { QUERY_RECIPES } from '../utils/queries';
+
+import { Image } from 'cloudinary-react';
 
 // THESE ARE FOR THE MUI COMPONENTS
 import Grid from '@mui/material/Grid'
@@ -106,7 +106,13 @@ const Home = () => {
                       </Typography>
                       <br/>
                       <Typography sx={{ fontSize: 15 }}>
-                        Category {drink.category}
+                        Category: {drink.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Cuisine: {drink.cuisine}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Diet: {drink.diettype}
                       </Typography>
                       <Typography sx={{ fontSize: 15 }}>
                         Servings: {drink.servings}
@@ -154,6 +160,12 @@ const Home = () => {
                           Category {appetizer.category}
                         </Typography>
                         <Typography sx={{ fontSize: 15 }}>
+                          Cuisine: {appetizer.cuisine}
+                        </Typography>
+                        <Typography sx={{ fontSize: 15 }}>
+                          Diet: {appetizer.diettype}
+                        </Typography>
+                        <Typography sx={{ fontSize: 15 }}>
                           Servings: {appetizer.servings}
                         </Typography>
                         <Typography sx={{ fontSize: 15 }}>
@@ -197,6 +209,12 @@ const Home = () => {
                         <br/>
                         <Typography sx={{ fontSize: 15 }}>
                           Category {entree.category}
+                        </Typography>
+                        <Typography sx={{ fontSize: 15 }}>
+                          Cuisine: {entree.cuisine}
+                        </Typography>
+                        <Typography sx={{ fontSize: 15 }}>
+                          Diet: {entree.diettype}
                         </Typography>
                         <Typography sx={{ fontSize: 15 }}>
                           Servings: {entree.servings}
@@ -243,6 +261,12 @@ const Home = () => {
                       <br/>
                       <Typography sx={{ fontSize: 15 }}>
                         Category {dessert.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Cuisine: {dessert.cuisine}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Diet: {dessert.diettype}
                       </Typography>
                       <Typography sx={{ fontSize: 15 }}>
                         Servings: {dessert.servings}

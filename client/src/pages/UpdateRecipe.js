@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-
 import { QUERY_SINGLE_RECIPE } from '../utils/queries';
 import { UPDATE_RECIPE } from '../utils/mutations';
 
@@ -57,7 +57,7 @@ const UpdateRecipe = () => {
 
     // THESE NEXT CODES SHOULD, IN MOST BASIC TERMS, USE A USESTATE TO BASICALLY 
     // CREATE AN UPDATED RECIPE. SHOULD HAVE THE SAME CODE AS THE ADD/CREATE NEW RECIPE
-    useEffect(()=>{
+    useEffect(()=> {
         setUpdateRecipe({...recipe})
     }, [recipe]);
     
@@ -81,6 +81,20 @@ const UpdateRecipe = () => {
             setUpdateRecipe((prevState) => ({
                 ...prevState,
                 title: value,
+            }))
+        }
+
+        if (name === "cuisine") {
+            setUpdateRecipe((prevState) => ({
+                ...prevState,
+                cuisine: value,
+            }))
+        }
+
+        if (name === "diettype") {
+            setUpdateRecipe((prevState) => ({
+                ...prevState,
+                diettype: value,
             }))
         }
 
@@ -138,7 +152,7 @@ const UpdateRecipe = () => {
     const [updateRecipe] = useMutation(UPDATE_RECIPE);
 
     const handleUpdate = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         let recipeId = updatedRecipe._id
         console.log("hello")
 
@@ -182,6 +196,41 @@ const UpdateRecipe = () => {
                                 <MenuItem value="Appetizer">Appetizer</MenuItem>
                                 <MenuItem value="Entree">Entree</MenuItem>
                                 <MenuItem value="Dessert">Dessert</MenuItem>
+                            </Select>
+                            <Select
+                                sx={{ m: 2 }}
+                                // label="Category"
+                                variant="outlined"
+                                defaultValue={`${recipe.cuisine}`}
+                                name="cuisine"
+                                onChange={handleChange}
+                                placeholder="Cuisine"
+                            >
+                                <MenuItem value="Homemade">Homemade</MenuItem>
+                                <MenuItem value="American">American</MenuItem>
+                                <MenuItem value="Chinese">Chinese</MenuItem>
+                                <MenuItem value="Mexican">Mexican</MenuItem>
+                                <MenuItem value="Thai">Thai</MenuItem>
+                                <MenuItem value="Indian">Indian</MenuItem>
+                                <MenuItem value="Cajun">Cajun</MenuItem>
+                                <MenuItem value="Korean">Korean</MenuItem>
+                                <MenuItem value="Japanese">Japanese</MenuItem>
+                                <MenuItem value="Cuban">Cuban</MenuItem>
+                            </Select>
+                            <Select
+                                sx={{ m: 2 }}
+                                // label="Category"
+                                variant="outlined"
+                                defaultValue={`${recipe.diettype}`}
+                                name="diettype"
+                                onChange={handleChange}
+                                placeholder="Diet Type"
+                            >
+                                <MenuItem value="Regular">Regular</MenuItem>
+                                <MenuItem value="Low Carb">Low Carb</MenuItem>
+                                <MenuItem value="Keto">Keto</MenuItem>
+                                <MenuItem value="Vegan Friendly">Vegan</MenuItem>
+                                <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
                             </Select>
                             <TextField 
                                 label="Servings"
@@ -250,7 +299,7 @@ const UpdateRecipe = () => {
                         ></TextField>
                     </Grid>
                     <Grid>
-                        <button onClick={handleUpdate}>Update Recipe</button>
+                        <button onClick={handleUpdate}><Link to={`/recipes/${recipe._id}`}>Update Recipe</Link></button>
                     </Grid>
                 </Paper>
             </Grid>

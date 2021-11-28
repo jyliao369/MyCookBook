@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Redirect, useParams, Link } from 'react-router-dom';
 
-// IMPORTING EVERYTHING FOR QUERIES
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+// IMPORTING EVERYTHING FOR QUERIES AND EVERYTHING FOR MUTATIONS
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_USER, QUERY_MYPROFILE } from '../utils/queries';
-
-// IMPORTING EVERYTHING FOR MUTATIONS
 import { useMutation } from '@apollo/client';
+import { QUERY_SINGLE_USER, QUERY_MYPROFILE } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 
 // IMPORTANT FOR THE USE OF CLOUDINARY
@@ -174,6 +175,8 @@ const Profile = () => {
                                                     <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings } </Typography>
                                                     <Typography sx={{ fontSize: 20 }}>Total Time: { recipe.totalTime }</Typography>
                                                     <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
+                                                    <Typography sx={{ fontSize: 20 }}>Cuisine: { recipe.cuisine }</Typography>
+                                                    <Typography sx={{ fontSize: 20 }}>Diet: { recipe.diettype }</Typography>
                                                 </CardContent>
                                             </Box>
                                         </Box>

@@ -27,6 +27,8 @@ const RecipeForm = () => {
 
     const [newRecipe, setNewRecipe] = useState({
         title: '',
+        cuisine: '',
+        diettype: '',
         category: '',
         servings: '',
         totalTime: '',
@@ -76,6 +78,22 @@ const RecipeForm = () => {
 
                 ...prevState,
                 title: value,
+            }))
+        }
+
+        if (name === "cuisine") {
+            setNewRecipe((prevState) => ({
+
+                ...prevState,
+                cuisine: value,
+            }))
+        }
+
+        if (name === "diettype") {
+            setNewRecipe((prevState) => ({
+
+                ...prevState,
+                diettype: value,
             }))
         }
 
@@ -192,6 +210,39 @@ const RecipeForm = () => {
                                     name="title"
                                     onChange={handleChange}                   
                                 />
+                                <Select
+                                    sx={{ m: 1, width: 95/100 }}
+                                    // label="Category"
+                                    variant="outlined"
+                                    name="cuisine"
+                                    onChange={handleChange}
+                                    placeholder="Cuisine"
+                                >
+                                    <MenuItem value="Homemade">Homemade</MenuItem>
+                                    <MenuItem value="American">American</MenuItem>
+                                    <MenuItem value="Chinese">Chinese</MenuItem>
+                                    <MenuItem value="Mexican">Mexican</MenuItem>
+                                    <MenuItem value="Thai">Thai</MenuItem>
+                                    <MenuItem value="Indian">Indian</MenuItem>
+                                    <MenuItem value="Cajun">Cajun</MenuItem>
+                                    <MenuItem value="Korean">Korean</MenuItem>
+                                    <MenuItem value="Japanese">Japanese</MenuItem>
+                                    <MenuItem value="Cuban">Cuban</MenuItem>
+                                </Select>
+                                <Select
+                                    sx={{ m: 1, width: 95/100 }}
+                                    // label="Category"
+                                    variant="outlined"
+                                    name="diettype"
+                                    onChange={handleChange}
+                                    placeholder="Diet Type"
+                                >
+                                    <MenuItem value="Regular">Regular</MenuItem>
+                                    <MenuItem value="Low Carb">Low Carb</MenuItem>
+                                    <MenuItem value="Keto">Keto</MenuItem>
+                                    <MenuItem value="Vegan Friendly">Vegan</MenuItem>
+                                    <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
+                                </Select>
                                 <Select
                                     sx={{ m: 1, width: 95/100 }}
                                     // label="Category"

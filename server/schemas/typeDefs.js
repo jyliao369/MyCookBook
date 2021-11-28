@@ -12,6 +12,8 @@ const typeDefs = gql`
     type Recipe {
         _id: ID
         title: String
+        cuisine: String
+        diettype: String
         category: String
         servings: String   
         totalTime: String
@@ -42,10 +44,10 @@ const typeDefs = gql`
         removeUser: User
         login(email: String!, password: String!): Auth
 
-        addRecipe(title: String!, category: String!,  servings: String!, totalTime: String!, ingredients: [String]!, directions: [String]!, imageid: String): Recipe
+        addRecipe(title: String!, cuisine: String!, diettype: String!, category: String!, servings: String!, totalTime: String!, ingredients: [String]!, directions: [String]!, imageid: String): Recipe
         removeRecipe(recipeId: String!): Recipe
 
-        updateRecipe(recipeId: String!, title: String, category: String, servings: String, totalTime: String, ingredients: [String], directions: [String], imageid: String): Recipe
+        updateRecipe(recipeId: String!, title: String, cuisine: String, diettype: String, category: String, servings: String, totalTime: String, ingredients: [String], directions: [String], imageid: String): Recipe
     }
 `;
 
