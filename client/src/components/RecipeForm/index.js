@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useContext } from 'react';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 
@@ -196,133 +195,125 @@ const RecipeForm = () => {
 
 
     return (
-        <div>
-            <Box sx={{ background: '#6b2737' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p:3 }}>
-                    <Grid item xs={12} md={8}>
-                    <Paper sx={{ p:2 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', width: 350}}>
-                                <TextField 
-                                    sx={{ m: 1, width: 95/100 }}
-                                    label="Recipe Name"
-                                    variant="outlined"
-                                    name="title"
-                                    onChange={handleChange}                   
-                                />
-                                <Select
-                                    sx={{ m: 1, width: 95/100 }}
-                                    // label="Category"
-                                    variant="outlined"
-                                    name="cuisine"
-                                    onChange={handleChange}
-                                    placeholder="Cuisine"
-                                >
-                                    <MenuItem value="Homemade">Homemade</MenuItem>
-                                    <MenuItem value="American">American</MenuItem>
-                                    <MenuItem value="Chinese">Chinese</MenuItem>
-                                    <MenuItem value="Mexican">Mexican</MenuItem>
-                                    <MenuItem value="Thai">Thai</MenuItem>
-                                    <MenuItem value="Indian">Indian</MenuItem>
-                                    <MenuItem value="Cajun">Cajun</MenuItem>
-                                    <MenuItem value="Korean">Korean</MenuItem>
-                                    <MenuItem value="Japanese">Japanese</MenuItem>
-                                    <MenuItem value="Cuban">Cuban</MenuItem>
-                                </Select>
-                                <Select
-                                    sx={{ m: 1, width: 95/100 }}
-                                    // label="Category"
-                                    variant="outlined"
-                                    name="diettype"
-                                    onChange={handleChange}
-                                    placeholder="Diet Type"
-                                >
-                                    <MenuItem value="Regular">Regular</MenuItem>
-                                    <MenuItem value="Low Carb">Low Carb</MenuItem>
-                                    <MenuItem value="Keto">Keto</MenuItem>
-                                    <MenuItem value="Vegan Friendly">Vegan</MenuItem>
-                                    <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
-                                </Select>
-                                <Select
-                                    sx={{ m: 1, width: 95/100 }}
-                                    // label="Category"
-                                    variant="outlined"
-                                    name="category"
-                                    onChange={handleChange}
-                                    placeholder="Category"
-                                >
-                                    <MenuItem value="Drinks">Drinks</MenuItem>
-                                    <MenuItem value="Appetizer">Appetizer</MenuItem>
-                                    <MenuItem value="Entree">Entree</MenuItem>
-                                    <MenuItem value="Dessert">Dessert</MenuItem>
-                                </Select>
-                                <TextField 
-                                    sx={{ m: 1, width: 95/100 }}
-                                    label="Servings"
-                                    variant="outlined"                   
-                                    name="servings"
-                                    onChange={handleChange}
-                                    rows={2}
-                                />
-                                <TextField 
-                                    sx={{ m: 1, width: 95/100 }}
-                                    label="Total Cook Time (mins)"
-                                    variant="outlined"
-                                    name="totalTime"         
-                                   onChange={handleChange}               
-                                />
-                            </Box>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: 285 }}>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 95/100 }}>
-                                    {imageSelected ? (
-                                        <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
-                                    ) : (
-                                        <h1>No Image</h1>
-                                    )}
-                                </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 1.5, width: 250 }}>
-                                    <input 
-                                        title=" "
-                                        type="file" 
-                                        onChange={(event) => {
-                                        uploadImage(event.target.files[0]);
-                                        setImageSelected(event.target.files[0]);
-                                        }}
-                                    />
-                                </Box>
-                            </Box>
-                        </Box> 
+        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <Grid item xs={12} md={6} sx={{ m:3 }}>
+                <Paper sx={{ p: 3 }} elevation={3}>
+                    <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                        <Grid sx={{ display: 'flex', flexDirection:'column', width: 500 }}>
+                            
+                            <TextField 
+                                label="Recipe Name"
+                                sx={{ m: 2 }}
+                                name="title"
+                                onChange={handleChange}   
+                                placeholder="Recipe Name"          
+                            />
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <TextField 
-                                sx={{ m: 1 }}
-                                label="Ingredients"
+                            <Select
+                                sx={{ m: 2 }}
                                 variant="outlined"
-                                name="ingredients"
+                                name="cuisine"
                                 onChange={handleChange}
-                                multiline  
-                                rows={10}                 
-                            />
-                            <TextField 
-                                sx={{ m: 1 }}
-                                label="Instructions"
+                                placeholder="Cuisine"
+                            >
+                                <MenuItem value="Homemade">Homemade</MenuItem>
+                                <MenuItem value="American">American</MenuItem>
+                                <MenuItem value="Chinese">Chinese</MenuItem>
+                                <MenuItem value="Mexican">Mexican</MenuItem>
+                                <MenuItem value="Thai">Thai</MenuItem>
+                                <MenuItem value="Indian">Indian</MenuItem>
+                                <MenuItem value="Cajun">Cajun</MenuItem>
+                                <MenuItem value="Korean">Korean</MenuItem>
+                                <MenuItem value="Japanese">Japanese</MenuItem>
+                                <MenuItem value="Cuban">Cuban</MenuItem>
+                            </Select>
+
+                            <Select
+                                sx={{ m: 2 }}
                                 variant="outlined"
-                                name="directions"
+                                name="diettype"
                                 onChange={handleChange}
-                                multiline
-                                rows={10}
+                                placeholder="Diet Type"
+                            >
+                                <MenuItem value="Regular">Regular</MenuItem>
+                                <MenuItem value="Low Carb">Low Carb</MenuItem>
+                                <MenuItem value="Keto">Keto</MenuItem>
+                                <MenuItem value="Vegan Friendly">Vegan</MenuItem>
+                                <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
+                            </Select>
+
+                            <Select
+                                sx={{ m: 2 }}
+                                variant="outlined"
+                                name="category"
+                                onChange={handleChange}
+                                placeholder="Category"
+                            >
+                                <MenuItem value="Drinks">Drinks</MenuItem>
+                                <MenuItem value="Appetizer">Appetizer</MenuItem>
+                                <MenuItem value="Entree">Entree</MenuItem>
+                                <MenuItem value="Dessert">Dessert</MenuItem>
+                            </Select>
+
+                            <TextField 
+                                label="Servings"
+                                sx={{ m: 2 }}                
+                                name="servings"
+                                onChange={handleChange}
                             />
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', p:3 }}>
-                            <Button variant="contained" onClick={handleSubmit} type='submit'>Add Recipe</Button>
-                        </Box>
-                    </Paper>
+
+                            <TextField 
+                                label="Total Time (mins)"
+                                sx={{ m: 2 }}
+                                name="totalTime"         
+                                onChange={handleChange}               
+                            />
+                        </Grid>
+
+                        <Grid sx={{ display: 'flex', flexDirection: 'column', m: 2, width: 300 }}>
+                            <Grid>
+                                {imageSelected ? (
+                                    <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
+                                ) : (
+                                    <h1>No Image</h1>
+                                )}
+                            </Grid>
+                            <Grid>
+                                <input 
+                                    title=" "
+                                    type="file" 
+                                    onChange={(event) => {
+                                    uploadImage(event.target.files[0]);
+                                    setImageSelected(event.target.files[0]);
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid> 
+                    <Grid sx={{ display: 'flex', flexDirection: 'column', mt: 1 }}>
+                        <TextField 
+                            label="Ingredients"
+                            sx={{ m: 2 }}
+                            multiline  
+                            rows={10} 
+                            name="ingredients"
+                            onChange={handleChange}                
+                        />
+                        <TextField 
+                            label="Directions"
+                            sx={{ m: 2 }}
+                            multiline
+                            rows={10}
+                            name="directions"
+                            onChange={handleChange}
+                        />
                     </Grid>
-                </Box>
-            </Box>
-            
-
-        </div>
+                    <Grid>
+                        <button onClick={handleSubmit} type='submit'>Add Recipe</button>
+                    </Grid>
+                </Paper>
+            </Grid>
+        </Box>
     );
 }
 

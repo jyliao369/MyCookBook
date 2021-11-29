@@ -16,6 +16,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 import { Image } from 'cloudinary-react';
 
@@ -172,34 +174,22 @@ const UpdateRecipe = () => {
     
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-            <Grid item xs={12} md={6}>
-                <Paper sx={{ p: 3 }}>
+            <Grid item xs={12} md={6} sx={{ m:3 }}>
+                <Paper sx={{ p: 3 }} elevation={3}>
                     <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         <Grid sx={{ display: 'flex', flexDirection: 'column', width: 500 }}>
+
                             <TextField 
                                 label="Recipe Name"
                                 sx={{ m: 2 }}
                                 defaultValue={recipe.title}
                                 name ="title"
-                                onChange={handleChange} 
-                            ></TextField>
-                            <Select
-                                // label="Category"
-                                sx={{ m: 2 }}
-                                variant="outlined"
-                                defaultValue={`${recipe.category}`}
-                                name="category"
                                 onChange={handleChange}
-                                placeholder="Category"
-                            >
-                                <MenuItem value="Drinks">Drinks</MenuItem>
-                                <MenuItem value="Appetizer">Appetizer</MenuItem>
-                                <MenuItem value="Entree">Entree</MenuItem>
-                                <MenuItem value="Dessert">Dessert</MenuItem>
-                            </Select>
+                                placeholder="Recipe Name"  
+                            />
+
                             <Select
                                 sx={{ m: 2 }}
-                                // label="Category"
                                 variant="outlined"
                                 defaultValue={`${recipe.cuisine}`}
                                 name="cuisine"
@@ -217,9 +207,10 @@ const UpdateRecipe = () => {
                                 <MenuItem value="Japanese">Japanese</MenuItem>
                                 <MenuItem value="Cuban">Cuban</MenuItem>
                             </Select>
+
+
                             <Select
                                 sx={{ m: 2 }}
-                                // label="Category"
                                 variant="outlined"
                                 defaultValue={`${recipe.diettype}`}
                                 name="diettype"
@@ -232,30 +223,41 @@ const UpdateRecipe = () => {
                                 <MenuItem value="Vegan Friendly">Vegan</MenuItem>
                                 <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
                             </Select>
+
+                            <Select
+                                sx={{ m: 2 }}
+                                variant="outlined"
+                                defaultValue={`${recipe.category}`}
+                                name="category"
+                                onChange={handleChange}
+                                placeholder="Category"
+                            >
+                                <MenuItem value="Drinks">Drinks</MenuItem>
+                                <MenuItem value="Appetizer">Appetizer</MenuItem>
+                                <MenuItem value="Entree">Entree</MenuItem>
+                                <MenuItem value="Dessert">Dessert</MenuItem>
+                            </Select>
+
                             <TextField 
                                 label="Servings"
                                 sx={{ m: 2 }}
                                 defaultValue={recipe.servings}
                                 name="servings" 
                                 onChange={handleChange}  
-                            ></TextField>
+                            />
+
                             <TextField 
-                                label="Total Time"
+                                label="Total Time (mins)"
                                 sx={{ m: 2 }}
                                 defaultValue={recipe.totalTime}
                                 name="totalTime" 
                                 onChange={handleChange} 
                             ></TextField>
+
                         </Grid>
+
                         <Grid sx={{ display: 'flex', flexDirection: 'column', m: 2, width: 300 }}>
                             <Grid>
-                                
-                                {/* {recipe.imageid ? (
-                                    <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid}/>
-                                ) : ( 
-                                    <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
-                                )} */}
-
                                 {/* THE LOGIC IS THAT IF THERE IS A PREEXISTING IMAGE, SHOW THE IMAGE.
                                 IF THERE IS NO IMAGE, CHECK TO SEE IF THERE IS A NEW IMAGE ADDED.
                                 IF NO NEW IMAGE IS SUPPLIED, 'NO IMAGE' IS RENDERED */}
