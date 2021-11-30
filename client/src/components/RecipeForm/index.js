@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
 
-// import { Link } from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+
 import { useMutation } from '@apollo/client';
 
 import { ADD_RECIPE } from '../../utils/mutations';
-import { QUERY_RECIPES, QUERY_MYPROFILE } from '../../utils/queries';
+import { QUERY_RECIPES } from '../../utils/queries';
+import { QUERY_MYPROFILE } from '../../utils/queries'
 
 import Axios from 'axios';
 // import { Image } from 'cloudinary-react';
@@ -16,7 +17,6 @@ import Auth from '../../utils/auth';
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
@@ -195,8 +195,9 @@ const RecipeForm = () => {
 
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-            <Grid item xs={12} md={6} sx={{ m:3 }}>
+        <Box sx={{ background: '#102B3F', p:1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', m:1.5}}>
+            <Grid item xs={12} md={6}>
                 <Paper sx={{ p: 3 }} elevation={3}>
                     <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         <Grid sx={{ display: 'flex', flexDirection:'column', width: 500 }}>
@@ -270,7 +271,7 @@ const RecipeForm = () => {
                             />
                         </Grid>
 
-                        <Grid sx={{ display: 'flex', flexDirection: 'column', m: 2, width: 300 }}>
+                        <Grid item xs={12} md={5} sx={{ display: 'flex', flexDirection: 'column', m: 2 }}>
                             <Grid>
                                 {imageSelected ? (
                                     <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
@@ -278,7 +279,7 @@ const RecipeForm = () => {
                                     <h1>No Image</h1>
                                 )}
                             </Grid>
-                            <Grid>
+                            <Grid item xs={12} md={4}>
                                 <input 
                                     title=" "
                                     type="file" 
@@ -308,11 +309,12 @@ const RecipeForm = () => {
                             onChange={handleChange}
                         />
                     </Grid>
-                    <Grid>
+                    <Grid sx={{ display: 'flex', justifyContent: 'center' }}>
                         <button onClick={handleSubmit} type='submit'>Add Recipe</button>
                     </Grid>
                 </Paper>
             </Grid>
+        </Box>
         </Box>
     );
 }

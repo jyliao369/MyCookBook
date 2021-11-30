@@ -19,7 +19,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 
 const Recipespage = () => {
     // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
@@ -90,34 +90,40 @@ const Recipespage = () => {
     }
 
     return (
-        <div>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Box>
+            <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: 'white', p: 1.5, color: 'primary.dark', border:2, borderRadius: 10 }}>ALL DRINKS and RECIPES</Typography>
                 <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637260922/headerimage1_abzfej.jpg"/>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p:1, background: '#456990'}}>
+            </Grid>
+            <Grid sx={{ background: '#F1FFFA', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', pt: 1, pb: 1 }}>
                 <Button variant="contained" onClick={handleShowAll} color="info" sx={{ fontSize: 13, m: 1}}>Show All</Button>
                 <Button variant="contained" value="Drinks" onClick={handlefilter} sx={{ fontSize: 13, m: 1}}>Drinks</Button>
                 <Button variant="contained" value="Appetizer" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Appetizers</Button>
                 <Button variant="contained" value="Entree" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Entrees</Button>
                 <Button variant="contained" value="Dessert" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Desserts</Button>
-            </Box>
-            
-            <Box sx={{ background: '#8ea8c3', pt:5, pb:5 }}>
-               <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+            </Grid>
+
+            <Box sx={{ background: '#364156', display: 'flex', justifyContent: 'center', pt: 3, pb: 3 }}>
+                <Grid item xs={12} md={8.5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     {recipeslist.map((recipe) => (
-                        <Grid item>
-                            <Card sx={{ width: 300, m: 1, height: 550, display: 'flex', justifyContent: 'space-around' }}>
+                        <Grid item xs={11} md={2.4} sx={{ p: 1 }}>
+                            <Card>
                                 <Link to={`/recipes/${ recipe._id }`}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Grid>
                                         <CardHeader
+                                            titleTypographyProps={{
+                                                fontSize: 20
+                                            }}
+                                            subheaderTypographyProps={{
+                                                fontSize: 15
+                                            }}
                                             title={ recipe.title }
                                             subheader={ recipe.createdAt }
                                         />
                                         <CardMedia sx={{ pl: 2, pr: 2, pt: 1, pb: 1 }}>
                                             { recipe.imageid ? (
                                                 <Image
-                                                    width="175"
+                                                    width="100%"
                                                     cloudName="du119g90a" 
                                                     public_id={ recipe.imageid }
                                                 />
@@ -130,19 +136,20 @@ const Recipespage = () => {
                                             )}
                                         </CardMedia>
                                         <CardContent>
-                                            <Typography sx={{ fontSize: 23 }}>Category: { recipe.category }</Typography>
-                                            <Typography sx={{ fontSize: 23 }}>Servings: { recipe.servings } </Typography>
-                                            <Typography sx={{ fontSize: 23 }}>Total Time: { recipe.totalTime }</Typography>
+                                            <Typography sx={{ fontSize: 18 }}>Category: { recipe.category }</Typography>
+                                            <Typography sx={{ fontSize: 18 }}>Cuisine: { recipe.cuisine }</Typography>
+                                            <Typography sx={{ fontSize: 18 }}>Diet: { recipe.diettype }</Typography>
+                                            <Typography sx={{ fontSize: 18 }}>Servings: { recipe.servings } </Typography>
+                                            <Typography sx={{ fontSize: 18 }}>Total Time: { recipe.totalTime }</Typography>
                                         </CardContent>
-                                    </Box>
+                                    </Grid>
                                 </Link>
                             </Card>
                         </Grid>
                     ))}
-                </Grid> 
+                </Grid>
             </Box>
-            
-        </div>
+        </Box>
     );
         
 }

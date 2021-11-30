@@ -16,8 +16,6 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
 
 import { Image } from 'cloudinary-react';
 
@@ -173,138 +171,140 @@ const UpdateRecipe = () => {
     }
     
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-            <Grid item xs={12} md={6} sx={{ m:3 }}>
-                <Paper sx={{ p: 3 }} elevation={3}>
-                    <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        <Grid sx={{ display: 'flex', flexDirection: 'column', width: 500 }}>
+        <Box sx={{ background: '#102542', p:1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', m:1.5 }}>
+                <Grid item xs={12} md={6}>
+                    <Paper sx={{ p: 3 }} elevation={3}>
+                        <Grid sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                            <Grid sx={{ display: 'flex', flexDirection: 'column', width: 500 }}>
 
-                            <TextField 
-                                label="Recipe Name"
+                                <TextField 
+                                    label="Recipe Name"
+                                    sx={{ m: 2 }}
+                                    defaultValue={recipe.title}
+                                    name ="title"
+                                    onChange={handleChange}
+                                    placeholder="Recipe Name"  
+                                />
+
+                                <Select
+                                    sx={{ m: 2 }}
+                                    variant="outlined"
+                                    defaultValue={`${recipe.cuisine}`}
+                                    name="cuisine"
+                                    onChange={handleChange}
+                                    placeholder="Cuisine"
+                                >
+                                    <MenuItem value="Homemade">Homemade</MenuItem>
+                                    <MenuItem value="American">American</MenuItem>
+                                    <MenuItem value="Chinese">Chinese</MenuItem>
+                                    <MenuItem value="Mexican">Mexican</MenuItem>
+                                    <MenuItem value="Thai">Thai</MenuItem>
+                                    <MenuItem value="Indian">Indian</MenuItem>
+                                    <MenuItem value="Cajun">Cajun</MenuItem>
+                                    <MenuItem value="Korean">Korean</MenuItem>
+                                    <MenuItem value="Japanese">Japanese</MenuItem>
+                                    <MenuItem value="Cuban">Cuban</MenuItem>
+                                </Select>
+
+
+                                <Select
+                                    sx={{ m: 2 }}
+                                    variant="outlined"
+                                    defaultValue={`${recipe.diettype}`}
+                                    name="diettype"
+                                    onChange={handleChange}
+                                    placeholder="Diet Type"
+                                >
+                                    <MenuItem value="Regular">Regular</MenuItem>
+                                    <MenuItem value="Low Carb">Low Carb</MenuItem>
+                                    <MenuItem value="Keto">Keto</MenuItem>
+                                    <MenuItem value="Vegan Friendly">Vegan</MenuItem>
+                                    <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
+                                </Select>
+
+                                <Select
+                                    sx={{ m: 2 }}
+                                    variant="outlined"
+                                    defaultValue={`${recipe.category}`}
+                                    name="category"
+                                    onChange={handleChange}
+                                    placeholder="Category"
+                                >
+                                    <MenuItem value="Drinks">Drinks</MenuItem>
+                                    <MenuItem value="Appetizer">Appetizer</MenuItem>
+                                    <MenuItem value="Entree">Entree</MenuItem>
+                                    <MenuItem value="Dessert">Dessert</MenuItem>
+                                </Select>
+
+                                <TextField 
+                                    label="Servings"
+                                    sx={{ m: 2 }}
+                                    defaultValue={recipe.servings}
+                                    name="servings" 
+                                    onChange={handleChange}  
+                                />
+
+                                <TextField 
+                                    label="Total Time (mins)"
+                                    sx={{ m: 2 }}
+                                    defaultValue={recipe.totalTime}
+                                    name="totalTime" 
+                                    onChange={handleChange} 
+                                ></TextField>
+
+                            </Grid>
+
+                            <Grid item xs={10.5} md={4} sx={{ display: 'flex', flexDirection: 'column', m: 2 }}>
+                                <Grid>
+                                    {/* THE LOGIC IS THAT IF THERE IS A PREEXISTING IMAGE, SHOW THE IMAGE.
+                                    IF THERE IS NO IMAGE, CHECK TO SEE IF THERE IS A NEW IMAGE ADDED.
+                                    IF NO NEW IMAGE IS SUPPLIED, 'NO IMAGE' IS RENDERED */}
+                                    { (recipe.imageid) ? (
+                                        <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid}/>
+                                    ) : ( (imageSelected) ? (
+                                        <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
+                                    ) : (
+                                        <h1>No Image</h1>
+                                    ))} 
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <input 
+                                        title=" "
+                                        type="file"
+                                        onChange={(event) => {
+                                            setImageSelected(event.target.files[0]);
+                                        }}
+                                    />  
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid sx={{ display: 'flex', flexDirection: 'column', mt: 1 }}>
+                            <TextField
+                                label="Ingredients"
                                 sx={{ m: 2 }}
-                                defaultValue={recipe.title}
-                                name ="title"
-                                onChange={handleChange}
-                                placeholder="Recipe Name"  
-                            />
-
-                            <Select
-                                sx={{ m: 2 }}
-                                variant="outlined"
-                                defaultValue={`${recipe.cuisine}`}
-                                name="cuisine"
-                                onChange={handleChange}
-                                placeholder="Cuisine"
-                            >
-                                <MenuItem value="Homemade">Homemade</MenuItem>
-                                <MenuItem value="American">American</MenuItem>
-                                <MenuItem value="Chinese">Chinese</MenuItem>
-                                <MenuItem value="Mexican">Mexican</MenuItem>
-                                <MenuItem value="Thai">Thai</MenuItem>
-                                <MenuItem value="Indian">Indian</MenuItem>
-                                <MenuItem value="Cajun">Cajun</MenuItem>
-                                <MenuItem value="Korean">Korean</MenuItem>
-                                <MenuItem value="Japanese">Japanese</MenuItem>
-                                <MenuItem value="Cuban">Cuban</MenuItem>
-                            </Select>
-
-
-                            <Select
-                                sx={{ m: 2 }}
-                                variant="outlined"
-                                defaultValue={`${recipe.diettype}`}
-                                name="diettype"
-                                onChange={handleChange}
-                                placeholder="Diet Type"
-                            >
-                                <MenuItem value="Regular">Regular</MenuItem>
-                                <MenuItem value="Low Carb">Low Carb</MenuItem>
-                                <MenuItem value="Keto">Keto</MenuItem>
-                                <MenuItem value="Vegan Friendly">Vegan</MenuItem>
-                                <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
-                            </Select>
-
-                            <Select
-                                sx={{ m: 2 }}
-                                variant="outlined"
-                                defaultValue={`${recipe.category}`}
-                                name="category"
-                                onChange={handleChange}
-                                placeholder="Category"
-                            >
-                                <MenuItem value="Drinks">Drinks</MenuItem>
-                                <MenuItem value="Appetizer">Appetizer</MenuItem>
-                                <MenuItem value="Entree">Entree</MenuItem>
-                                <MenuItem value="Dessert">Dessert</MenuItem>
-                            </Select>
-
-                            <TextField 
-                                label="Servings"
-                                sx={{ m: 2 }}
-                                defaultValue={recipe.servings}
-                                name="servings" 
-                                onChange={handleChange}  
-                            />
-
-                            <TextField 
-                                label="Total Time (mins)"
-                                sx={{ m: 2 }}
-                                defaultValue={recipe.totalTime}
-                                name="totalTime" 
+                                multiline
+                                rows={10}
+                                defaultValue={ingredientList}
+                                name="ingredients" 
                                 onChange={handleChange} 
                             ></TextField>
-
+                            <TextField
+                                label="Directions"
+                                sx={{ m: 2 }}
+                                multiline
+                                rows={10}
+                                defaultValue={directionList}
+                                name="directions" 
+                                onChange={handleChange} 
+                            ></TextField>
                         </Grid>
-
-                        <Grid sx={{ display: 'flex', flexDirection: 'column', m: 2, width: 300 }}>
-                            <Grid>
-                                {/* THE LOGIC IS THAT IF THERE IS A PREEXISTING IMAGE, SHOW THE IMAGE.
-                                IF THERE IS NO IMAGE, CHECK TO SEE IF THERE IS A NEW IMAGE ADDED.
-                                IF NO NEW IMAGE IS SUPPLIED, 'NO IMAGE' IS RENDERED */}
-                                { (recipe.imageid) ? (
-                                    <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid}/>
-                                ) : ( (imageSelected) ? (
-                                    <img src={URL.createObjectURL(imageSelected)} className="imagepreview" alt=""></img>
-                                ) : (
-                                    <h1>No Image</h1>
-                                ))} 
-                            </Grid>
-                            <Grid>
-                                <input 
-                                    title=" "
-                                    type="file"
-                                    onChange={(event) => {
-                                        setImageSelected(event.target.files[0]);
-                                    }}
-                                />  
-                            </Grid>
+                        <Grid sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <button onClick={handleUpdate}><Link to={`/recipes/${recipe._id}`}>Update Recipe</Link></button>
                         </Grid>
-                    </Grid>
-                    <Grid sx={{ display: 'flex', flexDirection: 'column', mt: 1 }}>
-                        <TextField
-                            label="Ingredients"
-                            sx={{ m: 2 }}
-                            multiline
-                            rows={10}
-                            defaultValue={ingredientList}
-                            name="ingredients" 
-                            onChange={handleChange} 
-                        ></TextField>
-                        <TextField
-                            label="Directions"
-                            sx={{ m: 2 }}
-                            multiline
-                            rows={10}
-                            defaultValue={directionList}
-                            name="directions" 
-                            onChange={handleChange} 
-                        ></TextField>
-                    </Grid>
-                    <Grid>
-                        <button onClick={handleUpdate}><Link to={`/recipes/${recipe._id}`}>Update Recipe</Link></button>
-                    </Grid>
-                </Paper>
-            </Grid>
+                    </Paper>
+                </Grid>
+            </Box>
         </Box>
     );
 };
