@@ -219,8 +219,8 @@ const UpdateRecipe = () => {
                                     <MenuItem value="Regular">Regular</MenuItem>
                                     <MenuItem value="Low Carb">Low Carb</MenuItem>
                                     <MenuItem value="Keto">Keto</MenuItem>
-                                    <MenuItem value="Vegan Friendly">Vegan</MenuItem>
-                                    <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
+                                    <MenuItem value="Vegan">Vegan</MenuItem>
+                                    <MenuItem value="Vegetarian">Vegetarian</MenuItem>
                                 </Select>
 
                                 <Select
