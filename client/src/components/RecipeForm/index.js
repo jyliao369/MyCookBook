@@ -17,7 +17,6 @@ import Auth from '../../utils/auth';
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -210,9 +209,10 @@ const RecipeForm = () => {
                                 placeholder="Recipe Name"          
                             />
 
-                            <Select
+                            <TextField
+                                select
+                                label="Cuisine"
                                 sx={{ m: 2 }}
-                                variant="outlined"
                                 name="cuisine"
                                 onChange={handleChange}
                                 placeholder="Cuisine"
@@ -227,11 +227,12 @@ const RecipeForm = () => {
                                 <MenuItem value="Korean">Korean</MenuItem>
                                 <MenuItem value="Japanese">Japanese</MenuItem>
                                 <MenuItem value="Cuban">Cuban</MenuItem>
-                            </Select>
+                            </TextField>
 
-                            <Select
+                            <TextField
+                                select
+                                label="Diet Type"
                                 sx={{ m: 2 }}
-                                variant="outlined"
                                 name="diettype"
                                 onChange={handleChange}
                                 placeholder="Diet Type"
@@ -239,13 +240,14 @@ const RecipeForm = () => {
                                 <MenuItem value="Regular">Regular</MenuItem>
                                 <MenuItem value="Low Carb">Low Carb</MenuItem>
                                 <MenuItem value="Keto">Keto</MenuItem>
-                                <MenuItem value="Vegan Friendly">Vegan</MenuItem>
-                                <MenuItem value="Vegetarian Friendly">Vegetarian</MenuItem>
-                            </Select>
+                                <MenuItem value="Vegan">Vegan</MenuItem>
+                                <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                            </TextField>
 
-                            <Select
+                            <TextField
+                                select
+                                label="Category"
                                 sx={{ m: 2 }}
-                                variant="outlined"
                                 name="category"
                                 onChange={handleChange}
                                 placeholder="Category"
@@ -254,7 +256,7 @@ const RecipeForm = () => {
                                 <MenuItem value="Appetizer">Appetizer</MenuItem>
                                 <MenuItem value="Entree">Entree</MenuItem>
                                 <MenuItem value="Dessert">Dessert</MenuItem>
-                            </Select>
+                            </TextField>
 
                             <TextField 
                                 label="Servings"

@@ -395,3 +395,6 @@
   margin: 0% 0%;
 }
 
+body {
+  padding-right: 0px !important;
+}

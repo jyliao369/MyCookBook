@@ -147,11 +147,17 @@ const Profile = () => {
             <Box sx={{ background: '#6CCFF6', display: 'flex', justifyContent: 'center', pt: 3, pb: 3 }}>
                 <Grid item xs={12} md={8.5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     {userrecipe && userrecipe.map((recipe) => (
-                        <Grid item xs={10} md={3.5} sx={{ p: 1 }}>
+                        <Grid item xs={10} md={3} sx={{ p: 1 }}>
                             <Card>
                                 <Link to={`/recipes/${ recipe._id }`}>
                                     <Grid item sx={{ mr: 0.5, ml: 0.5 }}>
-                                        <CardHeader 
+                                        <CardHeader
+                                            titleTypographyProps={{
+                                                fontSize: 18.5
+                                            }}
+                                            subheaderTypographyProps={{
+                                                fontSize: 15
+                                            }} 
                                             title={ recipe.title } 
                                             subheader={ recipe.createdAt }
                                         />

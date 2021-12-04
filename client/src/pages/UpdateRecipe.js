@@ -15,7 +15,6 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 
 import { Image } from 'cloudinary-react';
 
@@ -187,9 +186,10 @@ const UpdateRecipe = () => {
                                     placeholder="Recipe Name"  
                                 />
 
-                                <Select
+                                <TextField
+                                    select
+                                    label="Cuisine"
                                     sx={{ m: 2 }}
-                                    variant="outlined"
                                     defaultValue={`${recipe.cuisine}`}
                                     name="cuisine"
                                     onChange={handleChange}
@@ -205,12 +205,12 @@ const UpdateRecipe = () => {
                                     <MenuItem value="Korean">Korean</MenuItem>
                                     <MenuItem value="Japanese">Japanese</MenuItem>
                                     <MenuItem value="Cuban">Cuban</MenuItem>
-                                </Select>
+                                </TextField>
 
-
-                                <Select
+                                <TextField
+                                    select
+                                    label="Diet Type"
                                     sx={{ m: 2 }}
-                                    variant="outlined"
                                     defaultValue={`${recipe.diettype}`}
                                     name="diettype"
                                     onChange={handleChange}
@@ -221,11 +221,12 @@ const UpdateRecipe = () => {
                                     <MenuItem value="Keto">Keto</MenuItem>
                                     <MenuItem value="Vegan">Vegan</MenuItem>
                                     <MenuItem value="Vegetarian">Vegetarian</MenuItem>
-                                </Select>
-
-                                <Select
+                                </TextField>
+                 
+                                <TextField
+                                    select
+                                    label="Category"
                                     sx={{ m: 2 }}
-                                    variant="outlined"
                                     defaultValue={`${recipe.category}`}
                                     name="category"
                                     onChange={handleChange}
@@ -235,7 +236,7 @@ const UpdateRecipe = () => {
                                     <MenuItem value="Appetizer">Appetizer</MenuItem>
                                     <MenuItem value="Entree">Entree</MenuItem>
                                     <MenuItem value="Dessert">Dessert</MenuItem>
-                                </Select>
+                                </TextField>
 
                                 <TextField 
                                     label="Servings"
