@@ -192,7 +192,6 @@ const RecipeForm = () => {
         }
     };
 
-
     return (
         <Box sx={{ background: '#102B3F', p:1 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center', m:1.5}}>

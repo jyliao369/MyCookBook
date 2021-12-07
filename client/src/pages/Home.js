@@ -1,4 +1,7 @@
-import React, {useEffect, useState } from 'react';
+import React from 'react';
+// import { useEffect } from 'react';
+// import { useState } from 'react';
+
 import {Link} from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -10,12 +13,11 @@ import { Image } from 'cloudinary-react';
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import CardActions from '@mui/material/CardActions';
-import { typography } from '@mui/system';
+// import CardHeader from '@mui/material/CardHeader';
+// import CardContent from '@mui/material/CardContent';
+// import CardActions from '@mui/material/CardActions';
 
 const Home = () => {
 
@@ -64,7 +66,8 @@ const Home = () => {
     }
     if (uniqueRecipes[a].category === "Entree" && entrees.length < entreesnum) {
       entrees.push(uniqueRecipes[a])
-    }if (uniqueRecipes[a].category === "Dessert" && desserts.length < desnum) {
+    }
+    if (uniqueRecipes[a].category === "Dessert" && desserts.length < desnum) {
       desserts.push(uniqueRecipes[a])
     }
   }

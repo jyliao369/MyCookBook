@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Masonry from 'react-masonry-css';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_RECIPES } from '../utils/queries';
 
@@ -85,6 +87,12 @@ const Recipespage = () => {
         setRecipeslist(uniqueRecipes);
     };
 
+
+    const breakpoints = {
+        default: 4,
+        700: 1
+    }
+
     if (loading) {
         return <h1>Loading</h1>
     }
@@ -103,8 +111,13 @@ const Recipespage = () => {
                 <Button variant="contained" value="Dessert" onClick={handlefilter} sx={{ fontSize: 13, m: 1 }}>Desserts</Button>
             </Grid>
 
-            <Box sx={{ background: '#364156', display: 'flex', justifyContent: 'center', pt: 3, pb: 3 }}>
+            {/* <Box sx={{ background: '#364156', display: 'flex', justifyContent: 'center', pt: 3, pb: 3 }}>
                 <Grid item xs={12} md={8.5} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+                    <Masonry
+                        breakpointCols={breakpoints}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column"
+                    >
                     {recipeslist.map((recipe) => (
                         <Grid item xs={11} md={2.4} sx={{ p: 1 }}>
                             <Card>
@@ -147,8 +160,67 @@ const Recipespage = () => {
                             </Card>
                         </Grid>
                     ))}
+                    </Masonry>
+                </Grid>
+            </Box> */}
+
+            <Box sx={{ background: '#364156', display: 'flex', justifyContent: 'center', pt: 3, pb: 3 }}>
+                <Grid item md={8}>
+                    <Masonry
+                        breakpointCols={breakpoints}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column"
+                    >
+                        {recipeslist.map((recipe) => (
+                            <Grid sx={{ p: 1.2 }}>
+                                <Card
+                                    elevation={3}
+                                >
+                                    <Link to={`/recipes/${ recipe._id }`}>
+                                        <Grid>
+                                            <CardHeader
+                                                titleTypographyProps={{
+                                                    fontSize: 20
+                                                }}
+                                                subheaderTypographyProps={{
+                                                    fontSize: 15
+                                                }}
+                                                title={ recipe.title }
+                                                subheader={ recipe.createdAt }
+                                            />
+                                            <CardMedia sx={{ ml: 2, mr: 2, mt: 0.5, mb: 0.5, display: 'flex', borderStyle: 'solid', borderWidth: 4, borderColor: '#373F51' }}>
+                                                { recipe.imageid ? (
+                                                    <Image
+                                                        width="100%"
+                                                        cloudName="du119g90a" 
+                                                        public_id={ recipe.imageid }
+                                                    />
+                                                ): (
+                                                    <Image 
+                                                        width="100%"
+                                                        cloudName="du119g90a" 
+                                                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                                                    />
+                                                )}
+                                            </CardMedia>
+                                            <CardContent sx={{ ml: 0.5, mr: 0.5, mt: 0.5, mb: 0.5, display: 'flex', flexDirection: 'column' }}>
+                                                <Typography sx={{ fontSize: 18 }}>Category: { recipe.category }</Typography>
+                                                <Typography sx={{ fontSize: 18 }}>Cuisine: { recipe.cuisine }</Typography>
+                                                <Typography sx={{ fontSize: 18 }}>Diet: { recipe.diettype }</Typography>
+                                                <Typography sx={{ fontSize: 18 }}>Servings: { recipe.servings } </Typography>
+                                                <Typography sx={{ fontSize: 18 }}>Total Time: { recipe.totalTime }</Typography>
+                                            </CardContent>
+                                        </Grid>
+                                    </Link>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Masonry>
                 </Grid>
             </Box>
+
+
+            
         </Box>
     );
         

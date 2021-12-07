@@ -28,18 +28,13 @@ const SingleRecipe = () => {
         variables: { recipeId: recipeId },
     });
     const recipe = data?.recipe || {};
+
     console.log(recipe)
     console.log(recipe.title);
 
     // THIS SHOULD, ON PAPER ADD THE CURRENT OBJECT WHICH IS THE 'recipe'
     // FROM ABOVE AND ADD TO THE USER THAT IS CURRENTLY LOGGED. THAT'S WHAT THE
     // BELOW CODE SHOULD DO
-
-    // const [ addedrecipe , setAddedrecipe ] = useState({
-    //     title: 'hello'
-    // });
-    // console.log("testing");
-    // console.log(addedrecipe);
 
     const [addRecipe, { error }] = useMutation(ADD_RECIPE, {
         update(cache, { data: { addRecipe } }) {
@@ -75,68 +70,79 @@ const SingleRecipe = () => {
     if (loading) {
         return <div>Loading...</div>;
     }
+
     return (
-        <div>
-            <Box sx={{ background: '#161925' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3}}>
-                    <Grid item xs={12} md={8}>
-                    <Paper sx={{p: 2}}>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-                            <Box sx={{ width: 325 }}>
+        <Box sx={{ background: '#456990', p:1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', m: 1.5 }}>
+                <Grid item xs={12} md={6}>
+                    <Paper sx={{ p:3 }} elevation={3}>
+                        <Grid item sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                            <Grid>
+                                <Grid sx={{ fontSize: 24 }}>
+                                    <p>{recipe.title}</p>
+                                    <p>{recipe.createdAt}</p>
+                                </Grid>
+                                <br/>
+                                <hr/>
+                                <br/>
+                                <Grid>
+                                    <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
+                                    <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings }</Typography>
+                                    <Typography sx={{ fontSize: 20 }}>Total Cook Time: { recipe.totalTime } mins</Typography>
+                                    <Typography sx={{ fontSize: 20 }}>Cuisine: { recipe.cuisine }</Typography>
+                                    <Typography sx={{ fontSize: 20 }}>Diet: { recipe.diettype }</Typography>
+                                </Grid>
+                                <br/>
+                            </Grid>
+                            <Grid md={5.5}>
                                 { recipe.imageid ? ( 
                                     <Image width='100%' cloudName="du119g90a" public_id={recipe.imageid} />
                                 ) : (
                                     <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"/>
                                 )}
-                            </Box>
-                            
-                            <Box sx={{ display: 'flex', flexDirection: 'column', pl: 3, pr: 2.5, width: 325 }}>
-                                <Typography sx={{ fontSize: 25 }}>{ recipe.title }</Typography>
-                                <br />
-                                <Typography sx={{ fontSize: 20 }}>Category: { recipe.category }</Typography>
-                                <Typography sx={{ fontSize: 20 }}>Servings: { recipe.servings }</Typography>
-                                <Typography sx={{ fontSize: 20 }}>Total Cook Time: { recipe.totalTime } mins</Typography>
-                                <Typography sx={{ fontSize: 20 }}>Cuisine: { recipe.cuisine }</Typography>
-                                <Typography sx={{ fontSize: 20 }}>Diet: { recipe.diettype }</Typography>
-                            </Box>  
-                        </Box>
-                        
+                            </Grid>
+                        </Grid>
                         <br/>
-
-                        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
-                            <Box sx={{ width: 343, p: 1}}>
-                                <Typography sx={{ fontSize: 30 }}>Ingredients</Typography>
+                        <hr/>
+                        <br/>
+                        <Grid>
+                            <Grid>
+                                Ingredients
                                 {recipe.ingredients.map((ingredient) => (
-                                    <Typography sx={{ fontSize: 18, p: 0.7 }}>{ingredient}</Typography>
+                                    <Typography sx={{ fontSize: 20, pt: 0.7, pb: 0.7 }}>{ingredient}</Typography>
                                 ))}
-                            </Box>
-
-                            <br></br>
-                            
-                            <Box sx={{width: 350, p: 1 }}>
-                                <Typography sx={{ fontSize: 30 }}>Directions</Typography>
+                            </Grid>
+                            <br/>
+                            <hr/>
+                            <br/>
+                            <Grid>
+                                Instructions
                                 {recipe.directions.map((direction) => (
-                                    <Typography sx={{ fontSize: 15, p: 0.7}}>{direction}</Typography>
+                                    <Typography sx={{ fontSize: 20, pt: 0.7, pb: 0.7 }}>{direction}</Typography>
                                 ))}
-                            </Box>
-                        </Box>
-                        {Auth.loggedIn() ? ( 
-                            <>
-                                <Box>
-                                    <Button onClick={handleAddto} variant="contained" color="error">
-                                        <Typography sx={{ color: 'white', fontSize: 20 }}>Add to Cookbook</Typography>
-                                    </Button>
-                                </Box>
-                            </>
-                        ) : ( 
-                            <>
-                            </>
-                        )}
+                            </Grid>
+                        </Grid>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                            {Auth.loggedIn() ? ( 
+                                <>
+                                    <Box>
+                                        <Button onClick={handleAddto} variant="contained" color="error">
+                                            <Typography sx={{ color: 'white', fontSize: 20 }}>Add to Cookbook</Typography>
+                                        </Button>
+                                    </Box>
+                                </>
+                            ) : ( 
+                                <>
+                                </>
+                            )}
+                        </Grid>
                     </Paper>
-                    </Grid>
-                </Box>
+                </Grid>
             </Box>
-        </div>
+        </Box>
     );
 };
 
