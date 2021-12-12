@@ -172,7 +172,7 @@ const Recipespage = () => {
                         columnClassName="my-masonry-grid_column"
                     >
                         {recipeslist.map((recipe) => (
-                            <Grid sx={{ p: 1.2 }}>
+                            <Grid item sx={{ m: 2 }}>
                                 <Card
                                     elevation={3}
                                 >

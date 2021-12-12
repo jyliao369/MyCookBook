@@ -75,39 +75,41 @@ const Home = () => {
 
   
   return (
-    <div>
-      <Box sx={{ background: '#406e8e' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
-          <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
-        </Box>
-        {/* THIS IS FOR DRINKS */}
-        <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', p: 2 }}>
+    <Box sx={{ background: '#5B7B7A' }}>
+
+      <Grid>
+        <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
+        <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
+      </Grid>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
           {drinks.map((drink) => (
-            <Grid item xs={12} sm={6} lg={3.5}>
-              <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 225}}>
+            <Grid item xs={10.5} md={2.25}>
+              <Card elevation={4} sx={{ m: 2 }}>
                 <Link to={`/recipes/${ drink._id }`}>
-                  <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
+                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia>
                       {drink.imageid ? (
                         <Image 
                           width='100%'
+                          Height='275'
                           cloudName="du119g90a"
                           public_id={ drink.imageid }
                         />
                       ) : (
                         <Image 
-                          width='100%' 
+                          width='100%'
+                          Height='275' 
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Box sx={{ p:2 }}>
+                    <Grid sx={{ m:1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {drink.title}
                       </Typography>
-                      <br/>
                       <Typography sx={{ fontSize: 15 }}>
                         Category: {drink.category}
                       </Typography>
@@ -123,147 +125,153 @@ const Home = () => {
                       <Typography sx={{ fontSize: 15 }}>
                         Total Cook Time: {drink.totalTime} min
                       </Typography>
-                    </Box>
-                  </Box>
+                    </Grid>
+                  </Grid>
                 </Link>
               </Card>
             </Grid>
           ))}
         </Grid>
-      
-        <br /><br />
-        
-        {/* THIS IS FOR THE APPETIZERS*/}
-        <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
-            {appetizers.map((appetizer) => (
-              <Grid item>
-                <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
-                  <Link to={`/recipes/${ appetizer._id }`}>
-                    <CardMedia sx={{ p: 2 }}>
+      </Box>
+
+      <br/>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {appetizers.map((appetizer) => (
+            <Grid item xs={10.5} md={2.35}>
+              <Card elevation={4} sx={{ m:2 }}>
+                <Link to={`/recipes/${ appetizer._id }`}>
+                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia>
                       {appetizer.imageid ? (
-                        <Image
-                          width="100%" 
-                          cloudName="du119g90a" 
+                        <Image 
+                          width='100%'
+                          Height='275'
+                          cloudName="du119g90a"
                           public_id={ appetizer.imageid }
                         />
-                      ) : ( 
+                      ) : (
                         <Image 
-                          width="100%"
-                          cloudName="du119g90a" 
+                          width='100%'
+                          Height='275' 
+                          cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
-                        <Typography sx={{ fontSize: 20 }}>
-                          {appetizer.title}
-                        </Typography>
-                        <br/>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Category {appetizer.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Cuisine: {appetizer.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Diet: {appetizer.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Servings: {appetizer.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Total Cook Time: {appetizer.totalTime} min
-                        </Typography>
-                      </Box>
-                  </Link>
-                </Card>
-              </Grid>
-            ))}
+                    <Grid sx={{ m:1, height: 175 }}>
+                      <Typography sx={{ fontSize: 20 }}>
+                        {appetizer.title}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Category: {appetizer.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Cuisine: {appetizer.cuisine}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Diet: {appetizer.diettype}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Servings: {appetizer.servings}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Total Cook Time: {appetizer.totalTime} min
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Link>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
+      </Box>
 
-        <br /><br />
-          
-        {/* THIS IS FOR THE ENTREES*/}
-        <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
-            {entrees.map((entree) => (
-              <Grid item>
-                <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
-                  <Link to={`/recipes/${ entree._id }`}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                      <CardMedia sx={{ p: 2 }}>
-                        {entree.imageid ? (
-                          <Image
-                            width="100%" 
-                            cloudName="du119g90a" 
-                            public_id={ entree.imageid }
-                          />
-                        ) : ( 
-                          <Image 
-                            width="100%"
-                            cloudName="du119g90a" 
-                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                          />
-                        )}
-                      </CardMedia>
-                      <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
-                        <Typography sx={{ fontSize: 20 }}>
-                          {entree.title}
-                        </Typography>
-                        <br/>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Category {entree.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Cuisine: {entree.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Diet: {entree.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Servings: {entree.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 15 }}>
-                          Total Cook Time: {entree.totalTime} min
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Link>
-                </Card>
-              </Grid>
-            ))}
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {entrees.map((entree) => (
+            <Grid item xs={10.5} md={2.35}>
+              <Card elevation={4} sx={{ m:2}}>
+                <Link to={`/recipes/${ entree._id }`}>
+                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia>
+                      {entree.imageid ? (
+                        <Image 
+                          width='100%'
+                          Height='250'
+                          cloudName="du119g90a"
+                          public_id={ entree.imageid }
+                        />
+                      ) : (
+                        <Image 
+                          width='100%'
+                          Height='250' 
+                          cloudName="du119g90a"
+                          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                        />
+                      )}
+                    </CardMedia>
+                    <Grid sx={{ m:1, height: 175 }}>
+                      <Typography sx={{ fontSize: 20 }}>
+                        {entree.title}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Category: {entree.category}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Cuisine: {entree.cuisine}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Diet: {entree.diettype}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Servings: {entree.servings}
+                      </Typography>
+                      <Typography sx={{ fontSize: 15 }}>
+                        Total Cook Time: {entree.totalTime} min
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Link>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-        
-        <br /><br />
-        
-        {/* THIS IS FOR THE DESSERTS*/}
-        <Grid container spacing={5} sx={{ p:2, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+      </Box>
+
+      <br/>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
           {desserts.map((dessert) => (
-            <Grid item xs={12} sm={6} lg={3.5}>
-              <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 250}}>
+            <Grid item xs={10.5} md={2.35}>
+              <Card elevation={4} sx={{ m: 2 }}>
                 <Link to={`/recipes/${ dessert._id }`}>
-                  <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
+                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia>
                       {dessert.imageid ? (
                         <Image 
                           width='100%'
+                          Height='250'
                           cloudName="du119g90a"
                           public_id={ dessert.imageid }
                         />
                       ) : (
                         <Image 
-                          width='100%' 
+                          width='100%'
+                          Height='250' 
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Box sx={{ p:2 }}>
+                    <Grid sx={{ m:1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {dessert.title}
                       </Typography>
-                      <br/>
                       <Typography sx={{ fontSize: 15 }}>
-                        Category {dessert.category}
+                        Category: {dessert.category}
                       </Typography>
                       <Typography sx={{ fontSize: 15 }}>
                         Cuisine: {dessert.cuisine}
@@ -277,15 +285,183 @@ const Home = () => {
                       <Typography sx={{ fontSize: 15 }}>
                         Total Cook Time: {dessert.totalTime} min
                       </Typography>
-                    </Box>
-                  </Box>
+                    </Grid>
+                  </Grid>
                 </Link>
               </Card>
             </Grid>
           ))}
         </Grid>
       </Box>
-    </div>
+
+    </Box>
+
+
+    // <div>
+    //    <Box sx={{ background: '#406e8e' }}>
+    //      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    //        <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
+    //        <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
+    //      </Box>
+
+    //      {/* THIS IS FOR DRINKS */}
+         
+      
+    //     <br /><br />
+        
+    //     {/* THIS IS FOR THE APPETIZERS*/}
+    //     <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
+    //         {appetizers.map((appetizer) => (
+    //           <Grid item>
+    //             <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
+    //               <Link to={`/recipes/${ appetizer._id }`}>
+    //                 <CardMedia sx={{ p: 2 }}>
+    //                   {appetizer.imageid ? (
+    //                     <Image
+    //                       width="100%" 
+    //                       cloudName="du119g90a" 
+    //                       public_id={ appetizer.imageid }
+    //                     />
+    //                   ) : ( 
+    //                     <Image 
+    //                       width="100%"
+    //                       cloudName="du119g90a" 
+    //                       public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+    //                     />
+    //                   )}
+    //                 </CardMedia>
+    //                 <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
+    //                     <Typography sx={{ fontSize: 20 }}>
+    //                       {appetizer.title}
+    //                     </Typography>
+    //                     <br/>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Category {appetizer.category}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Cuisine: {appetizer.cuisine}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Diet: {appetizer.diettype}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Servings: {appetizer.servings}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Total Cook Time: {appetizer.totalTime} min
+    //                     </Typography>
+    //                   </Box>
+    //               </Link>
+    //             </Card>
+    //           </Grid>
+    //         ))}
+    //     </Grid>
+
+    //     <br /><br />
+          
+    //     {/* THIS IS FOR THE ENTREES*/}
+    //     <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
+    //         {entrees.map((entree) => (
+    //           <Grid item>
+    //             <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 300, height: 450}}>
+    //               <Link to={`/recipes/${ entree._id }`}>
+    //                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+    //                   <CardMedia sx={{ p: 2 }}>
+    //                     {entree.imageid ? (
+    //                       <Image
+    //                         width="100%" 
+    //                         cloudName="du119g90a" 
+    //                         public_id={ entree.imageid }
+    //                       />
+    //                     ) : ( 
+    //                       <Image 
+    //                         width="100%"
+    //                         cloudName="du119g90a" 
+    //                         public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+    //                       />
+    //                     )}
+    //                   </CardMedia>
+    //                   <Box sx={{ p:2, pl: 2.5, pr: 2.5 }}>
+    //                     <Typography sx={{ fontSize: 20 }}>
+    //                       {entree.title}
+    //                     </Typography>
+    //                     <br/>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Category {entree.category}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Cuisine: {entree.cuisine}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Diet: {entree.diettype}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Servings: {entree.servings}
+    //                     </Typography>
+    //                     <Typography sx={{ fontSize: 15 }}>
+    //                       Total Cook Time: {entree.totalTime} min
+    //                     </Typography>
+    //                   </Box>
+    //                 </Box>
+    //               </Link>
+    //             </Card>
+    //           </Grid>
+    //         ))}
+    //     </Grid>
+        
+    //     <br /><br />
+        
+    //     {/* THIS IS FOR THE DESSERTS*/}
+    //     <Grid container spacing={5} sx={{ p:2, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+    //       {desserts.map((dessert) => (
+    //         <Grid item xs={12} sm={6} lg={3.5}>
+    //           <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: 250}}>
+    //             <Link to={`/recipes/${ dessert._id }`}>
+    //               <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+    //                 <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
+    //                   {dessert.imageid ? (
+    //                     <Image 
+    //                       width='100%'
+    //                       cloudName="du119g90a"
+    //                       public_id={ dessert.imageid }
+    //                     />
+    //                   ) : (
+    //                     <Image 
+    //                       width='100%' 
+    //                       cloudName="du119g90a"
+    //                       public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+    //                     />
+    //                   )}
+    //                 </CardMedia>
+    //                 <Box sx={{ p:2 }}>
+    //                   <Typography sx={{ fontSize: 20 }}>
+    //                     {dessert.title}
+    //                   </Typography>
+    //                   <br/>
+    //                   <Typography sx={{ fontSize: 15 }}>
+    //                     Category {dessert.category}
+    //                   </Typography>
+    //                   <Typography sx={{ fontSize: 15 }}>
+    //                     Cuisine: {dessert.cuisine}
+    //                   </Typography>
+    //                   <Typography sx={{ fontSize: 15 }}>
+    //                     Diet: {dessert.diettype}
+    //                   </Typography>
+    //                   <Typography sx={{ fontSize: 15 }}>
+    //                     Servings: {dessert.servings}
+    //                   </Typography>
+    //                   <Typography sx={{ fontSize: 15 }}>
+    //                     Total Cook Time: {dessert.totalTime} min
+    //                   </Typography>
+    //                 </Box>
+    //               </Box>
+    //             </Link>
+    //           </Card>
+    //         </Grid>
+    //       ))}
+    //     </Grid>
+    //   </Box>
+    // </div>
   );
 };
 
