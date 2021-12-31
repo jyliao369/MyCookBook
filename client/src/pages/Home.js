@@ -1,26 +1,25 @@
-import React from 'react';
+import React from "react";
 // import { useEffect } from 'react';
 // import { useState } from 'react';
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { useQuery } from '@apollo/client';
-import { QUERY_RECIPES } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_RECIPES } from "../utils/queries";
 
-import { Image } from 'cloudinary-react';
+import { Image } from "cloudinary-react";
 
 // THESE ARE FOR THE MUI COMPONENTS
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 // import CardHeader from '@mui/material/CardHeader';
 // import CardContent from '@mui/material/CardContent';
 // import CardActions from '@mui/material/CardActions';
 
 const Home = () => {
-
   // THESE NEXT LINES SHOULD BE ABLE TO GET 10 RANDOMLY GENERATED USER
   // CREATED RECIPES TO DISPLAY ON THE HOMEPAGE
   // THIS WILL RANDOMLY PICK 10 RANDOM RECIPES MADE BY USERS TO SHOW ON THE HOMEPAGE
@@ -43,7 +42,7 @@ const Home = () => {
     if (!exists) {
       uniqueRecipes.push(recipes[a]);
     }
-  };
+  }
   // console.log("new");
   console.log(uniqueRecipes);
 
@@ -51,7 +50,7 @@ const Home = () => {
   // THINK OF IT LIKE AN FILTERING
   const drinks = [];
   const drinknum = 5;
-  const appetizers =[];
+  const appetizers = [];
   const appnum = 4;
   const entrees = [];
   const entreesnum = 4;
@@ -59,54 +58,63 @@ const Home = () => {
   const desnum = 5;
   for (let a = 0; a < uniqueRecipes.length; a++) {
     if (uniqueRecipes[a].category === "Drinks" && drinks.length < drinknum) {
-      drinks.push(uniqueRecipes[a])
+      drinks.push(uniqueRecipes[a]);
     }
-    if (uniqueRecipes[a].category === "Appetizer" && appetizers.length < appnum) {
-      appetizers.push(uniqueRecipes[a])
+    if (
+      uniqueRecipes[a].category === "Appetizer" &&
+      appetizers.length < appnum
+    ) {
+      appetizers.push(uniqueRecipes[a]);
     }
     if (uniqueRecipes[a].category === "Entree" && entrees.length < entreesnum) {
-      entrees.push(uniqueRecipes[a])
+      entrees.push(uniqueRecipes[a]);
     }
     if (uniqueRecipes[a].category === "Dessert" && desserts.length < desnum) {
-      desserts.push(uniqueRecipes[a])
+      desserts.push(uniqueRecipes[a]);
     }
   }
 
-
-  
   return (
-    <Box sx={{ background: '#5B7B7A' }}>
-
-      <Grid>
+    <Box sx={{ background: "#5B7B7A" }}>
+      {/* <Grid>
         <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
         <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
-      </Grid>
+      </Grid> */}
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid item md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          item
+          md={8}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {drinks.map((drink) => (
             <Grid item xs={10.5} md={2.25}>
               <Card elevation={4} sx={{ m: 2 }}>
-                <Link to={`/recipes/${ drink._id }`}>
-                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Link to={`/recipes/${drink._id}`}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                     <CardMedia>
                       {drink.imageid ? (
-                        <Image 
-                          width='100%'
-                          Height='275'
+                        <Image
+                          width="100%"
+                          Height="275"
                           cloudName="du119g90a"
-                          public_id={ drink.imageid }
+                          public_id={drink.imageid}
                         />
                       ) : (
-                        <Image 
-                          width='100%'
-                          Height='275' 
+                        <Image
+                          width="100%"
+                          Height="275"
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m:1, height: 175 }}>
+                    <Grid sx={{ m: 1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {drink.title}
                       </Typography>
@@ -134,33 +142,41 @@ const Home = () => {
         </Grid>
       </Box>
 
-      <br/>
+      <br />
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          md={8}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {appetizers.map((appetizer) => (
             <Grid item xs={10.5} md={2.35}>
-              <Card elevation={4} sx={{ m:2 }}>
-                <Link to={`/recipes/${ appetizer._id }`}>
-                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Card elevation={4} sx={{ m: 2 }}>
+                <Link to={`/recipes/${appetizer._id}`}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                     <CardMedia>
                       {appetizer.imageid ? (
-                        <Image 
-                          width='100%'
-                          Height='275'
+                        <Image
+                          width="100%"
+                          Height="275"
                           cloudName="du119g90a"
-                          public_id={ appetizer.imageid }
+                          public_id={appetizer.imageid}
                         />
                       ) : (
-                        <Image 
-                          width='100%'
-                          Height='275' 
+                        <Image
+                          width="100%"
+                          Height="275"
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m:1, height: 175 }}>
+                    <Grid sx={{ m: 1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {appetizer.title}
                       </Typography>
@@ -188,31 +204,39 @@ const Home = () => {
         </Grid>
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          md={8}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {entrees.map((entree) => (
             <Grid item xs={10.5} md={2.35}>
-              <Card elevation={4} sx={{ m:2}}>
-                <Link to={`/recipes/${ entree._id }`}>
-                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Card elevation={4} sx={{ m: 2 }}>
+                <Link to={`/recipes/${entree._id}`}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                     <CardMedia>
                       {entree.imageid ? (
-                        <Image 
-                          width='100%'
-                          Height='250'
+                        <Image
+                          width="100%"
+                          Height="250"
                           cloudName="du119g90a"
-                          public_id={ entree.imageid }
+                          public_id={entree.imageid}
                         />
                       ) : (
-                        <Image 
-                          width='100%'
-                          Height='250' 
+                        <Image
+                          width="100%"
+                          Height="250"
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m:1, height: 175 }}>
+                    <Grid sx={{ m: 1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {entree.title}
                       </Typography>
@@ -240,33 +264,42 @@ const Home = () => {
         </Grid>
       </Box>
 
-      <br/>
+      <br />
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Grid item md={8} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          item
+          md={8}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {desserts.map((dessert) => (
             <Grid item xs={10.5} md={2.35}>
               <Card elevation={4} sx={{ m: 2 }}>
-                <Link to={`/recipes/${ dessert._id }`}>
-                  <Grid item sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Link to={`/recipes/${dessert._id}`}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                     <CardMedia>
                       {dessert.imageid ? (
-                        <Image 
-                          width='100%'
-                          Height='250'
+                        <Image
+                          width="100%"
+                          Height="250"
                           cloudName="du119g90a"
-                          public_id={ dessert.imageid }
+                          public_id={dessert.imageid}
                         />
                       ) : (
-                        <Image 
-                          width='100%'
-                          Height='250' 
+                        <Image
+                          width="100%"
+                          Height="250"
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m:1, height: 175 }}>
+                    <Grid sx={{ m: 1, height: 175 }}>
                       <Typography sx={{ fontSize: 20 }}>
                         {dessert.title}
                       </Typography>
@@ -293,9 +326,7 @@ const Home = () => {
           ))}
         </Grid>
       </Box>
-
     </Box>
-
 
     // <div>
     //    <Box sx={{ background: '#406e8e' }}>
@@ -305,10 +336,9 @@ const Home = () => {
     //      </Box>
 
     //      {/* THIS IS FOR DRINKS */}
-         
-      
+
     //     <br /><br />
-        
+
     //     {/* THIS IS FOR THE APPETIZERS*/}
     //     <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
     //         {appetizers.map((appetizer) => (
@@ -318,14 +348,14 @@ const Home = () => {
     //                 <CardMedia sx={{ p: 2 }}>
     //                   {appetizer.imageid ? (
     //                     <Image
-    //                       width="100%" 
-    //                       cloudName="du119g90a" 
+    //                       width="100%"
+    //                       cloudName="du119g90a"
     //                       public_id={ appetizer.imageid }
     //                     />
-    //                   ) : ( 
-    //                     <Image 
+    //                   ) : (
+    //                     <Image
     //                       width="100%"
-    //                       cloudName="du119g90a" 
+    //                       cloudName="du119g90a"
     //                       public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
     //                     />
     //                   )}
@@ -358,7 +388,7 @@ const Home = () => {
     //     </Grid>
 
     //     <br /><br />
-          
+
     //     {/* THIS IS FOR THE ENTREES*/}
     //     <Grid container spacing={5} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }} xs={12}>
     //         {entrees.map((entree) => (
@@ -369,14 +399,14 @@ const Home = () => {
     //                   <CardMedia sx={{ p: 2 }}>
     //                     {entree.imageid ? (
     //                       <Image
-    //                         width="100%" 
-    //                         cloudName="du119g90a" 
+    //                         width="100%"
+    //                         cloudName="du119g90a"
     //                         public_id={ entree.imageid }
     //                       />
-    //                     ) : ( 
-    //                       <Image 
+    //                     ) : (
+    //                       <Image
     //                         width="100%"
-    //                         cloudName="du119g90a" 
+    //                         cloudName="du119g90a"
     //                         public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
     //                       />
     //                     )}
@@ -408,9 +438,9 @@ const Home = () => {
     //           </Grid>
     //         ))}
     //     </Grid>
-        
+
     //     <br /><br />
-        
+
     //     {/* THIS IS FOR THE DESSERTS*/}
     //     <Grid container spacing={5} sx={{ p:2, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
     //       {desserts.map((dessert) => (
@@ -420,14 +450,14 @@ const Home = () => {
     //               <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
     //                 <CardMedia sx={{ width: 150, p:1, pl: 3 }}>
     //                   {dessert.imageid ? (
-    //                     <Image 
+    //                     <Image
     //                       width='100%'
     //                       cloudName="du119g90a"
     //                       public_id={ dessert.imageid }
     //                     />
     //                   ) : (
-    //                     <Image 
-    //                       width='100%' 
+    //                     <Image
+    //                       width='100%'
     //                       cloudName="du119g90a"
     //                       public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
     //                     />
