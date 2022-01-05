@@ -100,7 +100,7 @@ const Recipespage = () => {
 
   return (
     <Box>
-      <Grid
+      {/* <Grid
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Typography
@@ -122,7 +122,7 @@ const Recipespage = () => {
           cloudName="du119g90a"
           public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637260922/headerimage1_abzfej.jpg"
         />
-      </Grid>
+      </Grid> */}
       <Grid
         sx={{
           background: "#F1FFFA",

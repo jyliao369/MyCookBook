@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 // THESE ARE ALL MUI COMPONENTS
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+// import ButtonGroup from '@mui/material/ButtonGroup';
+// import Button from '@mui/material/Button'
+// import AppBar from '@mui/material/AppBar';
+import Box from "@mui/material/Box";
+// import Toolbar from '@mui/material/Toolbar';
+import Typography from "@mui/material/Typography";
 
 const Header = () => {
   const logout = (event) => {
@@ -19,44 +19,144 @@ const Header = () => {
 
   return (
     <header className="">
-      <Box sx={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'flex-end', pt: 1, pb: 1}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          alignItems: "flex-end",
+          pt: 1,
+          pb: 1,
+        }}
+      >
         <Box>
           <Link to="/">
-            <Typography sx={{ fontSize: 35, fontWeight: 'bold', color: 'primary.dark' }}>mmm!Book</Typography>
+            <Typography
+              sx={{ fontSize: 35, fontWeight: "bold", color: "primary.dark" }}
+            >
+              mmm!Book
+            </Typography>
           </Link>
         </Box>
         {Auth.loggedIn() ? (
-            <>
-              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
-                <Link to="/recipes">
-                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
-                </Link>
-                <Link className="" to="/add">
-                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Add Recipe</Typography>
-                </Link>
-                <Link className="" to="/myprofile">
-                  <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>My Cookbook</Typography>
-                </Link>
-                <Link className="" onClick={logout} to="/">
-                 <Typography sx={{ fontSize: 15, fontWeight: 'bold', mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log Out</Typography>
-                </Link>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
-                <Link to="/recipes">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Recipes</Typography>
-                </Link>
-                <Link className="" to="/login">
-                  <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Log In</Typography>
-                </Link>
-                <Link className="" to="/signup">
-                    <Typography sx={{ fontSize: 17, mr: .7, ml: .7, color: 'primary.dark', fontWeight: 'bold' }}>Sign Up </Typography>
-                </Link>
-              </Box>
-            </>
-          )}
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                pt: 1,
+                pb: 1,
+              }}
+            >
+              <Link to="/recipes">
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: "bold",
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                  }}
+                >
+                  Recipes
+                </Typography>
+              </Link>
+              <Link className="" to="/add">
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: "bold",
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                  }}
+                >
+                  Add Recipe
+                </Typography>
+              </Link>
+              <Link className="" to="/myprofile">
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: "bold",
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                  }}
+                >
+                  My Cookbook
+                </Typography>
+              </Link>
+              <Link className="" onClick={logout} to="/">
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: "bold",
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                  }}
+                >
+                  Log Out
+                </Typography>
+              </Link>
+            </Box>
+          </>
+        ) : (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                pt: 1,
+                pb: 1,
+              }}
+            >
+              <Link to="/recipes">
+                <Typography
+                  sx={{
+                    fontSize: 17,
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Recipes
+                </Typography>
+              </Link>
+              <Link className="" to="/login">
+                <Typography
+                  sx={{
+                    fontSize: 17,
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Log In
+                </Typography>
+              </Link>
+              <Link className="" to="/signup">
+                <Typography
+                  sx={{
+                    fontSize: 17,
+                    mr: 0.7,
+                    ml: 0.7,
+                    color: "primary.dark",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Sign Up{" "}
+                </Typography>
+              </Link>
+            </Box>
+          </>
+        )}
       </Box>
     </header>
   );

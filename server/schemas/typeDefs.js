@@ -1,54 +1,84 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-    type User {
-        _id: ID
-        username: String
-        email: String
-        password: String
-        recipes: [Recipe]!
-    }
+  type User {
+    _id: ID
+    username: String
+    email: String
+    password: String
+    recipes: [Recipe]!
+  }
 
-    type Recipe {
-        _id: ID
-        title: String
-        cuisine: String
-        diettype: String
-        category: String
-        servings: String   
-        totalTime: String
-        ingredients: [String]
-        directions: [String]
-        imageid: String
-        createdAt: String
-        postAuthor: String
-    }
+  type Recipe {
+    _id: ID
+    title: String
+    cuisine: String
+    diettype: String
+    category: String
+    servings: String
+    prepTime: String
+    cookTime: String
+    totalTime: String
+    ingredients: [String]
+    directions: [String]
+    imageid: String
+    publicRecipe: String
+    createdAt: String
+    postAuthor: String
+  }
 
-    type Auth {
-        token: ID!
-        user: User
-    }
+  type Auth {
+    token: ID!
+    user: User
+  }
 
-    type Query {
-        users: [User]
-        user(userId: ID!): User
+  type Query {
+    users: [User]
+    user(userId: ID!): User
 
-        recipes: [Recipe]
-        recipe(recipeId: ID!): Recipe
-        
-        myprofile: User
-    }
+    recipes: [Recipe]
+    recipe(recipeId: ID!): Recipe
 
-    type Mutation {
-        addUser(username: String!, email: String!, password: String!): Auth
-        removeUser: User
-        login(email: String!, password: String!): Auth
+    myprofile: User
+  }
 
-        addRecipe(title: String!, cuisine: String!, diettype: String!, category: String!, servings: String!, totalTime: String!, ingredients: [String]!, directions: [String]!, imageid: String): Recipe
-        removeRecipe(recipeId: String!): Recipe
+  type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
+    removeUser: User
+    login(email: String!, password: String!): Auth
 
-        updateRecipe(recipeId: String!, title: String, cuisine: String, diettype: String, category: String, servings: String, totalTime: String, ingredients: [String], directions: [String], imageid: String): Recipe
-    }
+    addRecipe(
+      title: String!
+      cuisine: String!
+      diettype: String!
+      category: String!
+      servings: String!
+      prepTime: String!
+      cookTime: String!
+      totalTime: String!
+      ingredients: [String]!
+      directions: [String]!
+      imageid: String
+      publicRecipe: String
+    ): Recipe
+    removeRecipe(recipeId: String!): Recipe
+
+    updateRecipe(
+      recipeId: String!
+      title: String
+      cuisine: String
+      diettype: String
+      category: String
+      servings: String
+      prepTime: String
+      cookTime: String
+      totalTime: String
+      ingredients: [String]
+      directions: [String]
+      imageid: String
+      publicRecipe: String
+    ): Recipe
+  }
 `;
 
 module.exports = typeDefs;

@@ -1,18 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
-// import {Link} from 'react-router-dom';
-
-import { useMutation } from "@apollo/client";
-
-import { ADD_RECIPE } from "../../utils/mutations";
-import { QUERY_RECIPES } from "../../utils/queries";
-import { QUERY_MYPROFILE } from "../../utils/queries";
-
-import Axios from "axios";
-import { Image } from "cloudinary-react";
-
-import Auth from "../../utils/auth";
+// import { useEffect } from "react";
 
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from "@mui/material/Box";
@@ -21,62 +9,64 @@ import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-const RecipeForm = () => {
-  const [newRecipe, setNewRecipe] = useState({
-    title: "",
-    cuisine: "",
-    diettype: "",
-    category: "",
-    servings: "",
-    prepTime: "",
-    cookTime: "",
-    totalTime: "",
-    ingredients: [""],
-    directions: [""],
-    imageid: "",
-    publicRecipe: "",
+// IMPORTS FOR CLOUDINARY
+// import { Image } from "cloudinary-react";
+// import Axios from "axios";
+
+const UpdateForm = (props) => {
+  let ingredientList = [""];
+  if (props.recipe?.ingredients) {
+    for (let a = 0; a < props.recipe.ingredients.length; a++) {
+      if (a < props.recipe.ingredients.length - 1) {
+        ingredientList += props.recipe.ingredients[a] + "\r\n";
+      } else if (a === props.recipe.ingredients.length - 1) {
+        ingredientList += props.recipe.ingredients[a];
+      }
+    }
+  }
+
+  let directionList = [""];
+  if (props.recipe?.directions) {
+    for (let a = 0; a < props.recipe.directions.length; a++) {
+      if (a < props.recipe.directions.length - 1) {
+        directionList += props.recipe.directions[a] + "\r\n";
+      } else if (a === props.recipe.directions.length - 1) {
+        directionList += props.recipe.directions[a];
+      }
+    }
+  }
+
+  const [updatedRecipe, setupdatedRecipe] = useState({
+    title: props.recipe.title,
+    cuisine: props.recipe.cuisine,
+    diettype: props.recipe.diettype,
+    category: props.recipe.category,
+    servings: props.recipe.servings,
+    prepTime: props.recipe.prepTime,
+    cookTime: props.recipe.cookTime,
+    totalTime: props.recipe.totalTime,
+    ingredients: props.recipe.ingredients,
+    directions: props.recipe.directions,
+    imageid: props.recipe.imageid,
+    publicRecipe: props.recipe.publicRecipe,
   });
 
-  console.log("New Recipe");
-  console.log(newRecipe);
-  // console.log(newRecipe.directions);
+  console.log("updatedRecipe");
+  console.log(updatedRecipe);
 
-  // THIS SHOULD HANDLE THE IMAGES BEING UPLOADED
-  // IT SHOULD ALSO GENERATE PUBLIC ID FOR THE IMAGE
-  const [imageSelected, setImageSelected] = useState("");
-  // const [imageID, setImageID] = useState("");
-
-  const uploadImage = (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "yun8815z");
-
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/du119g90a/image/upload",
-      formData
-    ).then((response) => {
-      console.log("response");
-      console.log(response);
-      console.log("public ID");
-      console.log(response.data.public_id);
-
-      setNewRecipe((prevState) => ({
-        ...prevState,
-        imageid: response.data.public_id,
-      }));
+  const handleUpdate = (event) => {
+    setupdatedRecipe({
+      ...updatedRecipe,
+      [event.target.name]: event.target.value,
     });
-  };
 
-  const handleChange = (event) => {
-    setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
     const { name, value } = event.target;
-
     if (name === "ingredients") {
       let ingredientsarray = [];
       let ingredients = value.split("\n");
       for (let a = 0; a < ingredients.length; a++) {
         ingredientsarray.push(ingredients[a]);
-        setNewRecipe((prevState) => ({
+        setupdatedRecipe((prevState) => ({
           ...prevState,
           ingredients: ingredientsarray,
         }));
@@ -88,91 +78,16 @@ const RecipeForm = () => {
       let directions = value.split("\n");
       for (let b = 0; b < directions.length; b++) {
         directionssarray.push(directions[b]);
-        setNewRecipe((prevState) => ({
+        setupdatedRecipe((prevState) => ({
           ...prevState,
           directions: directionssarray,
         }));
       }
     }
-
-    console.log(newRecipe.prepTime);
-    console.log(newRecipe.cookTime);
-    console.log("totalTime");
-    console.log(
-      String(parseInt(newRecipe.prepTime) + parseInt(newRecipe.cookTime))
-    );
-
-    setNewRecipe((prevState) => ({
-      ...prevState,
-      totalTime: String(
-        parseInt(newRecipe.prepTime) + parseInt(newRecipe.cookTime)
-      ),
-    }));
-  };
-
-  const [addRecipe] = useMutation(ADD_RECIPE, {
-    update(cache, { data: { addRecipe } }) {
-      try {
-        const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
-
-        cache.writeQuery({
-          query: QUERY_RECIPES,
-          data: { recipes: [addRecipe, ...recipes] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-
-      const { myprofile } = cache.readQuery({ query: QUERY_MYPROFILE });
-      cache.writeQuery({
-        query: QUERY_MYPROFILE,
-        data: {
-          myprofile: {
-            ...myprofile,
-            recipes: [...myprofile.recipes, addRecipe],
-          },
-        },
-      });
-    },
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await addRecipe({
-        variables: {
-          ...newRecipe,
-          postAuthor: Auth.getProfile().data.email,
-        },
-      });
-
-      setNewRecipe({
-        title: "",
-        cuisine: "",
-        diettype: "",
-        category: "",
-        servings: "",
-        prepTime: "",
-        cookTime: "",
-        totalTime: "",
-        ingredients: [""],
-        directions: [""],
-        imageid: "",
-        publicRecipe: "",
-      });
-      console.log(data);
-
-      // Auth.login(data.addRecipe)
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   return (
-    <Box sx={{ background: "#102B3F", p: 1 }}>
-      <br />
-      <br />
+    <Box>
       <Box sx={{ display: "flex", justifyContent: "center", m: 1.5 }}>
         <Grid item xs={12} md={10}>
           <Paper
@@ -214,11 +129,11 @@ const RecipeForm = () => {
                       md={6.5}
                       sx={{ display: "flex", justifyContent: "center", p: 1.5 }}
                     >
-                      {imageSelected ? (
+                      {/* {updatedImage ? (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
-                          public_id={newRecipe.imageid}
+                          public_id={updatedImage}
                         />
                       ) : (
                         <Image
@@ -226,17 +141,17 @@ const RecipeForm = () => {
                           cloudName="du119g90a"
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1641313202/addimage_uet12f.png"
                         />
-                      )}
+                      )} */}
                     </Grid>
                     <Grid item sx={{ display: "flex" }}>
-                      <input
+                      {/* <input
                         title=" "
                         type="file"
                         onChange={(event) => {
-                          uploadImage(event.target.files[0]);
-                          setImageSelected(event.target.files[0]);
+                          uploadUpImage(event.target.files[0]);
+                          setupdatedImage(event.target.files[0]);
                         }}
-                      />
+                      /> */}
                     </Grid>
                   </Grid>
                 </Grid>
@@ -254,8 +169,9 @@ const RecipeForm = () => {
                       label="Category"
                       sx={{ width: 250, m: 2 }}
                       name="category"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
                       placeholder="Category"
+                      defaultValue={props.recipe.category}
                     >
                       <MenuItem value="Drinks">Drinks</MenuItem>
                       <MenuItem value="Appetizer">Appetizer</MenuItem>
@@ -267,8 +183,9 @@ const RecipeForm = () => {
                       label="Cuisine"
                       sx={{ width: 250, m: 2 }}
                       name="cuisine"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
                       placeholder="Cuisine"
+                      defaultValue={props.recipe.cuisine}
                     >
                       <MenuItem value="Homemade">Homemade</MenuItem>
                       <MenuItem value="American">American</MenuItem>
@@ -286,8 +203,9 @@ const RecipeForm = () => {
                       label="Diet Type"
                       sx={{ width: 250, m: 2 }}
                       name="diettype"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
                       placeholder="Diet Type"
+                      defaultValue={props.recipe.diettype}
                     >
                       <MenuItem value="Regular">Regular</MenuItem>
                       <MenuItem value="Low Carb">Low Carb</MenuItem>
@@ -309,25 +227,29 @@ const RecipeForm = () => {
                       label="Prep Time (mins)"
                       sx={{ m: 2 }}
                       name="prepTime"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
+                      defaultValue={props.recipe.prepTime}
                     />
                     <TextField
                       label="Cook Time (mins)"
                       sx={{ m: 2 }}
                       name="cookTime"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
+                      defaultValue={props.recipe.cookTime}
                     />
                     <TextField
                       label="Servings"
                       sx={{ m: 2 }}
                       name="servings"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
+                      defaultValue={props.recipe.servings}
                     />
                     <TextField
                       label="Recipe Yield"
                       sx={{ m: 2 }}
                       name="servings"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
+                      //   defaultValue={props.recipe}
                     />
                   </Grid>
                   <br />
@@ -345,7 +267,8 @@ const RecipeForm = () => {
                       label="Public Recipe"
                       sx={{ width: 500, m: 2 }}
                       name="publicRecipe"
-                      onChange={handleChange}
+                      onChange={handleUpdate}
+                      defaultValue={props.recipe.publicRecipe}
                     >
                       <MenuItem value="public">Public</MenuItem>
                       <MenuItem value="private">Private</MenuItem>
@@ -373,8 +296,9 @@ const RecipeForm = () => {
                   label="Recipe Name"
                   sx={{ m: 2 }}
                   name="title"
-                  onChange={handleChange}
+                  onChange={handleUpdate}
                   placeholder="Recipe Name"
+                  defaultValue={props.recipe.title}
                 />
                 <TextField
                   label="Description"
@@ -382,7 +306,8 @@ const RecipeForm = () => {
                   multiline
                   rows={8}
                   name="description"
-                  onChange={handleChange}
+                  onChange={handleUpdate}
+                  defaultValue={props.recipe.description}
                 />
                 <TextField
                   label="Ingredients"
@@ -390,7 +315,8 @@ const RecipeForm = () => {
                   multiline
                   rows={8}
                   name="ingredients"
-                  onChange={handleChange}
+                  onChange={handleUpdate}
+                  defaultValue={ingredientList}
                 />
                 <TextField
                   label="Directions"
@@ -398,7 +324,8 @@ const RecipeForm = () => {
                   multiline
                   rows={8}
                   name="directions"
-                  onChange={handleChange}
+                  onChange={handleUpdate}
+                  defaultValue={directionList}
                 />
               </Grid>
             </Grid>
@@ -410,19 +337,18 @@ const RecipeForm = () => {
               }}
             >
               <Grid>
-                <button onClick={handleSubmit} type="submit">
+                {/* <button onClick={handleSubmit} type="submit">
                   Add Recipe
-                </button>
+                </button> */}
+                <button>Update Recipe</button>
                 <button>Cancel</button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
       </Box>
-      <br />
-      <br />
     </Box>
   );
 };
 
-export default RecipeForm;
+export default UpdateForm;

@@ -1,97 +1,109 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-    query allUsers {
-        users {
-            _id
-            username
-            email
-        }
+  query allUsers {
+    users {
+      _id
+      username
+      email
     }
+  }
 `;
 
 export const QUERY_SINGLE_USER = gql`
-    query singleUser($userId: ID!) {
-        user(userId: $userId) {
-            _id
-            username
-            email
-            recipes {
-                _id
-                title
-                cuisine
-                diettype
-                category
-                servings
-                totalTime
-                ingredients
-                directions
-                imageid
-                createdAt
-                postAuthor
-            }
-        }
+  query singleUser($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      username
+      email
+      recipes {
+        _id
+        title
+        cuisine
+        diettype
+        category
+        servings
+        prepTime
+        cookTime
+        totalTime
+        ingredients
+        directions
+        imageid
+        publicRecipe
+        createdAt
+        postAuthor
+      }
     }
+  }
 `;
 
 export const QUERY_MYPROFILE = gql`
-    query myprofile {
-        myprofile{
-            _id
-            username
-            email
-            recipes {
-                _id
-                title
-                cuisine
-                diettype
-                category
-                servings
-                totalTime
-                ingredients
-                directions
-                imageid
-                createdAt
-                postAuthor
-            }
-        }
+  query myprofile {
+    myprofile {
+      _id
+      username
+      email
+      recipes {
+        _id
+        title
+        cuisine
+        diettype
+        category
+        servings
+        prepTime
+        cookTime
+        totalTime
+        ingredients
+        directions
+        imageid
+        publicRecipe
+        createdAt
+        postAuthor
+      }
     }
+  }
 `;
 
 export const QUERY_RECIPES = gql`
-    query getRecipes {
-        recipes {
-            _id
-            title
-            cuisine
-            diettype
-            category
-            servings
-            totalTime
-            ingredients
-            directions
-            imageid
-            createdAt
-            postAuthor
-        }
+  query getRecipes {
+    recipes {
+      _id
+      title
+      cuisine
+      diettype
+      category
+      servings
+      prepTime
+      cookTime
+      totalTime
+      ingredients
+      directions
+      imageid
+      publicRecipe
+      createdAt
+      postAuthor
     }
+  }
 `;
 
 export const QUERY_SINGLE_RECIPE = gql`
-    query getSingleRecipe($recipeId: ID!) {
-        recipe(recipeId: $recipeId) {
-            _id
-            title
-            cuisine
-            diettype
-            category
-            servings
-            totalTime
-            ingredients
-            directions
-            imageid
-            createdAt
-            postAuthor
-        }
+  query getSingleRecipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
+      _id
+      title
+      cuisine
+      diettype
+      category
+      servings
+      prepTime
+      cookTime
+      totalTime
+      ingredients
+      directions
+      imageid
+      publicRecipe
+      createdAt
+      postAuthor
     }
+  }
 `;

@@ -148,7 +148,7 @@ const Profile = () => {
 
   return (
     <Box>
-      <Grid
+      {/* <Grid
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Typography
@@ -170,7 +170,7 @@ const Profile = () => {
           cloudName="du119g90a"
           public_id="https://res.cloudinary.com/du119g90a/image/upload/c_crop,h_720,w_1270/v1637261536/headerimage4_kwi90d.jpg"
         />
-      </Grid>
+      </Grid> */}
       <Grid
         sx={{
           background: "#4D9DE0",
