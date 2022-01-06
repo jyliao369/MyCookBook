@@ -10,8 +10,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 // IMPORTS FOR CLOUDINARY
-// import { Image } from "cloudinary-react";
-// import Axios from "axios";
+import { Image } from "cloudinary-react";
+import Axios from "axios";
 
 const UpdateForm = (props) => {
   let ingredientList = [""];
@@ -53,6 +53,29 @@ const UpdateForm = (props) => {
 
   console.log("updatedRecipe");
   console.log(updatedRecipe);
+
+  const [imageUpdate, setImageUpdate] = useState("");
+
+  const uploadImage = (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "yun8815z");
+
+    Axios.post(
+      "https://api.cloudinary.com/v1_1/du119g90a/image/upload",
+      formData
+    ).then((response) => {
+      console.log("response");
+      console.log(response);
+      console.log("public ID");
+      console.log(response.data.public_id);
+
+      setupdatedRecipe((prevState) => ({
+        ...prevState,
+        imageid: response.data.public_id,
+      }));
+    });
+  };
 
   const handleUpdate = (event) => {
     setupdatedRecipe({
@@ -102,7 +125,7 @@ const UpdateForm = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-evenly",
+                  justifyContent: "space-between",
                   p: 2,
                 }}
               >
@@ -129,29 +152,29 @@ const UpdateForm = (props) => {
                       md={6.5}
                       sx={{ display: "flex", justifyContent: "center", p: 1.5 }}
                     >
-                      {/* {updatedImage ? (
+                      {imageUpdate ? (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
-                          public_id={updatedImage}
+                          public_id={updatedRecipe.imageid}
                         />
                       ) : (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
-                          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1641313202/addimage_uet12f.png"
+                          public_id={props.recipe.imageid}
                         />
-                      )} */}
+                      )}
                     </Grid>
                     <Grid item sx={{ display: "flex" }}>
-                      {/* <input
+                      <input
                         title=" "
                         type="file"
                         onChange={(event) => {
-                          uploadUpImage(event.target.files[0]);
-                          setupdatedImage(event.target.files[0]);
+                          uploadImage(event.target.files[0]);
+                          setImageUpdate(event.target.files[0]);
                         }}
-                      /> */}
+                      />
                     </Grid>
                   </Grid>
                 </Grid>
@@ -160,10 +183,24 @@ const UpdateForm = (props) => {
                     item
                     sx={{
                       display: "flex",
-                      flexWrap: "nowrap",
+                      flexWrap: "wrap",
                       justifyContent: "space-evenly",
                     }}
                   >
+                    <TextField
+                      select
+                      label="Meal of the Day"
+                      sx={{ width: 250, m: 2 }}
+                      name="mealofday"
+                      onChange={handleUpdate}
+                      placeholder="Meal of the Day"
+                      // defaultValue={props.recipe.category}
+                    >
+                      <MenuItem value="Breakfast">Breakfast</MenuItem>
+                      <MenuItem value="Brunch">Brunch</MenuItem>
+                      <MenuItem value="Lunch">Lunch</MenuItem>
+                      <MenuItem value="Dinner">Dinner</MenuItem>
+                    </TextField>
                     <TextField
                       select
                       label="Category"
@@ -214,7 +251,6 @@ const UpdateForm = (props) => {
                       <MenuItem value="Vegetarian">Vegetarian</MenuItem>
                     </TextField>
                   </Grid>
-                  <br />
                   <Grid
                     item
                     sx={{
@@ -225,28 +261,28 @@ const UpdateForm = (props) => {
                   >
                     <TextField
                       label="Prep Time (mins)"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="prepTime"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.prepTime}
                     />
                     <TextField
                       label="Cook Time (mins)"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="cookTime"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.cookTime}
                     />
                     <TextField
                       label="Servings"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="servings"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.servings}
                     />
                     <TextField
                       label="Recipe Yield"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="servings"
                       onChange={handleUpdate}
                       //   defaultValue={props.recipe}
@@ -274,9 +310,7 @@ const UpdateForm = (props) => {
                       <MenuItem value="private">Private</MenuItem>
                     </TextField>
                     <Grid>
-                      Note: This option allows your recipes to be displayed for
-                      other users to view. You can choose to make your recipe
-                      public for others to see or keep it private for yourself.
+                      This recipe is set as ________________ right now.
                     </Grid>
                   </Grid>
                   <br />
@@ -289,6 +323,7 @@ const UpdateForm = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
+                  justifyContent: "space-between",
                   p: 2,
                 }}
               >
@@ -304,7 +339,7 @@ const UpdateForm = (props) => {
                   label="Description"
                   sx={{ m: 2 }}
                   multiline
-                  rows={8}
+                  rows={9}
                   name="description"
                   onChange={handleUpdate}
                   defaultValue={props.recipe.description}
@@ -313,7 +348,7 @@ const UpdateForm = (props) => {
                   label="Ingredients"
                   sx={{ m: 2 }}
                   multiline
-                  rows={8}
+                  rows={9}
                   name="ingredients"
                   onChange={handleUpdate}
                   defaultValue={ingredientList}
@@ -322,7 +357,7 @@ const UpdateForm = (props) => {
                   label="Directions"
                   sx={{ m: 2 }}
                   multiline
-                  rows={8}
+                  rows={9}
                   name="directions"
                   onChange={handleUpdate}
                   defaultValue={directionList}

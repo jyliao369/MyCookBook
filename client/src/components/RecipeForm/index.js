@@ -187,7 +187,7 @@ const RecipeForm = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-evenly",
+                  justifyContent: "space-between",
                   p: 2,
                 }}
               >
@@ -245,10 +245,24 @@ const RecipeForm = () => {
                     item
                     sx={{
                       display: "flex",
-                      flexWrap: "nowrap",
+                      flexWrap: "wrap",
                       justifyContent: "space-evenly",
                     }}
                   >
+                    <TextField
+                      select
+                      label="Meal of the Day"
+                      sx={{ width: 250, m: 2 }}
+                      name="mealofday"
+                      onChange={handleChange}
+                      placeholder="Meal of the Day"
+                      // defaultValue={props.recipe.category}
+                    >
+                      <MenuItem value="Breakfast">Breakfast</MenuItem>
+                      <MenuItem value="Brunch">Brunch</MenuItem>
+                      <MenuItem value="Lunch">Lunch</MenuItem>
+                      <MenuItem value="Dinner">Dinner</MenuItem>
+                    </TextField>
                     <TextField
                       select
                       label="Category"
@@ -296,7 +310,6 @@ const RecipeForm = () => {
                       <MenuItem value="Vegetarian">Vegetarian</MenuItem>
                     </TextField>
                   </Grid>
-                  <br />
                   <Grid
                     item
                     sx={{
@@ -307,25 +320,25 @@ const RecipeForm = () => {
                   >
                     <TextField
                       label="Prep Time (mins)"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="prepTime"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Cook Time (mins)"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="cookTime"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Servings"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="servings"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Recipe Yield"
-                      sx={{ m: 2 }}
+                      sx={{ width: 250, m: 2 }}
                       name="servings"
                       onChange={handleChange}
                     />
@@ -366,6 +379,7 @@ const RecipeForm = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
+                  justifyContent: "space-between",
                   p: 2,
                 }}
               >

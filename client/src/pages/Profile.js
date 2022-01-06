@@ -22,14 +22,20 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import CardActions from "@mui/material/CardActions";
+// import CardActions from "@mui/material/CardActions";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import { Collapse } from "@mui/material";
+import {
+  DeleteForeverOutlined,
+  EditOutlined,
+  FactCheckOutlined,
+  LocalDiningOutlined,
+} from "@mui/icons-material";
 
 const Profile = () => {
   const { userId } = useParams();
@@ -145,6 +151,10 @@ const Profile = () => {
       </h4>
     );
   }
+
+  const test = () => {
+    console.log("this is a test");
+  };
 
   return (
     <Box>
@@ -332,8 +342,49 @@ const Profile = () => {
                     </Grid>
                   </Link>
 
-                  <Grid iem sx={{ display: "flex", flexDirection: "column" }}>
-                    <button onClick={handleDelete} id={recipe._id}>
+                  <Grid
+                    iem
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <DeleteForeverOutlined
+                      sx={{ display: "flex", p: 0 }}
+                      onClick={test}
+                      sx={{ fontSize: 35 }}
+                    ></DeleteForeverOutlined>
+                    <Link
+                      sx={{ display: "flex", p: 0 }}
+                      to={`/update/${recipe._id}`}
+                    >
+                      <EditOutlined
+                        onClick={test}
+                        sx={{ fontSize: 35 }}
+                      ></EditOutlined>
+                    </Link>
+                    <ExpandMore
+                      sx={{ display: "flex", p: 0 }}
+                      expand={expanded}
+                      onClick={handleExpand}
+                    >
+                      <FactCheckOutlined
+                        onClick={test}
+                        sx={{ fontSize: 35 }}
+                      ></FactCheckOutlined>
+                    </ExpandMore>
+                    <ExpandIng
+                      sx={{ display: "flex", p: 0 }}
+                      expand={ingExpanded}
+                      onClick={handleingExpand}
+                    >
+                      <LocalDiningOutlined
+                        onClick={test}
+                        sx={{ fontSize: 35 }}
+                      ></LocalDiningOutlined>
+                    </ExpandIng>
+
+                    {/* <button onClick={handleDelete} id={recipe._id}>
                       <Typography>Delete</Typography>
                     </button>
                     <button>
@@ -350,7 +401,7 @@ const Profile = () => {
                       <ExpandIng expand={ingExpanded} onClick={handleingExpand}>
                         <Typography>Ingredients</Typography>
                       </ExpandIng>
-                    </button>
+                    </button> */}
                   </Grid>
                 </Card>
               </Grid>
