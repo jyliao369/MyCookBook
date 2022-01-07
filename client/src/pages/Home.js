@@ -74,6 +74,10 @@ const Home = () => {
     }
   }
 
+  if (loading) {
+    return <Box>Grabbing Recipes...</Box>;
+  }
+
   return (
     <Box sx={{ background: "#5B7B7A" }}>
       {/* <Grid>

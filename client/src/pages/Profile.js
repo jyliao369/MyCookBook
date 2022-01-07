@@ -26,10 +26,9 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 // import CardActions from "@mui/material/CardActions";
-import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import { Collapse } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import {
   DeleteForeverOutlined,
   EditOutlined,
@@ -49,10 +48,10 @@ const Profile = () => {
   let user = data?.myprofile || data?.user || {};
   let recipes = user.recipes;
 
-  console.log("User");
-  console.log(user);
-  console.log("recipes");
-  console.log(recipes);
+  // console.log("User");
+  // console.log(user);
+  // console.log("recipes");
+  // console.log(recipes);
 
   const [userrecipe, setUserRecipe] = useState("");
 
@@ -60,13 +59,8 @@ const Profile = () => {
     setUserRecipe(recipes);
   }, [recipes]);
 
-  // THESE NEXT LINES OF CODE SHOULD BE ABLE TO DELETE ANY RECIPES WITHIN
-  // THE PROFILE PAGE WHICH MEANS ANY RECIPE HELD IN THE USERS RECIPES ARRAY
-  // THIS TECHNICALLY SHOULD'T DELETE ANY DUPLICATES OR WHEN A USER ADDS ANOTHER
-  // USERS RECIPE OR BASIALLY IT WONT DELETE THE ORIGINAL POST... I THINK
   const [removeRecipe] = useMutation(REMOVE_RECIPE);
 
-  // THIS DOES THE FILTERING
   let newlist = [];
   const handleFilter = async (event) => {
     let recipecategory = event.target.value;
@@ -80,7 +74,6 @@ const Profile = () => {
   };
 
   const handleDelete = async (event) => {
-    // event.preventDefault();
     let recipeId = event.target.id;
     console.log(recipeId);
     console.log(typeof recipeId);
@@ -102,34 +95,11 @@ const Profile = () => {
     setUserRecipe(newlist);
   };
 
-  // THESE CODES ARE FOR THE EXTEND AND COLLAPSE
-  const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    // transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    // marginLeft: 'auto',
-    // transition: theme.transitions.create('transform', {
-    //   duration: theme.transitions.duration.shortest,
-    // }),
-  }));
-
   const [expanded, setExpanded] = useState(false);
 
   const handleExpand = () => {
     setExpanded(!expanded);
   };
-
-  const ExpandIng = styled((props) => {
-    const { expandIng, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    // transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    // marginLeft: 'auto',
-    // transition: theme.transitions.create('transform', {
-    //   duration: theme.transitions.duration.shortest,
-    // }),
-  }));
 
   const [ingExpanded, setingExpanded] = useState(false);
 
@@ -152,35 +122,17 @@ const Profile = () => {
     );
   }
 
-  const test = () => {
-    console.log("this is a test");
+  const handleHoverOn = (e) => {
+    let element = e.target;
+    element.style.color = "red";
+  };
+  const handleHoverOff = (e) => {
+    let element = e.target;
+    element.style.color = "black";
   };
 
   return (
     <Box>
-      {/* <Grid
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <Typography
-          sx={{
-            fontSize: 35,
-            fontWeight: "bold",
-            position: "absolute",
-            background: "white",
-            p: 1,
-            color: "#114b5f",
-            border: 2,
-            borderRadius: 10,
-          }}
-        >
-          My Cookbook
-        </Typography>
-        <Image
-          width="100%"
-          cloudName="du119g90a"
-          public_id="https://res.cloudinary.com/du119g90a/image/upload/c_crop,h_720,w_1270/v1637261536/headerimage4_kwi90d.jpg"
-        />
-      </Grid> */}
       <Grid
         sx={{
           background: "#4D9DE0",
@@ -246,163 +198,173 @@ const Profile = () => {
         >
           {userrecipe &&
             userrecipe.map((recipe) => (
-              <Grid item md={6}>
+              <Grid key={recipe._id} item md={6}>
                 <Card
                   key={recipe._id}
                   elevation={5}
                   sx={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
                     justifyContent: "space-between",
                     m: 2,
                   }}
                 >
-                  <Link to={`/recipes/${recipe._id}`}>
-                    <Grid item sx={{ display: "flex" }}>
-                      <Grid item md={4.2} sx={{ display: "flex", p: 1.25 }}>
-                        {recipe.imageid ? (
-                          <Image
-                            width="100%"
-                            cloudName="du119g90a"
-                            public_id={recipe.imageid}
-                          />
-                        ) : (
-                          <Image
-                            width="100%"
-                            cloudName="du119g90a"
-                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                          />
-                        )}
-                      </Grid>
-                      <Grid item md={8.5}>
-                        <CardHeader
-                          titleTypographyProps={{
-                            fontSize: 22,
+                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                    <Link to={`/recipes/${recipe._id}`}>
+                      <Grid item sx={{ display: "flex" }}>
+                        <Grid item md={4.2} sx={{ display: "flex", p: 1.25 }}>
+                          {recipe.imageid ? (
+                            <Image
+                              width="100%"
+                              cloudName="du119g90a"
+                              public_id={recipe.imageid}
+                            />
+                          ) : (
+                            <Image
+                              width="100%"
+                              cloudName="du119g90a"
+                              public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                            />
+                          )}
+                        </Grid>
+                        <Grid
+                          item
+                          md={8.5}
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
                           }}
-                          subheaderTypographyProps={{
-                            fontSize: 15,
-                          }}
-                          title={recipe.title}
-                          subheader={recipe.createdAt}
-                        />
-
-                        <CardContent
-                          sx={{ display: "flex", flexDirection: "row" }}
                         >
-                          <Grid item md={5.5}>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Prep Time:{" "}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Cook Time:{" "}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Total Time: {recipe.totalTime}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Servings: {recipe.servings}
-                            </Typography>
+                          <Grid
+                            item
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "space-between",
+                              width: 1 / 1,
+                            }}
+                          >
+                            <CardHeader
+                              titleTypographyProps={{
+                                fontSize: 22,
+                              }}
+                              subheaderTypographyProps={{
+                                fontSize: 15,
+                              }}
+                              title={recipe.title}
+                              subheader={recipe.createdAt}
+                            />
+
+                            <CardContent
+                              sx={{ display: "flex", flexDirection: "row" }}
+                            >
+                              <Grid item>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Prep Time:{" "}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Cook Time:{" "}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Total Time: {recipe.totalTime}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Servings: {recipe.servings}
+                                </Typography>
+                              </Grid>
+                              <Grid item>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Category: {recipe.category}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Cuisine: {recipe.cuisine}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Diet: {recipe.diettype}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18 }}>
+                                  Yield Per Serving:{" "}
+                                </Typography>
+                              </Grid>
+                            </CardContent>
                           </Grid>
-                          <Grid item md={6.5}>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Category: {recipe.category}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Cuisine: {recipe.cuisine}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Diet: {recipe.diettype}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
-                              Yield Per Serving:{" "}
-                            </Typography>
-                          </Grid>
-                        </CardContent>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid>
-                      <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                          <Typography paragraph>Instructions</Typography>
-                          {recipe.directions.map((direction) => (
-                            <Typography paragraph>{direction}</Typography>
-                          ))}
-                        </CardContent>
-                      </Collapse>
-                    </Grid>
-                    <Grid>
-                      <Collapse in={ingExpanded} timeout="auto" unmountOnExit>
-                        <CardContent>
-                          <Typography paragraph>Ingredients</Typography>
-                          {recipe.ingredients.map((ingredient) => (
-                            <Typography paragraph>{ingredient}</Typography>
-                          ))}
-                        </CardContent>
-                      </Collapse>
-                    </Grid>
-                  </Link>
-
-                  <Grid
-                    iem
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <DeleteForeverOutlined
-                      sx={{ display: "flex", p: 0 }}
-                      onClick={test}
-                      sx={{ fontSize: 35 }}
-                    ></DeleteForeverOutlined>
-                    <Link
-                      sx={{ display: "flex", p: 0 }}
-                      to={`/update/${recipe._id}`}
-                    >
-                      <EditOutlined
-                        onClick={test}
-                        sx={{ fontSize: 35 }}
-                      ></EditOutlined>
                     </Link>
-                    <ExpandMore
-                      sx={{ display: "flex", p: 0 }}
-                      expand={expanded}
-                      onClick={handleExpand}
+                    <Grid
+                      iem
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      <FactCheckOutlined
-                        onClick={test}
-                        sx={{ fontSize: 35 }}
-                      ></FactCheckOutlined>
-                    </ExpandMore>
-                    <ExpandIng
-                      sx={{ display: "flex", p: 0 }}
-                      expand={ingExpanded}
-                      onClick={handleingExpand}
-                    >
-                      <LocalDiningOutlined
-                        onClick={test}
-                        sx={{ fontSize: 35 }}
-                      ></LocalDiningOutlined>
-                    </ExpandIng>
+                      <DeleteForeverOutlined
+                        id={recipe._id}
+                        sx={{ fontSize: 35, display: "flex", p: 1 }}
+                        onClick={handleDelete}
+                        onMouseOver={handleHoverOn}
+                        onMouseOut={handleHoverOff}
+                      ></DeleteForeverOutlined>
 
-                    {/* <button onClick={handleDelete} id={recipe._id}>
-                      <Typography>Delete</Typography>
-                    </button>
-                    <button>
                       <Link to={`/update/${recipe._id}`}>
-                        <Typography>Update</Typography>
+                        <EditOutlined
+                          sx={{ fontSize: 35, display: "flex", p: 1 }}
+                          onMouseOver={handleHoverOn}
+                          onMouseOut={handleHoverOff}
+                        ></EditOutlined>
                       </Link>
-                    </button>
-                    <button>
-                      <ExpandMore expand={expanded} onClick={handleExpand}>
-                        <Typography>Instructions</Typography>
-                      </ExpandMore>
-                    </button>
-                    <button>
-                      <ExpandIng expand={ingExpanded} onClick={handleingExpand}>
-                        <Typography>Ingredients</Typography>
-                      </ExpandIng>
-                    </button> */}
+
+                      <FactCheckOutlined
+                        sx={{ display: "flex", p: 1, fontSize: 35 }}
+                        expand={expanded}
+                        onClick={handleExpand}
+                        onMouseOver={handleHoverOn}
+                        onMouseOut={handleHoverOff}
+                      ></FactCheckOutlined>
+
+                      <LocalDiningOutlined
+                        sx={{ display: "flex", p: 1, fontSize: 35 }}
+                        expand={ingExpanded}
+                        onClick={handleingExpand}
+                        onMouseOver={handleHoverOn}
+                        onMouseOut={handleHoverOff}
+                      ></LocalDiningOutlined>
+                    </Grid>
                   </Grid>
+                  <Paper
+                    elevation={3}
+                    sx={{ display: "flex", flexDirection: "column" }}
+                  >
+                    <Collapse
+                      in={expanded}
+                      timeout="auto"
+                      unmountOnExit
+                      sx={{ m: 1 }}
+                    >
+                      <CardContent>
+                        <Typography paragraph>Instructions</Typography>
+                        {recipe.directions.map((direction) => (
+                          <Typography key={direction}>{direction}</Typography>
+                        ))}
+                      </CardContent>
+                    </Collapse>
+
+                    <Collapse
+                      in={ingExpanded}
+                      timeout="auto"
+                      unmountOnExit
+                      sx={{ m: 1 }}
+                    >
+                      <CardContent>
+                        <Typography paragraph>Ingredients</Typography>
+                        {recipe.ingredients.map((ingredient) => (
+                          <Typography key={ingredient}>{ingredient}</Typography>
+                        ))}
+                      </CardContent>
+                    </Collapse>
+                  </Paper>
                 </Card>
               </Grid>
             ))}

@@ -22,6 +22,10 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
+import { Collapse } from "@mui/material";
 
 const Recipespage = () => {
   // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
@@ -45,8 +49,6 @@ const Recipespage = () => {
       uniqueRecipes.push(recipes[a]);
     }
   }
-  // console.log("uniqueRecipes");
-  // console.log(uniqueRecipes);
 
   const [recipeslist, setRecipeslist] = useState([""]);
 
@@ -89,6 +91,28 @@ const Recipespage = () => {
     setRecipeslist(uniqueRecipes);
   };
 
+  const AdvExpand = styled((props) => {
+    const { advExpand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({}));
+
+  const [advExpand, setadvExpand] = useState(false);
+
+  const handleAdvExpand = () => {
+    setadvExpand(!advExpand);
+  };
+
+  const ingSearchExpand = styled((props) => {
+    const { ingExpand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({}));
+
+  const [ingExpand, setIngExpand] = useState(false);
+
+  const handleIngExpand = () => {
+    setIngExpand(!ingExpand);
+  };
+
   const breakpoints = {
     default: 5,
     700: 1,
@@ -100,80 +124,276 @@ const Recipespage = () => {
 
   return (
     <Box>
-      {/* <Grid
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <Typography
-          sx={{
-            fontSize: 35,
-            fontWeight: "bold",
-            position: "absolute",
-            background: "white",
-            p: 1.5,
-            color: "primary.dark",
-            border: 2,
-            borderRadius: 10,
-          }}
-        >
-          ALL DRINKS and RECIPES
-        </Typography>
-        <Image
-          width="100%"
-          cloudName="du119g90a"
-          public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637260922/headerimage1_abzfej.jpg"
-        />
-      </Grid> */}
       <Grid
         sx={{
           background: "#F1FFFA",
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           flexWrap: "wrap",
-          justifyContent: "center",
-          pt: 1,
-          pb: 1,
+          justifyContent: "space-evenly",
         }}
       >
-        <Button
-          variant="contained"
-          onClick={handleShowAll}
-          color="info"
-          sx={{ fontSize: 13, m: 1 }}
+        <Grid
+          item
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            p: 1,
+          }}
         >
-          Show All
-        </Button>
-        <Button
-          variant="contained"
-          value="Drinks"
-          onClick={handlefilter}
-          sx={{ fontSize: 13, m: 1 }}
-        >
-          Drinks
-        </Button>
-        <Button
-          variant="contained"
-          value="Appetizer"
-          onClick={handlefilter}
-          sx={{ fontSize: 13, m: 1 }}
-        >
-          Appetizers
-        </Button>
-        <Button
-          variant="contained"
-          value="Entree"
-          onClick={handlefilter}
-          sx={{ fontSize: 13, m: 1 }}
-        >
-          Entrees
-        </Button>
-        <Button
-          variant="contained"
-          value="Dessert"
-          onClick={handlefilter}
-          sx={{ fontSize: 13, m: 1 }}
-        >
-          Desserts
-        </Button>
+          <Grid
+            item
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
+            <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+              <TextField label="Search" variant="outlined"></TextField>
+              <Button variant="contained">Search</Button>
+            </Grid>
+            <Grid>
+              <Button
+                variant="contained"
+                expand={ingExpand}
+                onClick={() => {
+                  handleIngExpand();
+                }}
+                sx={{ mr: 2, ml: 2 }}
+              >
+                Search by Ingredients
+              </Button>
+            </Grid>
+          </Grid>
+
+          <Grid>
+            <Button
+              variant="contained"
+              onClick={handleShowAll}
+              color="info"
+              sx={{ fontSize: 13, m: 1 }}
+            >
+              Show All
+            </Button>
+            <Button
+              variant="contained"
+              value="Drinks"
+              onClick={handlefilter}
+              sx={{ fontSize: 13, m: 1 }}
+            >
+              Drinks
+            </Button>
+            <Button
+              variant="contained"
+              value="Appetizer"
+              onClick={handlefilter}
+              sx={{ fontSize: 13, m: 1 }}
+            >
+              Appetizers
+            </Button>
+            <Button
+              variant="contained"
+              value="Entree"
+              onClick={handlefilter}
+              sx={{ fontSize: 13, m: 1 }}
+            >
+              Entrees
+            </Button>
+            <Button
+              variant="contained"
+              value="Dessert"
+              onClick={handlefilter}
+              sx={{ fontSize: 13, m: 1 }}
+            >
+              Desserts
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ fontSize: 13, m: 1 }}
+              expand={advExpand}
+              onClick={handleAdvExpand}
+            >
+              Advance Search
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid>
+          <Collapse in={ingExpand} timeout="auto" unmountOnExit>
+            <Grid item sx={{ display: "flex", justifyContent: "space-evenly" }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <TextField
+                  sx={{ m: 1 }}
+                  label="Recipe with this ingredient"
+                ></TextField>
+                <TextField
+                  sx={{ m: 1 }}
+                  label="Recipe without this ingredient"
+                ></TextField>
+                <Button sx={{ m: 1 }}>Search</Button>
+              </Grid>
+              <Grid>
+                <Grid>Ingredients List</Grid>
+              </Grid>
+            </Grid>
+          </Collapse>
+          <Collapse in={advExpand} timeout="auto" unmountOnExit>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Grid item sx={{ m: 1 }}>
+                Recipes Based on Time of Day
+              </Grid>
+              <Grid>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Breakfast
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Brunch
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Lunch
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Dinner
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Snacks
+                </Button>
+              </Grid>
+            </Grid>
+            <br />
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Grid item sx={{ m: 1 }}>
+                Cuisines from Around the World
+              </Grid>
+              <Grid>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Chinese
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  German
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Indian
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Japanese
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Russian
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Thai
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Filipino
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Greek
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Italian
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Mexican
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Spanish
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Global
+                </Button>
+              </Grid>
+            </Grid>
+            <br />
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Grid item sx={{ m: 1 }}>
+                Diet and Healthy Recipes
+              </Grid>
+              <Grid>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Gluten-Free
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Low-Calorie
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Low Cholesterol
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Low Sodium
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Low Carb
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Low Fat
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Keto Friendly
+                </Button>
+              </Grid>
+            </Grid>
+            <br />
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Grid item sx={{ m: 1 }}>
+                Cooking Style
+              </Grid>
+              <Grid>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Baking
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Frying
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Roasting
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Grilling
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Steaming
+                </Button>
+                <Button variant="contained" sx={{ mr: 1, ml: 1 }}>
+                  Boiling
+                </Button>
+              </Grid>
+            </Grid>
+            <br />
+          </Collapse>
+        </Grid>
       </Grid>
 
       <Box
@@ -192,7 +412,7 @@ const Recipespage = () => {
             columnClassName="my-masonry-grid_column"
           >
             {recipeslist.map((recipe) => (
-              <Grid item sx={{ m: 1 }}>
+              <Grid key={recipe._id} item sx={{ m: 1 }}>
                 <Card elevation={3}>
                   <Link to={`/recipes/${recipe._id}`}>
                     <Grid>
