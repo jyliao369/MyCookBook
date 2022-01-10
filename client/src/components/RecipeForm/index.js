@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-// import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 
@@ -20,17 +20,23 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 
 const RecipeForm = () => {
   const [newRecipe, setNewRecipe] = useState({
     title: "",
+    category: "",
+    mealofday: "",
     cuisine: "",
     diettype: "",
-    category: "",
+    cookstyle: "",
     servings: "",
+    yield: "",
     prepTime: "",
     cookTime: "",
     totalTime: "",
+    description: "",
+    notes: "",
     ingredients: [""],
     directions: [""],
     imageid: "",
@@ -39,12 +45,10 @@ const RecipeForm = () => {
 
   console.log("New Recipe");
   console.log(newRecipe);
-  // console.log(newRecipe.directions);
 
   // THIS SHOULD HANDLE THE IMAGES BEING UPLOADED
   // IT SHOULD ALSO GENERATE PUBLIC ID FOR THE IMAGE
   const [imageSelected, setImageSelected] = useState("");
-  // const [imageID, setImageID] = useState("");
 
   const uploadImage = (file) => {
     const formData = new FormData();
@@ -55,10 +59,10 @@ const RecipeForm = () => {
       "https://api.cloudinary.com/v1_1/du119g90a/image/upload",
       formData
     ).then((response) => {
-      console.log("response");
-      console.log(response);
-      console.log("public ID");
-      console.log(response.data.public_id);
+      // console.log("response");
+      // console.log(response);
+      // console.log("public ID");
+      // console.log(response.data.public_id);
 
       setNewRecipe((prevState) => ({
         ...prevState,
@@ -196,8 +200,6 @@ const RecipeForm = () => {
                   sx={{
                     display: "flex",
                     justifyContent: "center",
-                    height: 440,
-                    p: 3,
                   }}
                 >
                   <Grid
@@ -211,8 +213,8 @@ const RecipeForm = () => {
                   >
                     <Grid
                       item
-                      md={6.5}
-                      sx={{ display: "flex", justifyContent: "center", p: 1.5 }}
+                      md={7}
+                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
                     >
                       {imageSelected ? (
                         <Image
@@ -228,7 +230,10 @@ const RecipeForm = () => {
                         />
                       )}
                     </Grid>
-                    <Grid item sx={{ display: "flex" }}>
+                    <Grid
+                      item
+                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
+                    >
                       <input
                         title=" "
                         type="file"
@@ -240,6 +245,7 @@ const RecipeForm = () => {
                     </Grid>
                   </Grid>
                 </Grid>
+
                 <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                   <Grid
                     item
@@ -251,22 +257,8 @@ const RecipeForm = () => {
                   >
                     <TextField
                       select
-                      label="Meal of the Day"
-                      sx={{ width: 250, m: 2 }}
-                      name="mealofday"
-                      onChange={handleChange}
-                      placeholder="Meal of the Day"
-                      // defaultValue={props.recipe.category}
-                    >
-                      <MenuItem value="Breakfast">Breakfast</MenuItem>
-                      <MenuItem value="Brunch">Brunch</MenuItem>
-                      <MenuItem value="Lunch">Lunch</MenuItem>
-                      <MenuItem value="Dinner">Dinner</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
                       label="Category"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="category"
                       onChange={handleChange}
                       placeholder="Category"
@@ -278,8 +270,35 @@ const RecipeForm = () => {
                     </TextField>
                     <TextField
                       select
+                      label="Meal of the Day"
+                      sx={{ width: 250, m: 1 }}
+                      name="mealofday"
+                      onChange={handleChange}
+                      placeholder="Meal of the Day"
+                    >
+                      <MenuItem value="Breakfast">Breakfast</MenuItem>
+                      <MenuItem value="Brunch">Brunch</MenuItem>
+                      <MenuItem value="Lunch">Lunch</MenuItem>
+                      <MenuItem value="Dinner">Dinner</MenuItem>
+                    </TextField>
+                    <TextField
+                      select
+                      label="Diet Type"
+                      sx={{ width: 250, m: 1 }}
+                      name="diettype"
+                      onChange={handleChange}
+                      placeholder="Diet Type"
+                    >
+                      <MenuItem value="Regular">Regular</MenuItem>
+                      <MenuItem value="Low Carb">Low Carb</MenuItem>
+                      <MenuItem value="Keto">Keto</MenuItem>
+                      <MenuItem value="Vegan">Vegan</MenuItem>
+                      <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                    </TextField>
+                    <TextField
+                      select
                       label="Cuisine"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="cuisine"
                       onChange={handleChange}
                       placeholder="Cuisine"
@@ -297,17 +316,19 @@ const RecipeForm = () => {
                     </TextField>
                     <TextField
                       select
-                      label="Diet Type"
-                      sx={{ width: 250, m: 2 }}
-                      name="diettype"
+                      label="Cooking Style"
+                      sx={{ width: 250, m: 1 }}
+                      name="cookstyle"
                       onChange={handleChange}
-                      placeholder="Diet Type"
+                      placeholder="Cooking Style"
                     >
-                      <MenuItem value="Regular">Regular</MenuItem>
-                      <MenuItem value="Low Carb">Low Carb</MenuItem>
-                      <MenuItem value="Keto">Keto</MenuItem>
-                      <MenuItem value="Vegan">Vegan</MenuItem>
-                      <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                      <MenuItem value="Baking">Baking</MenuItem>
+                      <MenuItem value="Frying">Frying</MenuItem>
+                      <MenuItem value="Roasting">Roasting</MenuItem>
+                      <MenuItem value="Stir-Fry">Stir-Fry</MenuItem>
+                      <MenuItem value="Grilling">Grilling</MenuItem>
+                      <MenuItem value="Steaming">Steaming</MenuItem>
+                      <MenuItem value="Boiling">Boiling</MenuItem>
                     </TextField>
                   </Grid>
                   <Grid
@@ -320,26 +341,26 @@ const RecipeForm = () => {
                   >
                     <TextField
                       label="Prep Time (mins)"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="prepTime"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Cook Time (mins)"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="cookTime"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Servings"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="servings"
                       onChange={handleChange}
                     />
                     <TextField
                       label="Recipe Yield"
-                      sx={{ width: 250, m: 2 }}
-                      name="servings"
+                      sx={{ width: 250, m: 1 }}
+                      name="yield"
                       onChange={handleChange}
                     />
                   </Grid>
@@ -356,7 +377,7 @@ const RecipeForm = () => {
                       select
                       md={12}
                       label="Public Recipe"
-                      sx={{ width: 500, m: 2 }}
+                      sx={{ width: 500, m: 1 }}
                       name="publicRecipe"
                       onChange={handleChange}
                     >
@@ -385,22 +406,22 @@ const RecipeForm = () => {
               >
                 <TextField
                   label="Recipe Name"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   name="title"
                   onChange={handleChange}
                   placeholder="Recipe Name"
                 />
                 <TextField
                   label="Description"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
-                  rows={8}
+                  rows={5}
                   name="description"
                   onChange={handleChange}
                 />
                 <TextField
                   label="Ingredients"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
                   rows={8}
                   name="ingredients"
@@ -408,10 +429,18 @@ const RecipeForm = () => {
                 />
                 <TextField
                   label="Directions"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
                   rows={8}
                   name="directions"
+                  onChange={handleChange}
+                />
+                <TextField
+                  label="Additional Notes"
+                  sx={{ m: 1 }}
+                  multiline
+                  rows={5}
+                  name="notes"
                   onChange={handleChange}
                 />
               </Grid>
@@ -424,10 +453,12 @@ const RecipeForm = () => {
               }}
             >
               <Grid>
-                <button onClick={handleSubmit} type="submit">
-                  Add Recipe
-                </button>
-                <button>Cancel</button>
+                <Button onClick={handleSubmit} type="submit">
+                  <p>Add Recipe</p>
+                </Button>
+                <Button>
+                  <Link to="/myprofile">Cancel</Link>
+                </Button>
               </Grid>
             </Grid>
           </Paper>

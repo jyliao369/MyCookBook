@@ -12,13 +12,18 @@ const typeDefs = gql`
   type Recipe {
     _id: ID
     title: String
+    category: String
+    mealofday: String
     cuisine: String
     diettype: String
-    category: String
+    cookstyle: String
     servings: String
+    yield: String
     prepTime: String
     cookTime: String
     totalTime: String
+    description: String
+    notes: String
     ingredients: [String]
     directions: [String]
     imageid: String
@@ -49,13 +54,18 @@ const typeDefs = gql`
 
     addRecipe(
       title: String!
+      category: String!
+      mealofday: String!
       cuisine: String!
       diettype: String!
-      category: String!
+      cookstyle: String!
       servings: String!
+      yield: String!
       prepTime: String!
       cookTime: String!
       totalTime: String!
+      description: String!
+      notes: String!
       ingredients: [String]!
       directions: [String]!
       imageid: String
@@ -66,13 +76,18 @@ const typeDefs = gql`
     updateRecipe(
       recipeId: String!
       title: String
+      category: String
+      mealofday: String
       cuisine: String
       diettype: String
-      category: String
+      cookstyle: String
       servings: String
+      yield: String
       prepTime: String
       cookTime: String
       totalTime: String
+      description: String
+      notes: String
       ingredients: [String]
       directions: [String]
       imageid: String

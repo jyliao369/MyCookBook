@@ -48,10 +48,10 @@ const Profile = () => {
   let user = data?.myprofile || data?.user || {};
   let recipes = user.recipes;
 
-  // console.log("User");
-  // console.log(user);
-  // console.log("recipes");
-  // console.log(recipes);
+  console.log("User");
+  console.log(user);
+  console.log("recipes");
+  console.log(recipes);
 
   const [userrecipe, setUserRecipe] = useState("");
 
@@ -206,13 +206,20 @@ const Profile = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    m: 2,
+                    m: 1,
                   }}
                 >
-                  <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <Link to={`/recipes/${recipe._id}`}>
                       <Grid item sx={{ display: "flex" }}>
-                        <Grid item md={4.2} sx={{ display: "flex", p: 1.25 }}>
+                        <Grid item md={4.5} sx={{ display: "flex", p: 1.25 }}>
                           {recipe.imageid ? (
                             <Image
                               width="100%"
@@ -229,7 +236,7 @@ const Profile = () => {
                         </Grid>
                         <Grid
                           item
-                          md={8.5}
+                          md={9}
                           sx={{
                             display: "flex",
                             flexDirection: "row",
@@ -238,11 +245,11 @@ const Profile = () => {
                         >
                           <Grid
                             item
+                            md={12}
                             sx={{
                               display: "flex",
                               flexDirection: "column",
                               justifyContent: "space-between",
-                              width: 1 / 1,
                             }}
                           >
                             <CardHeader
@@ -259,12 +266,12 @@ const Profile = () => {
                             <CardContent
                               sx={{ display: "flex", flexDirection: "row" }}
                             >
-                              <Grid item>
+                              <Grid item md={6}>
                                 <Typography sx={{ fontSize: 18 }}>
-                                  Prep Time:{" "}
+                                  Prep Time: {recipe.prepTime}
                                 </Typography>
                                 <Typography sx={{ fontSize: 18 }}>
-                                  Cook Time:{" "}
+                                  Cook Time: {recipe.cookTime}
                                 </Typography>
                                 <Typography sx={{ fontSize: 18 }}>
                                   Total Time: {recipe.totalTime}
@@ -273,7 +280,7 @@ const Profile = () => {
                                   Servings: {recipe.servings}
                                 </Typography>
                               </Grid>
-                              <Grid item>
+                              <Grid item md={6}>
                                 <Typography sx={{ fontSize: 18 }}>
                                   Category: {recipe.category}
                                 </Typography>
@@ -284,7 +291,7 @@ const Profile = () => {
                                   Diet: {recipe.diettype}
                                 </Typography>
                                 <Typography sx={{ fontSize: 18 }}>
-                                  Yield Per Serving:{" "}
+                                  Yield Per Serving: {recipe.yield}
                                 </Typography>
                               </Grid>
                             </CardContent>
@@ -293,11 +300,10 @@ const Profile = () => {
                       </Grid>
                     </Link>
                     <Grid
-                      iem
                       sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "space-between",
+                        justifyContent: "flex-start",
                       }}
                     >
                       <DeleteForeverOutlined
@@ -318,53 +324,51 @@ const Profile = () => {
 
                       <FactCheckOutlined
                         sx={{ display: "flex", p: 1, fontSize: 35 }}
-                        expand={expanded}
-                        onClick={handleExpand}
+                        expand={ingExpanded}
+                        onClick={handleingExpand}
                         onMouseOver={handleHoverOn}
                         onMouseOut={handleHoverOff}
                       ></FactCheckOutlined>
 
                       <LocalDiningOutlined
                         sx={{ display: "flex", p: 1, fontSize: 35 }}
-                        expand={ingExpanded}
-                        onClick={handleingExpand}
+                        expand={expanded}
+                        onClick={handleExpand}
                         onMouseOver={handleHoverOn}
                         onMouseOut={handleHoverOff}
                       ></LocalDiningOutlined>
                     </Grid>
                   </Grid>
-                  <Paper
-                    elevation={3}
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <Collapse
-                      in={expanded}
-                      timeout="auto"
-                      unmountOnExit
-                      sx={{ m: 1 }}
-                    >
-                      <CardContent>
-                        <Typography paragraph>Instructions</Typography>
-                        {recipe.directions.map((direction) => (
-                          <Typography key={direction}>{direction}</Typography>
-                        ))}
-                      </CardContent>
+                  <Grid item sx={{ overflow: "auto" }}>
+                    <Collapse in={ingExpanded} timeout="auto" unmountOnExit>
+                      <Grid item sx={{ height: 225, overflow: "auto" }}>
+                        <Paper elevation={1} sx={{ m: 1 }}>
+                          <CardContent>
+                            <Typography paragraph>Ingredients</Typography>
+                            {recipe.ingredients.map((ingredient) => (
+                              <Typography sx={{ p: 0.5 }} key={ingredient}>
+                                {ingredient}
+                              </Typography>
+                            ))}
+                          </CardContent>
+                        </Paper>
+                      </Grid>
                     </Collapse>
-
-                    <Collapse
-                      in={ingExpanded}
-                      timeout="auto"
-                      unmountOnExit
-                      sx={{ m: 1 }}
-                    >
-                      <CardContent>
-                        <Typography paragraph>Ingredients</Typography>
-                        {recipe.ingredients.map((ingredient) => (
-                          <Typography key={ingredient}>{ingredient}</Typography>
-                        ))}
-                      </CardContent>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      <Grid item sx={{ height: 300, overflow: "auto" }}>
+                        <Paper elevation={3} sx={{ m: 1, overflow: "visible" }}>
+                          <CardContent>
+                            <Typography paragraph>Instructions</Typography>
+                            {recipe.directions.map((direction) => (
+                              <Typography sx={{ p: 0.5 }} key={direction}>
+                                {direction}
+                              </Typography>
+                            ))}
+                          </CardContent>
+                        </Paper>
+                      </Grid>
                     </Collapse>
-                  </Paper>
+                  </Grid>
                 </Card>
               </Grid>
             ))}

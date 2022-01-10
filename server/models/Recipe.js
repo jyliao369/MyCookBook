@@ -7,6 +7,14 @@ const recipeSchema = new Schema({
     required: true,
     trim: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
+  mealofday: {
+    type: String,
+    required: true,
+  },
   cuisine: {
     type: String,
     required: true,
@@ -15,11 +23,15 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-  category: {
+  cookstyle: {
     type: String,
     required: true,
   },
   servings: {
+    type: String,
+    required: true,
+  },
+  yield: {
     type: String,
     required: true,
   },
@@ -32,6 +44,14 @@ const recipeSchema = new Schema({
     required: true,
   },
   totalTime: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  notes: {
     type: String,
     required: true,
   },

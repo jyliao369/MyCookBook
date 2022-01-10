@@ -19,13 +19,18 @@ export const QUERY_SINGLE_USER = gql`
       recipes {
         _id
         title
+        category
+        mealofday
         cuisine
         diettype
-        category
+        cookstyle
         servings
+        yield
         prepTime
         cookTime
         totalTime
+        description
+        notes
         ingredients
         directions
         imageid
@@ -46,13 +51,18 @@ export const QUERY_MYPROFILE = gql`
       recipes {
         _id
         title
+        category
+        mealofday
         cuisine
         diettype
-        category
+        cookstyle
         servings
+        yield
         prepTime
         cookTime
         totalTime
+        description
+        notes
         ingredients
         directions
         imageid
@@ -69,13 +79,18 @@ export const QUERY_RECIPES = gql`
     recipes {
       _id
       title
+      category
+      mealofday
       cuisine
       diettype
-      category
+      cookstyle
       servings
+      yield
       prepTime
       cookTime
       totalTime
+      description
+      notes
       ingredients
       directions
       imageid
@@ -91,13 +106,18 @@ export const QUERY_SINGLE_RECIPE = gql`
     recipe(recipeId: $recipeId) {
       _id
       title
+      category
+      mealofday
       cuisine
       diettype
-      category
+      cookstyle
       servings
+      yield
       prepTime
       cookTime
       totalTime
+      description
+      notes
       ingredients
       directions
       imageid

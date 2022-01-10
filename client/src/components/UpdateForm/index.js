@@ -2,12 +2,18 @@ import React from "react";
 import { useState } from "react";
 // import { useEffect } from "react";
 
+import { Link } from "react-router-dom";
+
+import { useMutation } from "@apollo/client";
+import { UPDATE_RECIPE } from "../../utils/mutations";
+
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 
 // IMPORTS FOR CLOUDINARY
 import { Image } from "cloudinary-react";
@@ -38,13 +44,18 @@ const UpdateForm = (props) => {
 
   const [updatedRecipe, setupdatedRecipe] = useState({
     title: props.recipe.title,
+    category: props.recipe.category,
+    mealofday: props.recipe.mealofday,
     cuisine: props.recipe.cuisine,
     diettype: props.recipe.diettype,
-    category: props.recipe.category,
+    cookstyle: props.recipe.cookstyle,
     servings: props.recipe.servings,
+    yield: props.recipe.yield,
     prepTime: props.recipe.prepTime,
     cookTime: props.recipe.cookTime,
     totalTime: props.recipe.totalTime,
+    description: props.recipe.description,
+    notes: props.recipe.description,
     ingredients: props.recipe.ingredients,
     directions: props.recipe.directions,
     imageid: props.recipe.imageid,
@@ -109,8 +120,27 @@ const UpdateForm = (props) => {
     }
   };
 
+  const [updateRecipe] = useMutation(UPDATE_RECIPE);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let recipeId = props.recipe._id;
+    try {
+      await updateRecipe({
+        variables: {
+          recipeId,
+          ...updatedRecipe,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <Box>
+      <br />
+      <br />
       <Box sx={{ display: "flex", justifyContent: "center", m: 1.5 }}>
         <Grid item xs={12} md={10}>
           <Paper
@@ -134,8 +164,6 @@ const UpdateForm = (props) => {
                   sx={{
                     display: "flex",
                     justifyContent: "center",
-                    height: 440,
-                    p: 3,
                   }}
                 >
                   <Grid
@@ -149,8 +177,8 @@ const UpdateForm = (props) => {
                   >
                     <Grid
                       item
-                      md={6.5}
-                      sx={{ display: "flex", justifyContent: "center", p: 1.5 }}
+                      md={7}
+                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
                     >
                       {imageUpdate ? (
                         <Image
@@ -166,7 +194,10 @@ const UpdateForm = (props) => {
                         />
                       )}
                     </Grid>
-                    <Grid item sx={{ display: "flex" }}>
+                    <Grid
+                      item
+                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
+                    >
                       <input
                         title=" "
                         type="file"
@@ -178,6 +209,7 @@ const UpdateForm = (props) => {
                     </Grid>
                   </Grid>
                 </Grid>
+
                 <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                   <Grid
                     item
@@ -189,22 +221,8 @@ const UpdateForm = (props) => {
                   >
                     <TextField
                       select
-                      label="Meal of the Day"
-                      sx={{ width: 250, m: 2 }}
-                      name="mealofday"
-                      onChange={handleUpdate}
-                      placeholder="Meal of the Day"
-                      // defaultValue={props.recipe.category}
-                    >
-                      <MenuItem value="Breakfast">Breakfast</MenuItem>
-                      <MenuItem value="Brunch">Brunch</MenuItem>
-                      <MenuItem value="Lunch">Lunch</MenuItem>
-                      <MenuItem value="Dinner">Dinner</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
                       label="Category"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="category"
                       onChange={handleUpdate}
                       placeholder="Category"
@@ -217,8 +235,37 @@ const UpdateForm = (props) => {
                     </TextField>
                     <TextField
                       select
+                      label="Meal of the Day"
+                      sx={{ width: 250, m: 1 }}
+                      name="mealofday"
+                      onChange={handleUpdate}
+                      placeholder="Meal of the Day"
+                      defaultValue={props.recipe.mealofday}
+                    >
+                      <MenuItem value="Breakfast">Breakfast</MenuItem>
+                      <MenuItem value="Brunch">Brunch</MenuItem>
+                      <MenuItem value="Lunch">Lunch</MenuItem>
+                      <MenuItem value="Dinner">Dinner</MenuItem>
+                    </TextField>
+                    <TextField
+                      select
+                      label="Diet Type"
+                      sx={{ width: 250, m: 1 }}
+                      name="diettype"
+                      onChange={handleUpdate}
+                      placeholder="Diet Type"
+                      defaultValue={props.recipe.diettype}
+                    >
+                      <MenuItem value="Regular">Regular</MenuItem>
+                      <MenuItem value="Low Carb">Low Carb</MenuItem>
+                      <MenuItem value="Keto">Keto</MenuItem>
+                      <MenuItem value="Vegan">Vegan</MenuItem>
+                      <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                    </TextField>
+                    <TextField
+                      select
                       label="Cuisine"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="cuisine"
                       onChange={handleUpdate}
                       placeholder="Cuisine"
@@ -237,18 +284,20 @@ const UpdateForm = (props) => {
                     </TextField>
                     <TextField
                       select
-                      label="Diet Type"
-                      sx={{ width: 250, m: 2 }}
-                      name="diettype"
+                      label="Cooking Style"
+                      sx={{ width: 250, m: 1 }}
+                      name="cookstyle"
                       onChange={handleUpdate}
-                      placeholder="Diet Type"
-                      defaultValue={props.recipe.diettype}
+                      placeholder="Cooking Style"
+                      defaultValue={props.recipe.cookstyle}
                     >
-                      <MenuItem value="Regular">Regular</MenuItem>
-                      <MenuItem value="Low Carb">Low Carb</MenuItem>
-                      <MenuItem value="Keto">Keto</MenuItem>
-                      <MenuItem value="Vegan">Vegan</MenuItem>
-                      <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                      <MenuItem value="Baking">Baking</MenuItem>
+                      <MenuItem value="Frying">Frying</MenuItem>
+                      <MenuItem value="Roasting">Roasting</MenuItem>
+                      <MenuItem value="Stir-Fry">Stir-Fry</MenuItem>
+                      <MenuItem value="Grilling">Grilling</MenuItem>
+                      <MenuItem value="Steaming">Steaming</MenuItem>
+                      <MenuItem value="Boiling">Boiling</MenuItem>
                     </TextField>
                   </Grid>
                   <Grid
@@ -261,31 +310,31 @@ const UpdateForm = (props) => {
                   >
                     <TextField
                       label="Prep Time (mins)"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="prepTime"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.prepTime}
                     />
                     <TextField
                       label="Cook Time (mins)"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="cookTime"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.cookTime}
                     />
                     <TextField
                       label="Servings"
-                      sx={{ width: 250, m: 2 }}
+                      sx={{ width: 250, m: 1 }}
                       name="servings"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.servings}
                     />
                     <TextField
                       label="Recipe Yield"
-                      sx={{ width: 250, m: 2 }}
-                      name="servings"
+                      sx={{ width: 250, m: 1 }}
+                      name="yield"
                       onChange={handleUpdate}
-                      //   defaultValue={props.recipe}
+                      defaultValue={props.recipe.yield}
                     />
                   </Grid>
                   <br />
@@ -301,7 +350,7 @@ const UpdateForm = (props) => {
                       select
                       md={12}
                       label="Public Recipe"
-                      sx={{ width: 500, m: 2 }}
+                      sx={{ width: 500, m: 1 }}
                       name="publicRecipe"
                       onChange={handleUpdate}
                       defaultValue={props.recipe.publicRecipe}
@@ -310,7 +359,8 @@ const UpdateForm = (props) => {
                       <MenuItem value="private">Private</MenuItem>
                     </TextField>
                     <Grid>
-                      This recipe is set as ________________ right now.
+                      This recipe is set as "{props.recipe.publicRecipe}" right
+                      now.
                     </Grid>
                   </Grid>
                   <br />
@@ -329,7 +379,7 @@ const UpdateForm = (props) => {
               >
                 <TextField
                   label="Recipe Name"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   name="title"
                   onChange={handleUpdate}
                   placeholder="Recipe Name"
@@ -337,30 +387,38 @@ const UpdateForm = (props) => {
                 />
                 <TextField
                   label="Description"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
-                  rows={9}
+                  rows={7}
                   name="description"
                   onChange={handleUpdate}
                   defaultValue={props.recipe.description}
                 />
                 <TextField
                   label="Ingredients"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
-                  rows={9}
+                  rows={7}
                   name="ingredients"
                   onChange={handleUpdate}
                   defaultValue={ingredientList}
                 />
                 <TextField
                   label="Directions"
-                  sx={{ m: 2 }}
+                  sx={{ m: 1 }}
                   multiline
-                  rows={9}
+                  rows={7}
                   name="directions"
                   onChange={handleUpdate}
                   defaultValue={directionList}
+                />
+                <TextField
+                  label="Additional Notes"
+                  sx={{ m: 1 }}
+                  multiline
+                  rows={5}
+                  name="notes"
+                  onChange={handleUpdate}
                 />
               </Grid>
             </Grid>
@@ -372,16 +430,19 @@ const UpdateForm = (props) => {
               }}
             >
               <Grid>
-                {/* <button onClick={handleSubmit} type="submit">
-                  Add Recipe
-                </button> */}
-                <button>Update Recipe</button>
-                <button>Cancel</button>
+                <Button onClick={handleSubmit} type="submit">
+                  <p>Update Recipe</p>
+                </Button>
+                <Button>
+                  <Link to="/myprofile">Cancel</Link>
+                </Button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
       </Box>
+      <br />
+      <br />
     </Box>
   );
 };

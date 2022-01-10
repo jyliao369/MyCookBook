@@ -12,6 +12,7 @@ import { QUERY_RECIPES } from "../utils/queries";
 // IMPORTANT FOR CLOUDINARY
 // import Axios from 'axios';
 import { Image } from "cloudinary-react";
+import { Transformation } from "cloudinary-react";
 
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from "@mui/material/Box";
@@ -23,9 +24,9 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
 import { Collapse } from "@mui/material";
+
+import SearchSideBar from "../components/SearchSideBar";
 
 const Recipespage = () => {
   // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
@@ -91,21 +92,11 @@ const Recipespage = () => {
     setRecipeslist(uniqueRecipes);
   };
 
-  const AdvExpand = styled((props) => {
-    const { advExpand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({}));
-
   const [advExpand, setadvExpand] = useState(false);
 
   const handleAdvExpand = () => {
     setadvExpand(!advExpand);
   };
-
-  const ingSearchExpand = styled((props) => {
-    const { ingExpand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({}));
 
   const [ingExpand, setIngExpand] = useState(false);
 
@@ -114,7 +105,7 @@ const Recipespage = () => {
   };
 
   const breakpoints = {
-    default: 5,
+    default: 4,
     700: 1,
   };
 
@@ -124,7 +115,7 @@ const Recipespage = () => {
 
   return (
     <Box>
-      <Grid
+      {/* <Grid
         sx={{
           background: "#F1FFFA",
           display: "flex",
@@ -394,96 +385,87 @@ const Recipespage = () => {
             <br />
           </Collapse>
         </Grid>
-      </Grid>
+      </Grid> */}
 
-      <Box
-        sx={{
-          background: "#364156",
-          display: "flex",
-          justifyContent: "center",
-          pt: 3,
-          pb: 3,
-        }}
-      >
-        <Grid item md={8}>
-          <Masonry
-            breakpointCols={breakpoints}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
-          >
-            {recipeslist.map((recipe) => (
-              <Grid key={recipe._id} item sx={{ m: 1 }}>
-                <Card elevation={3}>
-                  <Link to={`/recipes/${recipe._id}`}>
-                    <Grid>
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 20,
-                        }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        title={recipe.title}
-                        subheader={recipe.createdAt}
-                      />
-                      <CardMedia
-                        sx={{
-                          ml: 1,
-                          mr: 1,
-                          mt: 0.5,
-                          mb: 0.5,
-                          display: "flex",
-                          borderStyle: "solid",
-                          borderWidth: 4,
-                          borderColor: "#373F51",
-                        }}
-                      >
-                        {recipe.imageid ? (
-                          <Image
-                            width="100%"
-                            cloudName="du119g90a"
-                            public_id={recipe.imageid}
-                          />
-                        ) : (
-                          <Image
-                            width="100%"
-                            cloudName="du119g90a"
-                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                          />
-                        )}
-                      </CardMedia>
-                      <CardContent
-                        sx={{
-                          ml: 0.5,
-                          mr: 0.5,
-                          mt: 0.5,
-                          mb: 0.5,
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <Typography sx={{ fontSize: 18 }}>
-                          Category: {recipe.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 18 }}>
-                          Cuisine: {recipe.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 18 }}>
-                          Diet: {recipe.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 18 }}>
-                          Servings: {recipe.servings}{" "}
-                        </Typography>
-                        <Typography sx={{ fontSize: 18 }}>
-                          Total Time: {recipe.totalTime}
-                        </Typography>
-                      </CardContent>
-                    </Grid>
-                  </Link>
-                </Card>
-              </Grid>
-            ))}
-          </Masonry>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          item
+          md={9.5}
+          sx={{
+            display: "flex",
+          }}
+        >
+          <Grid item md={3}>
+            <SearchSideBar />
+          </Grid>
+          <Grid item md={9}>
+            <Masonry
+              breakpointCols={breakpoints}
+              className="my-masonry-grid"
+              columnClassName="my-masonry-grid_column"
+            >
+              {recipeslist.map((recipe) => (
+                <Grid
+                  item
+                  key={recipe._id}
+                  md={12}
+                  sx={{ m: 1, mt: 1.5, mb: 1.5 }}
+                >
+                  <Card elevation={3}>
+                    <Link to={`/recipes/${recipe._id}`}>
+                      <Grid>
+                        <CardMedia>
+                          {recipe.imageid ? (
+                            <Image
+                              width="100%"
+                              cloudName="du119g90a"
+                              public_id={recipe.imageid}
+                            >
+                              <Transformation gravity="faces" crop="crop" />
+                            </Image>
+                          ) : (
+                            <Image
+                              width="100%"
+                              cloudName="du119g90a"
+                              public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                            />
+                          )}
+                        </CardMedia>
+                        <CardHeader
+                          titleTypographyProps={{
+                            fontSize: 20,
+                          }}
+                          subheaderTypographyProps={{
+                            fontSize: 15,
+                          }}
+                          sx={{ height: 75, p: 1.5 }}
+                          title={recipe.title}
+                          subheader={recipe.createdAt}
+                        />
+                        <CardContent sx={{ p: 1.5 }}>
+                          <Typography sx={{ fontSize: 18 }}>
+                            Category: {recipe.category}
+                          </Typography>
+                          <Typography sx={{ fontSize: 18 }}>
+                            Cuisine: {recipe.cuisine}
+                          </Typography>
+                          <Typography sx={{ fontSize: 18 }}>
+                            Diet: {recipe.diettype}
+                          </Typography>
+                          <Typography sx={{ fontSize: 18 }}>
+                            Servings: {recipe.servings}{" "}
+                          </Typography>
+                          <Typography sx={{ fontSize: 18 }}>
+                            Total Time: {recipe.totalTime}
+                          </Typography>
+                        </CardContent>
+                      </Grid>
+                    </Link>
+                  </Card>
+                </Grid>
+              ))}
+            </Masonry>
+          </Grid>
         </Grid>
       </Box>
     </Box>

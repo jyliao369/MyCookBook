@@ -27,13 +27,18 @@ export const ADD_USER = gql`
 export const ADD_RECIPE = gql`
   mutation addRecipe(
     $title: String!
+    $category: String!
+    $mealofday: String!
     $cuisine: String!
     $diettype: String!
-    $category: String!
+    $cookstyle: String!
     $servings: String!
+    $yield: String!
     $prepTime: String!
     $cookTime: String!
     $totalTime: String!
+    $description: String!
+    $notes: String!
     $ingredients: [String]!
     $directions: [String]!
     $imageid: String
@@ -41,26 +46,36 @@ export const ADD_RECIPE = gql`
   ) {
     addRecipe(
       title: $title
+      category: $category
+      mealofday: $mealofday
       cuisine: $cuisine
       diettype: $diettype
-      category: $category
+      cookstyle: $cookstyle
       servings: $servings
+      yield: $yield
       prepTime: $prepTime
       cookTime: $cookTime
       totalTime: $totalTime
+      description: $description
+      notes: $notes
       ingredients: $ingredients
       directions: $directions
       imageid: $imageid
       publicRecipe: $publicRecipe
     ) {
       title
+      category
+      mealofday
       cuisine
       diettype
-      category
+      cookstyle
       servings
+      yield
       prepTime
       cookTime
       totalTime
+      description
+      notes
       ingredients
       directions
       imageid
@@ -76,13 +91,18 @@ export const REMOVE_RECIPE = gql`
     removeRecipe(recipeId: $recipeId) {
       _id
       title
+      category
+      mealofday
       cuisine
       diettype
-      category
+      cookstyle
       servings
+      yield
       prepTime
       cookTime
       totalTime
+      description
+      notes
       ingredients
       directions
       imageid
@@ -97,13 +117,18 @@ export const UPDATE_RECIPE = gql`
   mutation updateRecipe(
     $recipeId: String!
     $title: String
+    $category: String
+    $mealofday: String
     $cuisine: String
     $diettype: String
-    $category: String
+    $cookstyle: String
     $servings: String
+    $yield: String
     $prepTime: String
     $cookTime: String
     $totalTime: String
+    $description: String
+    $notes: String
     $ingredients: [String]
     $directions: [String]
     $imageid: String
@@ -112,13 +137,18 @@ export const UPDATE_RECIPE = gql`
     updateRecipe(
       recipeId: $recipeId
       title: $title
+      category: $category
+      mealofday: $mealofday
       cuisine: $cuisine
       diettype: $diettype
-      category: $category
+      cookstyle: $cookstyle
       servings: $servings
+      yield: $yield
       prepTime: $prepTime
       cookTime: $cookTime
       totalTime: $totalTime
+      description: $description
+      notes: $notes
       ingredients: $ingredients
       directions: $directions
       imageid: $imageid
@@ -126,13 +156,18 @@ export const UPDATE_RECIPE = gql`
     ) {
       _id
       title
+      category
+      mealofday
       cuisine
       diettype
-      category
+      cookstyle
       servings
+      yield
       prepTime
       cookTime
       totalTime
+      description
+      notes
       ingredients
       directions
       imageid
