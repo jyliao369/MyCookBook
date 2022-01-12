@@ -99,12 +99,12 @@ const RecipeForm = () => {
       }
     }
 
-    console.log(newRecipe.prepTime);
-    console.log(newRecipe.cookTime);
-    console.log("totalTime");
-    console.log(
-      String(parseInt(newRecipe.prepTime) + parseInt(newRecipe.cookTime))
-    );
+    // console.log(newRecipe.prepTime);
+    // console.log(newRecipe.cookTime);
+    // console.log("totalTime");
+    // console.log(
+    //   String(parseInt(newRecipe.prepTime) + parseInt(newRecipe.cookTime))
+    // );
 
     setNewRecipe((prevState) => ({
       ...prevState,
@@ -280,6 +280,7 @@ const RecipeForm = () => {
                       <MenuItem value="Brunch">Brunch</MenuItem>
                       <MenuItem value="Lunch">Lunch</MenuItem>
                       <MenuItem value="Dinner">Dinner</MenuItem>
+                      <MenuItem value="Snack">Snack</MenuItem>
                     </TextField>
                     <TextField
                       select
@@ -290,8 +291,15 @@ const RecipeForm = () => {
                       placeholder="Diet Type"
                     >
                       <MenuItem value="Regular">Regular</MenuItem>
+                      <MenuItem value="Keto Friendly">Keto Friendly</MenuItem>
+                      <MenuItem value="Gluten-Free">Gluten-Free</MenuItem>
                       <MenuItem value="Low Carb">Low Carb</MenuItem>
-                      <MenuItem value="Keto">Keto</MenuItem>
+                      <MenuItem value="Low Calorie">Low Calorie</MenuItem>
+                      <MenuItem value="Low Cholesterol">
+                        Low Cholesterol
+                      </MenuItem>
+                      <MenuItem value="Low Sodium">Low Sodium</MenuItem>
+                      <MenuItem value="Low Fat">Low Fat</MenuItem>
                       <MenuItem value="Vegan">Vegan</MenuItem>
                       <MenuItem value="Vegetarian">Vegetarian</MenuItem>
                     </TextField>
@@ -304,15 +312,20 @@ const RecipeForm = () => {
                       placeholder="Cuisine"
                     >
                       <MenuItem value="Homemade">Homemade</MenuItem>
-                      <MenuItem value="American">American</MenuItem>
                       <MenuItem value="Chinese">Chinese</MenuItem>
-                      <MenuItem value="Mexican">Mexican</MenuItem>
-                      <MenuItem value="Thai">Thai</MenuItem>
+                      <MenuItem value="American">American</MenuItem>
+                      <MenuItem value="German">German</MenuItem>
                       <MenuItem value="Indian">Indian</MenuItem>
-                      <MenuItem value="Cajun">Cajun</MenuItem>
-                      <MenuItem value="Korean">Korean</MenuItem>
                       <MenuItem value="Japanese">Japanese</MenuItem>
-                      <MenuItem value="Cuban">Cuban</MenuItem>
+                      <MenuItem value="Russian">Russian</MenuItem>
+                      <MenuItem value="Thai">Thai</MenuItem>
+                      <MenuItem value="Filipino">Filipino</MenuItem>
+                      <MenuItem value="Greek">Greek</MenuItem>
+                      <MenuItem value="Italian">Italian</MenuItem>
+                      <MenuItem value="Mexican">Mexican</MenuItem>
+                      <MenuItem value="Spanish">Spanish</MenuItem>
+                      <MenuItem value="Korean">Korean</MenuItem>
+                      <MenuItem value="Cajun">Cajun</MenuItem>
                     </TextField>
                     <TextField
                       select
