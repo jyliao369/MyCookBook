@@ -149,20 +149,12 @@ const Recipespage = () => {
           justifyContent: "center",
         }}
       >
-        <Grid item sx={{ background: "black", height: 175, mb: 10 }}>
-          <Grid item sx={{ display: "flex", justifyContent: "center" }}>
-            <Grid
-              item
-              md={9}
-              sx={{
-                fontSize: 75,
-                borderStyle: "solid",
-                background: "white",
-              }}
-            >
-              Search for a Recipe
-            </Grid>
-          </Grid>
+        <Grid item sx={{ mb: 4.5, opacity: 1 }}>
+          <Image
+            width="100%"
+            cloudName="du119g90a"
+            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642124879/headerimage1_abzfej.jpg"
+          ></Image>
         </Grid>
       </Box>
 
@@ -177,7 +169,11 @@ const Recipespage = () => {
           <Grid
             item
             md={3.25}
-            sx={{ display: "flex", justifyContent: "center" }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              position: "relative",
+            }}
           >
             <Card
               square
@@ -187,6 +183,7 @@ const Recipespage = () => {
                 display: "flex",
                 flexDirection: "column",
                 position: "fixed",
+                marginTop: "auto",
                 m: 1.4,
                 width: "17%",
               }}

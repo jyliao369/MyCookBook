@@ -57,6 +57,7 @@ const Home = () => {
   const entreesnum = 3;
   const desserts = [];
   const desnum = 3;
+
   for (let a = 0; a < uniqueRecipes.length; a++) {
     if (uniqueRecipes[a].category === "Drinks" && drinks.length < drinknum) {
       drinks.push(uniqueRecipes[a]);
@@ -75,39 +76,197 @@ const Home = () => {
     }
   }
 
+  const truncate = (str) => {
+    return str ? str.substring(0, 90) + "..." : str;
+  };
+
   if (loading) {
     return <Box>Grabbing Recipes...</Box>;
   }
 
   return (
-    <Box sx={{ background: "#5B7B7A" }}>
-      {/* <Grid>
-        <Typography sx={{ fontSize: 35, fontWeight: 'bold', position: 'absolute', background: '#cbf7ed', p: 3, color: 'primary.dark', border:1, borderRadius: 10 }}>Welcome to mmm!Book!!</Typography>
-        <Image width='100%' cloudName="du119g90a" public_id="https://res.cloudinary.com/du119g90a/image/upload/c_scale,h_720,w_1270/v1637261149/headerimage0_djjzmj.jpg"/>
-      </Grid> */}
+    <Box sx={{}}>
+      <Grid sx={{ mb: 4.5 }}>
+        <Image
+          width="100%"
+          cloudName="du119g90a"
+          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642125456/headerimage0_djjzmj.jpg"
+        />
+      </Grid>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex" }}>
         <Grid
           item
-          md={8}
+          md={8.5}
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            flexWrap: "wrap",
+          }}
+        >
+          <Grid item md={3.5} sx={{ ml: 1.5, mr: 1.5, mb: 2.5 }}>
+            <Card elevation={5}>
+              <Link>
+                <Grid item>
+                  <CardMedia>
+                    {recipes[1].imageid ? (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id={recipes[1].imageid}
+                        sx={{ display: "flex" }}
+                      >
+                        <Transformation
+                          width="1000"
+                          height="1000"
+                          gravity="center"
+                          crop="crop"
+                        />
+                      </Image>
+                    ) : (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                      />
+                    )}
+                  </CardMedia>
+                </Grid>
+
+                <Grid item sx={{ height: 100 }}>
+                  <CardHeader
+                    titleTypographyProps={{
+                      fontSize: 20,
+                    }}
+                    subheaderTypographyProps={{
+                      fontSize: 15,
+                    }}
+                    sx={{ height: 75, p: 1.5 }}
+                    title={recipes[1].title}
+                    subheader={recipes[1].createdAt}
+                  />
+                </Grid>
+              </Link>
+            </Card>
+          </Grid>
+
+          <Grid item md={2.75} sx={{ ml: 1.5, mr: 1.5 }}>
+            <Card elevation={5}>
+              <Link>
+                <Grid>
+                  <CardMedia>
+                    {recipes[2].imageid ? (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id={recipes[2].imageid}
+                        sx={{ display: "flex" }}
+                      >
+                        <Transformation
+                          width="750"
+                          height="750"
+                          gravity="center"
+                          crop="crop"
+                        />
+                      </Image>
+                    ) : (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                      />
+                    )}
+                  </CardMedia>
+                  <Grid>
+                    <CardHeader
+                      titleTypographyProps={{
+                        fontSize: 20,
+                      }}
+                      subheaderTypographyProps={{
+                        fontSize: 15,
+                      }}
+                      sx={{ height: 75, p: 1.5 }}
+                      title={recipes[2].title}
+                      subheader={recipes[2].createdAt}
+                    />
+                    <CardContent sx={{ height: 52 }}>
+                      <Typography sx={{ fontSize: 12 }}>
+                        {truncate(recipes[2].description)}
+                      </Typography>
+                    </CardContent>
+                  </Grid>
+                </Grid>
+              </Link>
+            </Card>
+          </Grid>
+
+          <Grid item md={2.75} sx={{ ml: 1.5, mr: 1.5 }}>
+            <Card elevation={5}>
+              <Link>
+                <Grid>
+                  <CardMedia>
+                    {recipes[2].imageid ? (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id={recipes[2].imageid}
+                        sx={{ display: "flex" }}
+                      >
+                        <Transformation
+                          width="750"
+                          height="750"
+                          gravity="center"
+                          crop="crop"
+                        />
+                      </Image>
+                    ) : (
+                      <Image
+                        width="100%"
+                        cloudName="du119g90a"
+                        public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                      />
+                    )}
+                  </CardMedia>
+                  <Grid>
+                    <CardHeader
+                      titleTypographyProps={{
+                        fontSize: 20,
+                      }}
+                      subheaderTypographyProps={{
+                        fontSize: 15,
+                      }}
+                      sx={{ height: 75, p: 1.5 }}
+                      title={recipes[2].title}
+                      subheader={recipes[2].createdAt}
+                    />
+                    <CardContent sx={{ height: 52 }}>
+                      <Typography sx={{ fontSize: 12 }}>
+                        {truncate(recipes[2].description)}
+                      </Typography>
+                    </CardContent>
+                  </Grid>
+                </Grid>
+              </Link>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box sx={{ display: "flex" }}>
+        <Grid
+          item
+          md={8.5}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
           }}
         >
           {drinks.map((drink) => (
-            <Grid item md={2.75}>
-              <Card elevation={4} sx={{ m: 2 }}>
+            <Grid item md={3} sx={{ ml: 1.5, mr: 1.5 }}>
+              <Card elevation={5}>
                 <Link to={`/recipes/${drink._id}`}>
-                  <Grid
-                    item
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
+                  <Grid>
                     <CardMedia>
                       {drink.imageid ? (
                         <Image
@@ -131,7 +290,7 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m: 1 }}>
+                    <Grid>
                       <CardHeader
                         titleTypographyProps={{
                           fontSize: 20,
@@ -145,19 +304,7 @@ const Home = () => {
                       />
                       <CardContent>
                         <Typography sx={{ fontSize: 12 }}>
-                          Category: {drink.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Cuisine: {drink.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Diet: {drink.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Servings: {drink.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Total Cook Time: {drink.totalTime} min
+                          {truncate(drink.description)}
                         </Typography>
                       </CardContent>
                     </Grid>
@@ -171,27 +318,28 @@ const Home = () => {
 
       <br />
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex" }}>
         <Grid
-          md={8}
+          item
+          md={8.5}
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            flexWrap: "wrap",
           }}
         >
           {appetizers.map((appetizer) => (
-            <Grid item md={2.75}>
-              <Card elevation={4} sx={{ m: 2 }}>
+            <Grid item md={3} sx={{ ml: 1.5, mr: 1.5 }}>
+              <Card elevation={5}>
                 <Link to={`/recipes/${appetizer._id}`}>
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <Grid>
                     <CardMedia>
                       {appetizer.imageid ? (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
                           public_id={appetizer.imageid}
+                          sx={{ display: "flex" }}
                         >
                           <Transformation
                             width="750"
@@ -208,7 +356,7 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m: 1 }}>
+                    <Grid>
                       <CardHeader
                         titleTypographyProps={{
                           fontSize: 20,
@@ -222,19 +370,7 @@ const Home = () => {
                       />
                       <CardContent>
                         <Typography sx={{ fontSize: 12 }}>
-                          Category: {appetizer.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Cuisine: {appetizer.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Diet: {appetizer.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Servings: {appetizer.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Total Cook Time: {appetizer.totalTime} min
+                          {truncate(appetizer.description)}
                         </Typography>
                       </CardContent>
                     </Grid>
@@ -246,27 +382,30 @@ const Home = () => {
         </Grid>
       </Box>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <br />
+
+      <Box sx={{ display: "flex" }}>
         <Grid
-          md={8}
+          item
+          md={8.5}
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            flexWrap: "wrap",
           }}
         >
           {entrees.map((entree) => (
-            <Grid item md={2.75}>
-              <Card elevation={4} sx={{ m: 2 }}>
+            <Grid item md={3} sx={{ ml: 1.5, mr: 1.5 }}>
+              <Card elevation={5}>
                 <Link to={`/recipes/${entree._id}`}>
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <Grid>
                     <CardMedia>
                       {entree.imageid ? (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
                           public_id={entree.imageid}
+                          sx={{ display: "flex" }}
                         >
                           <Transformation
                             width="750"
@@ -283,7 +422,7 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m: 1 }}>
+                    <Grid>
                       <CardHeader
                         titleTypographyProps={{
                           fontSize: 20,
@@ -296,23 +435,8 @@ const Home = () => {
                         subheader={entree.createdAt}
                       />
                       <CardContent>
-                        <Typography sx={{ fontSize: 15 }}>
-                          {entree.title}
-                        </Typography>
                         <Typography sx={{ fontSize: 12 }}>
-                          Category: {entree.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Cuisine: {entree.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Diet: {entree.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Servings: {entree.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Total Cook Time: {entree.totalTime} min
+                          {truncate(entree.description)}
                         </Typography>
                       </CardContent>
                     </Grid>
@@ -326,29 +450,36 @@ const Home = () => {
 
       <br />
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex" }}>
         <Grid
           item
-          md={8}
+          md={8.5}
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            flexWrap: "wrap",
           }}
         >
           {desserts.map((dessert) => (
-            <Grid item md={2.75}>
-              <Card elevation={4} sx={{ m: 2 }}>
+            <Grid item md={3} sx={{ ml: 1.5, mr: 1.5 }}>
+              <Card elevation={5}>
                 <Link to={`/recipes/${dessert._id}`}>
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <Grid>
                     <CardMedia>
                       {dessert.imageid ? (
                         <Image
                           width="100%"
                           cloudName="du119g90a"
                           public_id={dessert.imageid}
-                        />
+                          sx={{ display: "flex" }}
+                        >
+                          <Transformation
+                            width="750"
+                            height="750"
+                            gravity="center"
+                            crop="crop"
+                          />
+                        </Image>
                       ) : (
                         <Image
                           width="100%"
@@ -357,7 +488,7 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid sx={{ m: 1 }}>
+                    <Grid>
                       <CardHeader
                         titleTypographyProps={{
                           fontSize: 20,
@@ -371,19 +502,7 @@ const Home = () => {
                       />
                       <CardContent>
                         <Typography sx={{ fontSize: 12 }}>
-                          Category: {dessert.category}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Cuisine: {dessert.cuisine}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Diet: {dessert.diettype}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Servings: {dessert.servings}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }}>
-                          Total Cook Time: {dessert.totalTime} min
+                          {truncate(dessert.description)}
                         </Typography>
                       </CardContent>
                     </Grid>

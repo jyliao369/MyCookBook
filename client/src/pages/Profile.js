@@ -134,6 +134,13 @@ const Profile = () => {
 
   return (
     <Box>
+      <Grid sx={{ display: "flex" }}>
+        <Image
+          width="100%"
+          cloudName="du119g90a"
+          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642175428/headerimage3_vkbkch.jpg"
+        />
+      </Grid>
       <Grid
         sx={{
           background: "#4D9DE0",
@@ -143,6 +150,7 @@ const Profile = () => {
           justifyContent: "center",
           pt: 1,
           pb: 1,
+          mb: 4.5,
         }}
       >
         <Button
