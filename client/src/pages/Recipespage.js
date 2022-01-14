@@ -56,14 +56,6 @@ const Recipespage = () => {
     setRecipeslist(uniqueRecipes);
   }, [recipes]);
 
-  const breakpoints = {
-    default: 4,
-    700: 1,
-  };
-
-  // console.log("recipeslist");
-  // console.log(recipeslist);
-
   let filtered = [];
   const handlefilter = async (event) => {
     let key = event.target.value;
@@ -99,62 +91,22 @@ const Recipespage = () => {
     setIngExpand(!ingExpand);
   };
 
-  // let keyFilter = () => {
-  //   console.log("hello");
-  //   console.log(recipeslist[0].ingredients);
-  //   let list = recipeslist[0].ingredients[0].split(" ");
-  //   console.log(list);
-
-  //   let test = "chicken";
-  //   let hit = false;
-
-  //   for (let a = 0; a < list.length; a++) {
-  //     if (test === list[a]) {
-  //       hit = true;
-  //     }
-  //   }
-
-  //   console.log(hit);
-  // };
-
-  // let testarray = [];
-
   const [recSearchKey, setrecSearchkey] = useState("");
 
-  let testRecipeList = recipeslist;
-  console.log("testRecipeList");
-  console.log(testRecipeList);
-
   let keyFilter = (recSearchKey) => {
-    let test = recSearchKey;
-    console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-    console.log(test);
+    let search = recSearchKey;
     let hit = false;
     let filterRec = [];
-    let hits = 0;
 
     // THIS PICKS THE RECIPES
-    for (let a = 0; a < testRecipeList.length; a++) {
-      console.log("Recipe " + a);
-      console.log(testRecipeList[a]);
-      console.log(testRecipeList[a].ingredients.length);
+    for (let a = 0; a < recipes.length; a++) {
       // THIS PICKS THE INGREDIENTS
-      for (let b = 0; b < testRecipeList[a].ingredients.length; b++) {
-        console.log("Ingredient: " + b);
-        console.log();
+      for (let b = 0; b < recipes[a].ingredients.length; b++) {
         // THIS GOES THROUGH EACH INGREDIENTS AND LOOKS FOR A MATCH
-        for (
-          let c = 0;
-          c < testRecipeList[a].ingredients[b].split(" ").length;
-          c++
-        ) {
-          console.log(c);
-          console.log(testRecipeList[a].ingredients[b].split(" ")[c]);
-
-          if (test === testRecipeList[a].ingredients[b].split(" ")[c]) {
-            console.log("we got one");
-            hits++;
-            filterRec.push(testRecipeList[a]);
+        for (let c = 0; c < recipes[a].ingredients[b].split(" ").length; c++) {
+          if (search === recipes[a].ingredients[b].split(" ")[c]) {
+            // console.log("we got one");
+            filterRec.push(recipes[a]);
             hit = true;
             break;
           }
@@ -165,17 +117,23 @@ const Recipespage = () => {
           break;
         }
       }
-      console.log("filtered recipes with " + test);
-      console.log(filterRec);
     }
+    return filterRec;
   };
 
-  const testclick = (event) => {
+  const keySearch = (event) => {
     event.preventDefault();
-    console.log("search word");
-    console.log(recSearchKey);
 
-    keyFilter(recSearchKey);
+    setRecipeslist(keyFilter(recSearchKey));
+  };
+
+  const truncate = (str) => {
+    return str ? str.substring(0, 50) + "..." : str;
+  };
+
+  const breakpoints = {
+    default: 4,
+    700: 1,
   };
 
   if (loading) {
@@ -184,6 +142,30 @@ const Recipespage = () => {
 
   return (
     <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Grid item sx={{ background: "black", height: 175, mb: 10 }}>
+          <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+            <Grid
+              item
+              md={9}
+              sx={{
+                fontSize: 75,
+                borderStyle: "solid",
+                background: "white",
+              }}
+            >
+              Search for a Recipe
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Grid
           item
@@ -572,7 +554,7 @@ const Recipespage = () => {
                           setrecSearchkey(event.target.value);
                         }}
                       />
-                      <Button onClick={testclick}>Search</Button>
+                      <Button onClick={keySearch}>Search</Button>
                     </Grid>
                   </Collapse>
                 </Grid>
@@ -596,14 +578,31 @@ const Recipespage = () => {
                     </Typography>
                   </Grid>
                   <Collapse in={ingExpand}>
-                    <Grid sx={{ p: 1 }}>
-                      <TextField />
-                      <Grid>
+                    <Grid
+                      item
+                      sx={{ display: "flex", justifyContent: "space-evenly" }}
+                    >
+                      <Grid
+                        sx={{ p: 1, display: "flex", flexDirection: "column" }}
+                      >
+                        <Grid
+                          item
+                          sx={{ display: "flex", flexDirection: "row" }}
+                        >
+                          <TextField />
+                          <Button variant="outlined">+</Button>
+                        </Grid>
                         <br />
+                        <Grid
+                          item
+                          sx={{ display: "flex", flexDirection: "row" }}
+                        >
+                          <TextField />
+                          <Button variant="outlined">+</Button>
+                        </Grid>
                       </Grid>
-                      <TextField />
-                      <Grid>
-                        <br />
+                      <Grid sx={{ p: 1, display: "flex" }}>
+                        <Button variant="outlined">Search</Button>
                       </Grid>
                     </Grid>
                   </Collapse>
@@ -665,39 +664,53 @@ const Recipespage = () => {
                                 width="100%"
                                 cloudName="du119g90a"
                                 public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                              />
+                              >
+                                <Transformation
+                                  width="750"
+                                  height="750"
+                                  gravity="center"
+                                  crop="crop"
+                                />
+                              </Image>
                             )}
                           </CardMedia>
                         </Grid>
-
-                        <CardHeader
-                          titleTypographyProps={{
-                            fontSize: 20,
-                          }}
-                          subheaderTypographyProps={{
-                            fontSize: 15,
-                          }}
-                          sx={{ height: 75, p: 1.5 }}
-                          title={recipe.title}
-                          subheader={recipe.createdAt}
-                        />
-                        <CardContent sx={{ p: 1.5 }}>
-                          <Typography sx={{ fontSize: 18 }}>
-                            Category: {recipe.category}
-                          </Typography>
-                          <Typography sx={{ fontSize: 18 }}>
-                            Cuisine: {recipe.cuisine}
-                          </Typography>
-                          <Typography sx={{ fontSize: 18 }}>
-                            Diet: {recipe.diettype}
-                          </Typography>
-                          <Typography sx={{ fontSize: 18 }}>
-                            Servings: {recipe.servings}{" "}
-                          </Typography>
-                          <Typography sx={{ fontSize: 18 }}>
-                            Total Time: {recipe.totalTime}
-                          </Typography>
-                        </CardContent>
+                        <Grid
+                          item
+                          sx={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <CardHeader
+                            titleTypographyProps={{
+                              fontSize: 18,
+                              fontWeight: "bold",
+                            }}
+                            subheaderTypographyProps={{
+                              fontSize: 15,
+                            }}
+                            sx={{
+                              p: 1.25,
+                              height: 60,
+                              alignItems: "center",
+                            }}
+                            title={recipe.title}
+                            subheader={recipe.createdAt}
+                          />
+                          <CardContent sx={{ p: 1.25 }}>
+                            <Typography sx={{ fontSize: 15, height: 60 }}>
+                              Description:
+                              {" " + truncate(recipe.description)}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }}>
+                              Cuisine: {recipe.cuisine}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }}>
+                              Servings: {recipe.servings}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }}>
+                              Total Time: {recipe.totalTime}
+                            </Typography>
+                          </CardContent>
+                        </Grid>
                       </Grid>
                     </Link>
                     <Link to={`/update/${recipe._id}`}>Update</Link>

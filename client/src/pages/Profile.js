@@ -14,6 +14,7 @@ import { REMOVE_RECIPE } from "../utils/mutations";
 
 // IMPORTANT FOR THE USE OF CLOUDINARY
 import { Image } from "cloudinary-react";
+import { Transformation } from "cloudinary-react";
 
 import Auth from "../utils/auth";
 
@@ -225,7 +226,14 @@ const Profile = () => {
                               width="100%"
                               cloudName="du119g90a"
                               public_id={recipe.imageid}
-                            />
+                            >
+                              <Transformation
+                                width="750"
+                                height="750"
+                                gravity="center"
+                                crop="crop"
+                              />
+                            </Image>
                           ) : (
                             <Image
                               width="100%"
@@ -261,6 +269,7 @@ const Profile = () => {
                               }}
                               title={recipe.title}
                               subheader={recipe.createdAt}
+                              sx={{ p: 0 }}
                             />
 
                             <CardContent
