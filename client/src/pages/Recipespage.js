@@ -562,9 +562,9 @@ const Recipespage = () => {
                         </Grid>
                       </Grid>
                     </Link>
-                    {/* <Grid>
+                    <Grid>
                       <Link to={`/update/${recipe._id}`}>update</Link>
-                    </Grid> */}
+                    </Grid>
                   </Card>
                 </Grid>
               ))}
