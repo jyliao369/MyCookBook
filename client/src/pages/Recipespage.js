@@ -25,7 +25,6 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Collapse } from "@mui/material";
-// import Paper from "@mui/material/Paper";
 
 const Recipespage = () => {
   // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
@@ -56,6 +55,46 @@ const Recipespage = () => {
     setRecipeslist(uniqueRecipes);
   }, [recipes]);
 
+  let list1 = ["Drinks", "Appetizer", "Entree", "Dessert"];
+  let list2 = ["Breakfast", "Brunch", " Lunch", "Dinner", "Snack"];
+  let list3 = [
+    "Homemade",
+    "Chinese",
+    "American",
+    "German",
+    "Indian",
+    "Japanese",
+    "Russian",
+    "Thai",
+    "Filipino",
+    "Greek",
+    "Italian",
+    "Mexican",
+    "Spanish",
+    "Korean",
+    "Cajun",
+  ];
+  let list4 = [
+    "Regular",
+    "Keto Friendly",
+    "Gluten-Free",
+    "Low Carb",
+    "Low Calorie",
+    "Low Cholesterol",
+    "Low Sodium",
+    "Low Fat",
+    "Vegan",
+    "Vegetarian",
+  ];
+  let list5 = [
+    "Baking",
+    "Frying",
+    "Roasting",
+    "Grilling",
+    "Steaming",
+    "Boiling",
+  ];
+
   let filtered = [];
   const handlefilter = async (event) => {
     let key = event.target.value;
@@ -76,19 +115,9 @@ const Recipespage = () => {
     setRecipeslist(uniqueRecipes);
   };
 
-  const [comSchExpand, setcomExpand] = useState(false);
-  const handleSchExpand = () => {
-    setcomExpand(!comSchExpand);
-  };
-
-  const [keyExpand, setkeyExpand] = useState(false);
-  const handlekeyExpand = () => {
-    setkeyExpand(!keyExpand);
-  };
-
-  const [ingExpand, setIngExpand] = useState(false);
-  const handleIngExpand = () => {
-    setIngExpand(!ingExpand);
+  const [advFilter, setadvFilter] = useState(false);
+  const handleadvFilterExpand = () => {
+    setadvFilter(!advFilter);
   };
 
   const [recSearchKey, setrecSearchkey] = useState("");
@@ -127,13 +156,27 @@ const Recipespage = () => {
     setRecipeslist(keyFilter(recSearchKey));
   };
 
+  const [yesIng, setYesIng] = useState("");
+  const [noIng, setNoIng] = useState("");
+  const [listYesIng, setListYes] = useState([]);
+  const [listNoIng, setListNo] = useState([]);
+
+  const handleYesIng = () => {
+    listYesIng.push(yesIng);
+    setListYes(listYesIng);
+  };
+  const handleNoIng = () => {
+    listNoIng.push(noIng);
+    setListNo(listNoIng);
+  };
+
   const truncate = (str) => {
-    return str ? str.substring(0, 50) + "..." : str;
+    return str ? str.substring(0, 75) + "..." : str;
   };
 
   const breakpoints = {
     default: 4,
-    700: 1,
+    700: 2,
   };
 
   if (loading) {
@@ -149,480 +192,282 @@ const Recipespage = () => {
           justifyContent: "center",
         }}
       >
-        <Grid item sx={{ mb: 4.5, opacity: 1 }}>
-          <Image
-            width="100%"
-            cloudName="du119g90a"
-            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642124879/headerimage1_abzfej.jpg"
-          ></Image>
-        </Grid>
+        <Image
+          width="100%"
+          cloudName="du119g90a"
+          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642124879/headerimage1_abzfej.jpg"
+        ></Image>
       </Box>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Grid item sx={{ background: "#DDF5FF", pb: 1.5 }}>
         <Grid
           item
-          md={9}
           sx={{
             display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            pt: 1.5,
           }}
         >
           <Grid
             item
-            md={3.25}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              pt: 1,
+              pb: 1,
+            }}
+          >
+            <TextField
+              onChange={(event) => setrecSearchkey(event.target.value)}
+              sx={{ ml: 1, mr: 1, background: "white" }}
+            />
+            <Button
+              variant="contained"
+              onClick={keySearch}
+              sx={{ ml: 1, mr: 1 }}
+            >
+              Search
+            </Button>
+          </Grid>
+          <Grid
+            item
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              pt: 1,
+              pb: 1,
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={handleShowAll}
+              sx={{ ml: 1, mr: 1 }}
+            >
+              Show All
+            </Button>
+
+            <Button
+              variant="contained"
+              onClick={handleadvFilterExpand}
+              sx={{ ml: 1, mr: 1 }}
+            >
+              Advance search
+            </Button>
+          </Grid>
+        </Grid>
+
+        <Collapse in={advFilter}>
+          <Grid
+            item
             sx={{
               display: "flex",
               justifyContent: "center",
-              position: "relative",
             }}
           >
-            <Card
-              square
-              elevation={3}
+            <Grid
+              item
+              md={10.5}
               sx={{
-                p: 2,
                 display: "flex",
-                flexDirection: "column",
-                position: "fixed",
-                marginTop: "auto",
-                m: 1.4,
-                width: "17%",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
               }}
             >
               <Grid
                 item
+                xs={12}
+                md={5.5}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  p: 1.5,
+                }}
+              >
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  {list1.map((item) => (
+                    <Button
+                      variant="contained"
+                      value={item}
+                      onClick={handlefilter}
+                      sx={{ m: 0.35, p: 0.45 }}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </Grid>
+                <br />
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  {list2.map((item) => (
+                    <Button
+                      variant="contained"
+                      value={item}
+                      onClick={handlefilter}
+                      sx={{ m: 0.35, p: 0.45 }}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </Grid>
+                <br />
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  {list3.map((item) => (
+                    <Button
+                      variant="contained"
+                      value={item}
+                      onClick={handlefilter}
+                      sx={{ m: 0.35, p: 0.45 }}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </Grid>
+                <br />
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  {list4.map((item) => (
+                    <Button
+                      variant="contained"
+                      value={item}
+                      onClick={handlefilter}
+                      sx={{ m: 0.35, p: 0.45 }}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </Grid>
+                <br />
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  {list5.map((item) => (
+                    <Button
+                      variant="contained"
+                      value={item}
+                      onClick={handlefilter}
+                      sx={{ m: 0.35, p: 0.45 }}
+                    >
+                      {item}
+                    </Button>
+                  ))}
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={5.5}
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "space-around",
+                  flexWrap: "wrap",
+                  p: 1.5,
                 }}
               >
-                <Typography sx={{ fontSize: 30, p: 1 }}>
-                  <p>Filter</p>
-                </Typography>
-                <Button variant="contained" onClick={handleShowAll}>
-                  Show All
-                </Button>
-              </Grid>
-              <hr
-                style={{
-                  borderStyle: "solid",
-                  borderWidth: 2.5,
-                  borderRadius: 10,
-                  marginTop: 24,
-                  marginBottom: 20,
-                  width: "85%",
-                }}
-              />
-              <Grid
-                item
-                sx={{ mt: 0.5, mb: 0.5, maxHeight: 550, overflowY: "auto" }}
-              >
-                <Grid>
-                  <Grid>
-                    <Typography
-                      onClick={handleSchExpand}
-                      sx={{ fontSize: 20, p: 1 }}
-                    >
-                      <p>Common Search</p>
-                    </Typography>
-                  </Grid>
-                  <Collapse in={comSchExpand}>
-                    <Grid item sx={{ p: 1 }}>
-                      <Grid>
-                        <Button
-                          variant="contained"
-                          value="Drinks"
-                          onClick={handlefilter}
-                        >
-                          Drinks
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Appetizer"
-                          onClick={handlefilter}
-                        >
-                          Appetizers
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Entree"
-                          onClick={handlefilter}
-                        >
-                          Entrees
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Dessert"
-                          onClick={handlefilter}
-                        >
-                          Desserts
-                        </Button>
-                      </Grid>
-                      <br />
-                      <Grid>
-                        <Button
-                          variant="contained"
-                          value="Breakfast"
-                          onClick={handlefilter}
-                        >
-                          Breakfast
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Brunch"
-                          onClick={handlefilter}
-                        >
-                          Brunch
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Lunch"
-                          onClick={handlefilter}
-                        >
-                          Lunch
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Dinner"
-                          onClick={handlefilter}
-                        >
-                          Dinner
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Snack"
-                          onClick={handlefilter}
-                        >
-                          Snack
-                        </Button>
-                      </Grid>
-                      <br />
-                      <Grid>
-                        <Button
-                          variant="contained"
-                          value="Homemade"
-                          onClick={handlefilter}
-                        >
-                          Homemade
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Chinese"
-                          onClick={handlefilter}
-                        >
-                          Chinese
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="American"
-                          onClick={handlefilter}
-                        >
-                          American
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="German"
-                          onClick={handlefilter}
-                        >
-                          German
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Indian"
-                          onClick={handlefilter}
-                        >
-                          Indian
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Japanese"
-                          onClick={handlefilter}
-                        >
-                          Japanese
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Russian"
-                          onClick={handlefilter}
-                        >
-                          Russian
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Thai"
-                          onClick={handlefilter}
-                        >
-                          Thai
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Filipino"
-                          onClick={handlefilter}
-                        >
-                          Filipino
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Greek"
-                          onClick={handlefilter}
-                        >
-                          Greek
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Italian"
-                          onClick={handlefilter}
-                        >
-                          Italian
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Mexican"
-                          onClick={handlefilter}
-                        >
-                          Mexican
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Spanish"
-                          onClick={handlefilter}
-                        >
-                          Spanish
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Korean"
-                          onClick={handlefilter}
-                        >
-                          Korean
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Cajun"
-                          onClick={handlefilter}
-                        >
-                          Cajun
-                        </Button>
-                      </Grid>
-                      <br />
-                      <Grid>
-                        <Button
-                          variant="contained"
-                          value="Regular"
-                          onClick={handlefilter}
-                        >
-                          Regular
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Keto Friendly"
-                          onClick={handlefilter}
-                        >
-                          Keto Friendly
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Gluten-Free"
-                          onClick={handlefilter}
-                        >
-                          Gluten-Free
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Low Carb"
-                          onClick={handlefilter}
-                        >
-                          Low Carb
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Low Calorie"
-                          onClick={handlefilter}
-                        >
-                          Low Calorie
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Low Cholesterol"
-                          onClick={handlefilter}
-                        >
-                          Low Cholesterol
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Low Sodium"
-                          onClick={handlefilter}
-                        >
-                          Low Sodium
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Low Fat"
-                          onClick={handlefilter}
-                        >
-                          Low Fat
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Vegan"
-                          onClick={handlefilter}
-                        >
-                          Vegan
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Vegetarian"
-                          onClick={handlefilter}
-                        >
-                          Vegetarian
-                        </Button>
-                      </Grid>
-                      <br />
-                      <Grid>
-                        <Button
-                          variant="contained"
-                          value="Baking"
-                          onClick={handlefilter}
-                        >
-                          Baking
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Frying"
-                          onClick={handlefilter}
-                        >
-                          Frying
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Roasting"
-                          onClick={handlefilter}
-                        >
-                          Roasting
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Grilling"
-                          onClick={handlefilter}
-                        >
-                          Grilling
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Steaming"
-                          onClick={handlefilter}
-                        >
-                          Steaming
-                        </Button>
-                        <Button
-                          variant="contained"
-                          value="Boiling"
-                          onClick={handlefilter}
-                        >
-                          Boiling
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Collapse>
-                </Grid>
-                <hr
-                  style={{
-                    borderStyle: "solid",
-                    borderWidth: 1.75,
-                    borderRadius: 11,
-                    marginTop: 5,
-                    marginBottom: 20,
-                    width: "65%",
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
                   }}
-                />
-                <Grid item sx={{ mt: 0.5, mb: 0.5 }}>
+                >
                   <Grid>
-                    <Typography
-                      onClick={handlekeyExpand}
-                      sx={{ fontSize: 20, p: 1 }}
-                    >
-                      <p>Search by Keyword</p>
-                    </Typography>
-                  </Grid>
-                  <Collapse in={keyExpand}>
-                    <Grid sx={{ p: 1, display: "flex" }}>
-                      <TextField
-                        onChange={(event) => {
-                          setrecSearchkey(event.target.value);
-                        }}
-                      />
-                      <Button onClick={keySearch}>Search</Button>
+                    <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                      <TextField onChange={(e) => setYesIng(e.target.value)} />
+                      <Button variant="contained" onClick={handleYesIng}>
+                        +
+                      </Button>
                     </Grid>
-                  </Collapse>
-                </Grid>
-                <hr
-                  style={{
-                    borderStyle: "solid",
-                    borderWidth: 1.75,
-                    borderRadius: 11,
-                    marginTop: 5,
-                    marginBottom: 20,
-                    width: "65%",
-                  }}
-                />
-                <Grid item sx={{ mt: 0.5, mb: 0.5 }}>
+                  </Grid>
                   <Grid>
-                    <Typography
-                      onClick={handleIngExpand}
-                      sx={{ fontSize: 20, p: 1 }}
-                    >
-                      <p>Ingredients</p>
-                    </Typography>
-                  </Grid>
-                  <Collapse in={ingExpand}>
-                    <Grid
-                      item
-                      sx={{ display: "flex", justifyContent: "space-evenly" }}
-                    >
-                      <Grid
-                        sx={{ p: 1, display: "flex", flexDirection: "column" }}
-                      >
-                        <Grid
-                          item
-                          sx={{ display: "flex", flexDirection: "row" }}
-                        >
-                          <TextField />
-                          <Button variant="outlined">+</Button>
-                        </Grid>
-                        <br />
-                        <Grid
-                          item
-                          sx={{ display: "flex", flexDirection: "row" }}
-                        >
-                          <TextField />
-                          <Button variant="outlined">+</Button>
-                        </Grid>
-                      </Grid>
-                      <Grid sx={{ p: 1, display: "flex" }}>
-                        <Button variant="outlined">Search</Button>
-                      </Grid>
+                    <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                      <TextField onChange={(e) => setNoIng(e.target.value)} />
+                      <Button variant="contained" onClick={handleNoIng}>
+                        -
+                      </Button>
                     </Grid>
-                  </Collapse>
+                  </Grid>
                 </Grid>
-                <hr
-                  style={{
-                    borderStyle: "solid",
-                    borderWidth: 1.75,
-                    borderRadius: 11,
-                    marginTop: 4,
-                    marginBottom: 20,
-                    width: "65%",
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
                   }}
-                />
+                >
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Grid>Recipes with these Ingredients: </Grid>
+                    <Grid item sx={{ display: "flex" }}>
+                      {listYesIng.map((yes) => (
+                        <p>{yes}</p>
+                      ))}
+                    </Grid>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Grid>Recipes without these Ingredients:</Grid>
+                    <Grid>
+                      {listNoIng.map((no) => (
+                        <p>{no}</p>
+                      ))}
+                    </Grid>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+                    <Button variant="contained">Search</Button>
+                  </Grid>
+                </Grid>
               </Grid>
-
-              <Grid>
-                <Button onClick={keyFilter}>Search</Button>
-              </Grid>
-            </Card>
+            </Grid>
           </Grid>
+        </Collapse>
+      </Grid>
 
-          <Grid item md={8.75}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid
+          item
+          md={10.5}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Grid item md={9}>
             <Masonry
               breakpointCols={breakpoints}
               className="my-masonry-grid"
@@ -672,45 +517,54 @@ const Recipespage = () => {
                             )}
                           </CardMedia>
                         </Grid>
-                        <Grid
-                          item
-                          sx={{ display: "flex", flexDirection: "column" }}
-                        >
+                        <Grid item>
                           <CardHeader
                             titleTypographyProps={{
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: "bold",
                             }}
-                            subheaderTypographyProps={{
-                              fontSize: 15,
-                            }}
-                            sx={{
-                              p: 1.25,
-                              height: 60,
-                              alignItems: "center",
-                            }}
                             title={recipe.title}
-                            subheader={recipe.createdAt}
+                            sx={{
+                              height: 50,
+                              p: 1,
+                              pl: 1.25,
+                              pr: 1.25,
+                              alignItems: "flex-start",
+                            }}
                           />
-                          <CardContent sx={{ p: 1.25 }}>
-                            <Typography sx={{ fontSize: 15, height: 60 }}>
-                              Description:
-                              {" " + truncate(recipe.description)}
-                            </Typography>
-                            <Typography sx={{ fontSize: 16 }}>
-                              Cuisine: {recipe.cuisine}
-                            </Typography>
-                            <Typography sx={{ fontSize: 16 }}>
-                              Servings: {recipe.servings}
-                            </Typography>
-                            <Typography sx={{ fontSize: 16 }}>
-                              Total Time: {recipe.totalTime}
-                            </Typography>
+                          <CardContent
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              p: 1,
+                              pl: 1.25,
+                              pr: 1.25,
+                            }}
+                          >
+                            <Grid item sx={{ display: "flex", height: 95 }}>
+                              <Typography sx={{ fontSize: 15 }}>
+                                {truncate(recipe.description)}
+                              </Typography>
+                            </Grid>
+                            <br />
+                            <Grid>
+                              <Typography sx={{ fontSize: 16 }}>
+                                Cuisine: {recipe.cuisine}
+                              </Typography>
+                              <Typography sx={{ fontSize: 16 }}>
+                                Servings: {recipe.servings}
+                              </Typography>
+                              <Typography sx={{ fontSize: 16 }}>
+                                Total Time: {recipe.totalTime}
+                              </Typography>
+                            </Grid>
                           </CardContent>
                         </Grid>
                       </Grid>
                     </Link>
-                    <Link to={`/update/${recipe._id}`}>Update</Link>
+                    {/* <Grid>
+                      <Link to={`/update/${recipe._id}`}>update</Link>
+                    </Grid> */}
                   </Card>
                 </Grid>
               ))}
