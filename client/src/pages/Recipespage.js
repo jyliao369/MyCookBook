@@ -49,7 +49,7 @@ const Recipespage = () => {
     }
   }
 
-  const [recipeslist, setRecipeslist] = useState(recipes);
+  const [recipeslist, setRecipeslist] = useState(uniqueRecipes);
 
   useEffect(() => {
     setRecipeslist(uniqueRecipes);
@@ -97,7 +97,7 @@ const Recipespage = () => {
 
   let filtered = [];
   const handlefilter = async (event) => {
-    let key = event.target.value;
+    let key = await event.target.value;
     console.log(key);
     filtered = uniqueRecipes.filter(
       (recipe) =>
@@ -156,22 +156,23 @@ const Recipespage = () => {
     setRecipeslist(keyFilter(recSearchKey));
   };
 
-  const [yesIng, setYesIng] = useState("");
-  const [noIng, setNoIng] = useState("");
-  const [listYesIng, setListYes] = useState([]);
-  const [listNoIng, setListNo] = useState([]);
-
-  const handleYesIng = () => {
-    listYesIng.push(yesIng);
-    setListYes(listYesIng);
+  const [yesIng, setYesIng] = useState(" ");
+  let yesList = [""];
+  const addYes = () => {
+    yesList.push(yesIng);
   };
-  const handleNoIng = () => {
-    listNoIng.push(noIng);
-    setListNo(listNoIng);
-  };
+  console.log("hello");
+  console.log(yesList);
 
-  const truncate = (str) => {
-    return str ? str.substring(0, 75) + "..." : str;
+  const short = (string) => {
+    // console.log(string);
+    // return string.substring(0, 60);
+
+    let array = string.split(" ");
+    // console.log(array);
+    let joined = array.slice(0, 15).join(" ");
+    // console.log(joined + "...");
+    return joined + "...";
   };
 
   const breakpoints = {
@@ -297,6 +298,7 @@ const Recipespage = () => {
                 >
                   {list1.map((item) => (
                     <Button
+                      key={item}
                       variant="contained"
                       value={item}
                       onClick={handlefilter}
@@ -317,6 +319,7 @@ const Recipespage = () => {
                 >
                   {list2.map((item) => (
                     <Button
+                      key={item}
                       variant="contained"
                       value={item}
                       onClick={handlefilter}
@@ -337,6 +340,7 @@ const Recipespage = () => {
                 >
                   {list3.map((item) => (
                     <Button
+                      key={item}
                       variant="contained"
                       value={item}
                       onClick={handlefilter}
@@ -357,6 +361,7 @@ const Recipespage = () => {
                 >
                   {list4.map((item) => (
                     <Button
+                      key={item}
                       variant="contained"
                       value={item}
                       onClick={handlefilter}
@@ -377,6 +382,7 @@ const Recipespage = () => {
                 >
                   {list5.map((item) => (
                     <Button
+                      key={item}
                       variant="contained"
                       value={item}
                       onClick={handlefilter}
@@ -407,50 +413,30 @@ const Recipespage = () => {
                     justifyContent: "space-around",
                   }}
                 >
-                  <Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Grid>Recipes with these Ingredients: </Grid>
                     <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                      <TextField onChange={(e) => setYesIng(e.target.value)} />
-                      <Button variant="contained" onClick={handleYesIng}>
+                      <TextField
+                        onChange={(event) => setYesIng(event.target.value)}
+                      />
+                      <Button variant="contained" onClick={addYes}>
                         +
                       </Button>
                     </Grid>
-                  </Grid>
-                  <Grid>
-                    <Grid item sx={{ display: "flex", flexDirection: "row" }}>
-                      <TextField onChange={(e) => setNoIng(e.target.value)} />
-                      <Button variant="contained" onClick={handleNoIng}>
-                        -
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-around",
-                  }}
-                >
-                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                    <Grid>Recipes with these Ingredients: </Grid>
                     <Grid item sx={{ display: "flex" }}>
-                      {listYesIng.map((yes) => (
-                        <p>{yes}</p>
-                      ))}
+                      {}
                     </Grid>
                   </Grid>
                   <Grid item sx={{ display: "flex", flexDirection: "column" }}>
                     <Grid>Recipes without these Ingredients:</Grid>
-                    <Grid>
-                      {listNoIng.map((no) => (
-                        <p>{no}</p>
-                      ))}
+                    <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                      <TextField />
+                      <Button variant="contained">-</Button>
                     </Grid>
                   </Grid>
-                  <Grid item sx={{ display: "flex", justifyContent: "center" }}>
-                    <Button variant="contained">Search</Button>
-                  </Grid>
+                </Grid>
+                <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+                  <Button variant="contained">Search</Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -517,7 +503,10 @@ const Recipespage = () => {
                             )}
                           </CardMedia>
                         </Grid>
-                        <Grid item>
+                        <Grid
+                          item
+                          sx={{ display: "flex", flexDirection: "column" }}
+                        >
                           <CardHeader
                             titleTypographyProps={{
                               fontSize: 15,
@@ -525,7 +514,7 @@ const Recipespage = () => {
                             }}
                             title={recipe.title}
                             sx={{
-                              height: 50,
+                              height: 40,
                               p: 1,
                               pl: 1.25,
                               pr: 1.25,
@@ -536,28 +525,35 @@ const Recipespage = () => {
                             sx={{
                               display: "flex",
                               flexDirection: "column",
+                              justifyContent: "space-between",
+                              height: 135,
                               p: 1,
                               pl: 1.25,
                               pr: 1.25,
                             }}
                           >
-                            <Grid item sx={{ display: "flex", height: 95 }}>
-                              <Typography sx={{ fontSize: 15 }}>
-                                {truncate(recipe.description)}
-                              </Typography>
-                            </Grid>
-                            <br />
-                            <Grid>
-                              <Typography sx={{ fontSize: 16 }}>
-                                Cuisine: {recipe.cuisine}
-                              </Typography>
-                              <Typography sx={{ fontSize: 16 }}>
-                                Servings: {recipe.servings}
-                              </Typography>
-                              <Typography sx={{ fontSize: 16 }}>
-                                Total Time: {recipe.totalTime}
-                              </Typography>
-                            </Grid>
+                            <Typography sx={{ fontSize: 15 }}>
+                              {short(recipe.description)}
+                            </Typography>
+                          </CardContent>
+                          <CardContent
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              p: 1,
+                              pl: 1.25,
+                              pr: 1.25,
+                            }}
+                          >
+                            <Typography sx={{ fontSize: 16 }}>
+                              Cuisine: {recipe.cuisine}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }}>
+                              Servings: {recipe.servings}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }}>
+                              Total Time: {recipe.totalTime}
+                            </Typography>
                           </CardContent>
                         </Grid>
                       </Grid>

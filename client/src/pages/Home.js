@@ -98,9 +98,10 @@ const Home = () => {
   const truncate = (str) => {
     let array = str.split(" ");
     let description = "";
+    let deslength = 14;
 
-    for (let a = 0; a < 14; a++) {
-      if (a === 13) {
+    for (let a = 0; a < deslength; a++) {
+      if (a === deslength - 1) {
         description = description + array[a] + "...";
       } else {
         description = description + array[a] + " ";

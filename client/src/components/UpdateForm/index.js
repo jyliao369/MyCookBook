@@ -141,315 +141,285 @@ const UpdateForm = (props) => {
     <Box>
       <br />
       <br />
-      <Box sx={{ display: "flex", justifyContent: "center", m: 1.5 }}>
-        <Grid item xs={12} md={10}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid item md={10}>
           <Paper
-            square
-            sx={{ display: "flex", flexDirection: "column", p: 2 }}
-            elevation={5}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap-reverse",
+              p: 2.5,
+            }}
           >
-            <Grid item sx={{ display: "flex" }}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
               <Grid
                 item
-                md={5.5}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between",
+                  alignItems: "center",
                   p: 2,
                 }}
               >
                 <Grid
                   item
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
+                  md={3.4}
+                  sx={{ display: "flex", justifyContent: "center", p: 2 }}
                 >
-                  <Grid
-                    item
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "space-evenly",
-                    }}
-                  >
-                    <Grid
-                      item
-                      md={7}
-                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
-                    >
-                      {imageUpdate ? (
-                        <Image
-                          width="100%"
-                          cloudName="du119g90a"
-                          public_id={updatedRecipe.imageid}
-                        />
-                      ) : (
-                        <Image
-                          width="100%"
-                          cloudName="du119g90a"
-                          public_id={props.recipe.imageid}
-                        />
-                      )}
-                    </Grid>
-                    <Grid
-                      item
-                      sx={{ display: "flex", justifyContent: "center", p: 2 }}
-                    >
-                      <input
-                        title=" "
-                        type="file"
-                        onChange={(event) => {
-                          uploadImage(event.target.files[0]);
-                          setImageUpdate(event.target.files[0]);
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
+                  {imageUpdate ? (
+                    <Image
+                      width="100%"
+                      cloudName="du119g90a"
+                      public_id={updatedRecipe.imageid}
+                    />
+                  ) : (
+                    <Image
+                      width="100%"
+                      cloudName="du119g90a"
+                      public_id={props.recipe.imageid}
+                    />
+                  )}
                 </Grid>
-
-                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-                  <Grid
-                    item
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      justifyContent: "space-evenly",
+                <Grid
+                  item
+                  sx={{ display: "flex", justifyContent: "center", p: 2 }}
+                >
+                  <input
+                    title=" "
+                    type="file"
+                    onChange={(event) => {
+                      uploadImage(event.target.files[0]);
+                      setImageUpdate(event.target.files[0]);
                     }}
-                  >
-                    <TextField
-                      select
-                      label="Category"
-                      sx={{ width: 250, m: 1 }}
-                      name="category"
-                      onChange={handleUpdate}
-                      placeholder="Category"
-                      defaultValue={props.recipe.category}
-                    >
-                      <MenuItem value="Drinks">Drinks</MenuItem>
-                      <MenuItem value="Appetizer">Appetizer</MenuItem>
-                      <MenuItem value="Entree">Entree</MenuItem>
-                      <MenuItem value="Dessert">Dessert</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
-                      label="Meal of the Day"
-                      sx={{ width: 250, m: 1 }}
-                      name="mealofday"
-                      onChange={handleUpdate}
-                      placeholder="Meal of the Day"
-                      defaultValue={props.recipe.mealofday}
-                    >
-                      <MenuItem value="Breakfast">Breakfast</MenuItem>
-                      <MenuItem value="Brunch">Brunch</MenuItem>
-                      <MenuItem value="Lunch">Lunch</MenuItem>
-                      <MenuItem value="Dinner">Dinner</MenuItem>
-                      <MenuItem value="Snack">Snack</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
-                      label="Diet Type"
-                      sx={{ width: 250, m: 1 }}
-                      name="diettype"
-                      onChange={handleUpdate}
-                      placeholder="Diet Type"
-                      defaultValue={props.recipe.diettype}
-                    >
-                      <MenuItem value="Regular">Regular</MenuItem>
-                      <MenuItem value="Keto Friendly">Keto Friendly</MenuItem>
-                      <MenuItem value="Gluten-Free">Gluten-Free</MenuItem>
-                      <MenuItem value="Low Carb">Low Carb</MenuItem>
-                      <MenuItem value="Low Calorie">Low Calorie</MenuItem>
-                      <MenuItem value="Low Cholesterol">
-                        Low Cholesterol
-                      </MenuItem>
-                      <MenuItem value="Low Sodium">Low Sodium</MenuItem>
-                      <MenuItem value="Low Fat">Low Fat</MenuItem>
-                      <MenuItem value="Vegan">Vegan</MenuItem>
-                      <MenuItem value="Vegetarian">Vegetarian</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
-                      label="Cuisine"
-                      sx={{ width: 250, m: 1 }}
-                      name="cuisine"
-                      onChange={handleUpdate}
-                      placeholder="Cuisine"
-                      defaultValue={props.recipe.cuisine}
-                    >
-                      <MenuItem value="Homemade">Homemade</MenuItem>
-                      <MenuItem value="Chinese">Chinese</MenuItem>
-                      <MenuItem value="American">American</MenuItem>
-                      <MenuItem value="German">German</MenuItem>
-                      <MenuItem value="Indian">Indian</MenuItem>
-                      <MenuItem value="Japanese">Japanese</MenuItem>
-                      <MenuItem value="Russian">Russian</MenuItem>
-                      <MenuItem value="Thai">Thai</MenuItem>
-                      <MenuItem value="Filipino">Filipino</MenuItem>
-                      <MenuItem value="Greek">Greek</MenuItem>
-                      <MenuItem value="Italian">Italian</MenuItem>
-                      <MenuItem value="Mexican">Mexican</MenuItem>
-                      <MenuItem value="Spanish">Spanish</MenuItem>
-                      <MenuItem value="Korean">Korean</MenuItem>
-                      <MenuItem value="Cajun">Cajun</MenuItem>
-                    </TextField>
-                    <TextField
-                      select
-                      label="Cooking Style"
-                      sx={{ width: 250, m: 1 }}
-                      name="cookstyle"
-                      onChange={handleUpdate}
-                      placeholder="Cooking Style"
-                      defaultValue={props.recipe.cookstyle}
-                    >
-                      <MenuItem value="Baking">Baking</MenuItem>
-                      <MenuItem value="Frying">Frying</MenuItem>
-                      <MenuItem value="Roasting">Roasting</MenuItem>
-                      <MenuItem value="Stir-Fry">Stir-Fry</MenuItem>
-                      <MenuItem value="Grilling">Grilling</MenuItem>
-                      <MenuItem value="Steaming">Steaming</MenuItem>
-                      <MenuItem value="Boiling">Boiling</MenuItem>
-                    </TextField>
-                  </Grid>
-                  <Grid
-                    item
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      justifyContent: "space-evenly",
-                    }}
-                  >
-                    <TextField
-                      label="Prep Time (mins)"
-                      sx={{ width: 250, m: 1 }}
-                      name="prepTime"
-                      onChange={handleUpdate}
-                      defaultValue={props.recipe.prepTime}
-                    />
-                    <TextField
-                      label="Cook Time (mins)"
-                      sx={{ width: 250, m: 1 }}
-                      name="cookTime"
-                      onChange={handleUpdate}
-                      defaultValue={props.recipe.cookTime}
-                    />
-                    <TextField
-                      label="Servings"
-                      sx={{ width: 250, m: 1 }}
-                      name="servings"
-                      onChange={handleUpdate}
-                      defaultValue={props.recipe.servings}
-                    />
-                    <TextField
-                      label="Recipe Yield"
-                      sx={{ width: 250, m: 1 }}
-                      name="yield"
-                      onChange={handleUpdate}
-                      defaultValue={props.recipe.yield}
-                    />
-                  </Grid>
-                  <br />
-                  <Grid
-                    item
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <TextField
-                      select
-                      md={12}
-                      label="Public Recipe"
-                      sx={{ width: 500, m: 1 }}
-                      name="publicRecipe"
-                      onChange={handleUpdate}
-                      defaultValue={props.recipe.publicRecipe}
-                    >
-                      <MenuItem value="public">Public</MenuItem>
-                      <MenuItem value="private">Private</MenuItem>
-                    </TextField>
-                    <Grid>
-                      This recipe is set as "{props.recipe.publicRecipe}" right
-                      now.
-                    </Grid>
-                  </Grid>
-                  <br />
+                  />
                 </Grid>
               </Grid>
-
-              <Grid
-                item
-                md={6.5}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  p: 2,
-                }}
-              >
-                <TextField
-                  label="Recipe Name"
-                  sx={{ m: 1 }}
-                  name="title"
-                  onChange={handleUpdate}
-                  placeholder="Recipe Name"
-                  defaultValue={props.recipe.title}
-                />
-                <TextField
-                  label="Description"
-                  sx={{ m: 1 }}
-                  multiline
-                  rows={7}
-                  name="description"
-                  onChange={handleUpdate}
-                  defaultValue={props.recipe.description}
-                />
-                <TextField
-                  label="Ingredients"
-                  sx={{ m: 1 }}
-                  multiline
-                  rows={7}
-                  name="ingredients"
-                  onChange={handleUpdate}
-                  defaultValue={ingredientList}
-                />
-                <TextField
-                  label="Directions"
-                  sx={{ m: 1 }}
-                  multiline
-                  rows={7}
-                  name="directions"
-                  onChange={handleUpdate}
-                  defaultValue={directionList}
-                />
-                <TextField
-                  label="Additional Notes"
-                  sx={{ m: 1 }}
-                  multiline
-                  rows={5}
-                  name="notes"
-                  onChange={handleUpdate}
-                />
+              <Grid item>
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    fullWidth
+                    label="Prep Time (mins)"
+                    name="prepTime"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.prepTime}
+                    sx={{ m: 1.5 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Cook Time (mins)"
+                    name="cookTime"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.cookTime}
+                    sx={{ m: 1.5 }}
+                  />
+                </Grid>
+                <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    fullWidth
+                    label="Servings"
+                    name="servings"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.servings}
+                    sx={{ m: 1.5 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Recipe Yield"
+                    name="yield"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.yield}
+                    sx={{ m: 1.5 }}
+                  />
+                </Grid>
+                <br />
+                <Grid item sx={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Category"
+                    name="category"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.category}
+                    placeholder="Category"
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="Drinks">Drinks</MenuItem>
+                    <MenuItem value="Appetizer">Appetizer</MenuItem>
+                    <MenuItem value="Entree">Entree</MenuItem>
+                    <MenuItem value="Dessert">Dessert</MenuItem>
+                  </TextField>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Meal of the Day"
+                    name="mealofday"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.mealofday}
+                    placeholder="Meal of the Day"
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="Breakfast">Breakfast</MenuItem>
+                    <MenuItem value="Brunch">Brunch</MenuItem>
+                    <MenuItem value="Lunch">Lunch</MenuItem>
+                    <MenuItem value="Dinner">Dinner</MenuItem>
+                    <MenuItem value="Snack">Snack</MenuItem>
+                  </TextField>
+                </Grid>
+                <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Diet Type"
+                    name="diettype"
+                    onChange={handleUpdate}
+                    placeholder="Diet Type"
+                    defaultValue={props.recipe.diettype}
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="Regular">Regular</MenuItem>
+                    <MenuItem value="Keto Friendly">Keto Friendly</MenuItem>
+                    <MenuItem value="Gluten-Free">Gluten-Free</MenuItem>
+                    <MenuItem value="Low Carb">Low Carb</MenuItem>
+                    <MenuItem value="Low Calorie">Low Calorie</MenuItem>
+                    <MenuItem value="Low Cholesterol">Low Cholesterol</MenuItem>
+                    <MenuItem value="Low Sodium">Low Sodium</MenuItem>
+                    <MenuItem value="Low Fat">Low Fat</MenuItem>
+                    <MenuItem value="Vegan">Vegan</MenuItem>
+                    <MenuItem value="Vegetarian">Vegetarian</MenuItem>
+                  </TextField>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Cuisine"
+                    name="cuisine"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.cuisine}
+                    placeholder="Cuisine"
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="Homemade">Homemade</MenuItem>
+                    <MenuItem value="Chinese">Chinese</MenuItem>
+                    <MenuItem value="American">American</MenuItem>
+                    <MenuItem value="German">German</MenuItem>
+                    <MenuItem value="Indian">Indian</MenuItem>
+                    <MenuItem value="Japanese">Japanese</MenuItem>
+                    <MenuItem value="Russian">Russian</MenuItem>
+                    <MenuItem value="Thai">Thai</MenuItem>
+                    <MenuItem value="Filipino">Filipino</MenuItem>
+                    <MenuItem value="Greek">Greek</MenuItem>
+                    <MenuItem value="Italian">Italian</MenuItem>
+                    <MenuItem value="Mexican">Mexican</MenuItem>
+                    <MenuItem value="Spanish">Spanish</MenuItem>
+                    <MenuItem value="Korean">Korean</MenuItem>
+                    <MenuItem value="Cajun">Cajun</MenuItem>
+                  </TextField>
+                </Grid>
+                <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Cooking Style"
+                    name="cookstyle"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.cookstyle}
+                    placeholder="Cooking Style"
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="Baking">Baking</MenuItem>
+                    <MenuItem value="Frying">Frying</MenuItem>
+                    <MenuItem value="Roasting">Roasting</MenuItem>
+                    <MenuItem value="Stir-Fry">Stir-Fry</MenuItem>
+                    <MenuItem value="Grilling">Grilling</MenuItem>
+                    <MenuItem value="Steaming">Steaming</MenuItem>
+                    <MenuItem value="Boiling">Boiling</MenuItem>
+                  </TextField>
+                  <TextField
+                    fullWidth
+                    select
+                    md={12}
+                    label="Public Recipe"
+                    name="publicRecipe"
+                    onChange={handleUpdate}
+                    defaultValue={props.recipe.publicRecipe}
+                    sx={{ m: 1.5 }}
+                  >
+                    <MenuItem value="public">Public</MenuItem>
+                    <MenuItem value="private">Private</MenuItem>
+                  </TextField>
+                </Grid>
+                <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+                  <Button onClick={handleSubmit} type="submit">
+                    Update Recipe
+                  </Button>
+                  <Button>
+                    <Link to="/myprofile">Cancel</Link>
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
             <Grid
+              item
+              xs={12}
+              md={6}
               sx={{
                 display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
               }}
             >
-              <Grid>
-                <Button onClick={handleSubmit} type="submit">
-                  <p>Update Recipe</p>
-                </Button>
-                <Button>
-                  <Link to="/myprofile">Cancel</Link>
-                </Button>
-              </Grid>
+              <TextField
+                label="Recipe Name"
+                sx={{ m: 1 }}
+                name="title"
+                onChange={handleUpdate}
+                placeholder="Recipe Name"
+                defaultValue={props.recipe.title}
+              />
+              <TextField
+                label="Description"
+                sx={{ m: 1 }}
+                multiline
+                rows={5}
+                name="description"
+                onChange={handleUpdate}
+                defaultValue={props.recipe.description}
+              />
+              <TextField
+                label="Ingredients"
+                sx={{ m: 1 }}
+                multiline
+                rows={8}
+                name="ingredients"
+                onChange={handleUpdate}
+                defaultValue={ingredientList}
+              />
+              <TextField
+                label="Directions"
+                sx={{ m: 1 }}
+                multiline
+                rows={8}
+                name="directions"
+                onChange={handleUpdate}
+                defaultValue={directionList}
+              />
+              <TextField
+                label="Additional Notes"
+                sx={{ m: 1 }}
+                multiline
+                rows={5}
+                name="notes"
+                onChange={handleUpdate}
+                defaultValue={props.recipe.notes}
+              />
             </Grid>
           </Paper>
         </Grid>

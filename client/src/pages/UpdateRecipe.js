@@ -12,11 +12,11 @@ import { QUERY_SINGLE_RECIPE } from "../utils/queries";
 
 import Box from "@mui/material/Box";
 // import Paper from "@mui/material/Paper";
-// import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid";
 // import TextField from "@mui/material/TextField";
 // import MenuItem from "@mui/material/MenuItem";
 
-// import { Image } from "cloudinary-react";
+import { Image } from "cloudinary-react";
 
 import UpdateForm from "../components/UpdateForm";
 
@@ -34,7 +34,14 @@ const UpdateRecipe = () => {
   }
 
   return (
-    <Box sx={{ background: "#102542", p: 1 }}>
+    <Box sx={{ background: "#102542" }}>
+      <Grid sx={{ display: "flex" }}>
+        <Image
+          width="100%"
+          cloudName="du119g90a"
+          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1642472594/Ingredients_bcmtg8.jpg"
+        />
+      </Grid>
       <Box>
         <UpdateForm recipe={recipe} />
       </Box>
