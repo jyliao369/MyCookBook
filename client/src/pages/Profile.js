@@ -199,23 +199,24 @@ const Profile = () => {
         </Button>
       </Grid>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box>
         <Grid
           item
-          md={10}
-          sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
           {userrecipe &&
             userrecipe.map((recipe) => (
-              <Grid key={recipe._id} item md={6}>
+              <Grid key={recipe._id} item md={5}>
                 <Card
                   key={recipe._id}
                   elevation={5}
                   sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    m: 1,
+                    m: 1.25,
                   }}
                 >
                   <Grid
@@ -223,104 +224,93 @@ const Profile = () => {
                     sx={{
                       display: "flex",
                       flexDirection: "row",
-                      justifyContent: "space-between",
+                      flexWrap: "wrap",
                     }}
                   >
-                    <Link to={`/recipes/${recipe._id}`}>
-                      <Grid item sx={{ display: "flex" }}>
-                        <Grid item md={4.5} sx={{ display: "flex", p: 1.25 }}>
-                          {recipe.imageid ? (
-                            <Image
-                              width="100%"
-                              cloudName="du119g90a"
-                              public_id={recipe.imageid}
-                            >
-                              <Transformation
-                                width="750"
-                                height="750"
-                                gravity="center"
-                                crop="crop"
-                              />
-                            </Image>
-                          ) : (
-                            <Image
-                              width="100%"
-                              cloudName="du119g90a"
-                              public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                            />
-                          )}
-                        </Grid>
-                        <Grid
-                          item
-                          md={9}
-                          sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                          }}
+                    <Grid item md={3.5} sx={{ display: "flex", p: 1.25 }}>
+                      {recipe.imageid ? (
+                        <Image
+                          width="100%"
+                          cloudName="du119g90a"
+                          public_id={recipe.imageid}
                         >
-                          <Grid
-                            item
-                            md={12}
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <CardHeader
-                              titleTypographyProps={{
-                                fontSize: 22,
-                              }}
-                              subheaderTypographyProps={{
-                                fontSize: 15,
-                              }}
-                              title={recipe.title}
-                              subheader={recipe.createdAt}
-                              sx={{ p: 0 }}
-                            />
-
-                            <CardContent
-                              sx={{ display: "flex", flexDirection: "row" }}
-                            >
-                              <Grid item md={6}>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Prep Time: {recipe.prepTime}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Cook Time: {recipe.cookTime}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Total Time: {recipe.totalTime}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Servings: {recipe.servings}
-                                </Typography>
-                              </Grid>
-                              <Grid item md={6}>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Category: {recipe.category}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Cuisine: {recipe.cuisine}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Diet: {recipe.diettype}
-                                </Typography>
-                                <Typography sx={{ fontSize: 18 }}>
-                                  Yield Per Serving: {recipe.yield}
-                                </Typography>
-                              </Grid>
-                            </CardContent>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Link>
+                          <Transformation
+                            width="750"
+                            height="750"
+                            gravity="center"
+                            crop="crop"
+                          />
+                        </Image>
+                      ) : (
+                        <Image
+                          width="100%"
+                          cloudName="du119g90a"
+                          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
+                        />
+                      )}
+                    </Grid>
                     <Grid
+                      item
+                      md={7.5}
                       sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "flex-start",
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <CardHeader
+                        titleTypographyProps={{
+                          fontSize: 22,
+                        }}
+                        subheaderTypographyProps={{
+                          fontSize: 15,
+                        }}
+                        title={recipe.title}
+                        subheader={recipe.createdAt}
+                      />
+
+                      <CardContent
+                        sx={{ display: "flex", flexDirection: "row" }}
+                      >
+                        <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                          <Grid item sx={{ mr: 5 }}>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Prep Time: {recipe.prepTime}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Cook Time: {recipe.cookTime}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Total Time: {recipe.totalTime}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Servings: {recipe.servings}
+                            </Typography>
+                          </Grid>
+                          <Grid>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Category: {recipe.category}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Cuisine: {recipe.cuisine}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Diet: {recipe.diettype}
+                            </Typography>
+                            <Typography sx={{ fontSize: 18 }}>
+                              Yield Per Serving: {recipe.yield}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Grid>
+                    <Grid
+                      item
+                      md={1}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        flexWrap: "wrap",
                       }}
                     >
                       <DeleteForeverOutlined
@@ -356,36 +346,26 @@ const Profile = () => {
                       ></LocalDiningOutlined>
                     </Grid>
                   </Grid>
-                  <Grid item sx={{ overflow: "auto" }}>
-                    <Collapse in={ingExpanded} timeout="auto" unmountOnExit>
-                      <Grid item sx={{ height: 225, overflow: "auto" }}>
-                        <Paper elevation={1} sx={{ m: 1 }}>
-                          <CardContent>
-                            <Typography paragraph>Ingredients</Typography>
-                            {recipe.ingredients.map((ingredient) => (
-                              <Typography sx={{ p: 0.5 }} key={ingredient}>
-                                {ingredient}
-                              </Typography>
-                            ))}
-                          </CardContent>
-                        </Paper>
-                      </Grid>
-                    </Collapse>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                      <Grid item sx={{ height: 300, overflow: "auto" }}>
-                        <Paper elevation={3} sx={{ m: 1, overflow: "visible" }}>
-                          <CardContent>
-                            <Typography paragraph>Instructions</Typography>
-                            {recipe.directions.map((direction) => (
-                              <Typography sx={{ p: 0.5 }} key={direction}>
-                                {direction}
-                              </Typography>
-                            ))}
-                          </CardContent>
-                        </Paper>
-                      </Grid>
-                    </Collapse>
-                  </Grid>
+                  <Collapse in={ingExpanded} timeout="auto" unmountOnExit>
+                    <Grid item sx={{ overflow: "auto" }}>
+                      <CardContent>
+                        <Typography paragraph>Ingredients</Typography>
+                        {recipe.ingredients.map((ingredient) => (
+                          <Typography key={ingredient}>{ingredient}</Typography>
+                        ))}
+                      </CardContent>
+                    </Grid>
+                  </Collapse>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Grid item sx={{ overflow: "auto" }}>
+                      <CardContent>
+                        <Typography paragraph>Instructions</Typography>
+                        {recipe.directions.map((direction) => (
+                          <Typography key={direction}>{direction}</Typography>
+                        ))}
+                      </CardContent>
+                    </Grid>
+                  </Collapse>
                 </Card>
               </Grid>
             ))}
