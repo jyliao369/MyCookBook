@@ -88,21 +88,35 @@ const Home = () => {
     desserts.splice(dessertNum, 1);
   }
 
-  console.log(drinksOfDay);
-  console.log(appetizersOfDay);
-  console.log(entreesOfDay);
-  console.log(dessertsOfDay);
+  const titleTrunc = (str) => {
+    let array = str.split(" ");
+    let title = "";
+    let titleLength = 5;
+
+    if (array.length < titleLength) {
+      return str;
+    } else {
+      for (let a = 0; a < titleLength; a++) {
+        title = title + array[a] + " ";
+      }
+    }
+    return title;
+  };
 
   const truncate = (str) => {
     let array = str.split(" ");
     let description = "";
-    let deslength = 14;
+    let desLength = 20;
 
-    for (let a = 0; a < deslength; a++) {
-      if (a === deslength - 1) {
-        description = description + array[a] + "...";
-      } else {
-        description = description + array[a] + " ";
+    if (array.length < desLength) {
+      return str;
+    } else {
+      for (let a = 0; a < desLength; a++) {
+        if (a === desLength - 1) {
+          description = description + array[a] + "...";
+        } else {
+          description = description + array[a] + " ";
+        }
       }
     }
 
@@ -114,29 +128,35 @@ const Home = () => {
   theme.typography.h2 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: "1.45rem",
+      fontSize: "1.48rem",
+      height: "2.5rem",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".5rem",
+      fontSize: ".80rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("lg")]: {
-      fontSize: "1.34rem",
+      fontSize: "1.7rem",
+      height: "3.75rem",
     },
   };
 
   theme.typography.subtitle1 = {
+    // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.15rem",
+      height: "4.80rem",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".5rem",
+      fontSize: ".75rem",
+      height: "6.5rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("lg")]: {
-      fontSize: "1.25rem",
+      fontSize: "1.1rem",
+      height: "4.25rem",
     },
   };
 
@@ -221,15 +241,16 @@ const Home = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        height: "10.5rem",
                       }}
                     >
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
-                          <Typography variant="h2">{drink.title}</Typography>
+                          <Typography variant="h2">
+                            {titleTrunc(drink.title)}
+                          </Typography>
                         </ThemeProvider>
                       </Grid>
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
                           <Typography variant="subtitle1">
                             {truncate(drink.description)}
@@ -312,17 +333,16 @@ const Home = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        height: "10.5rem",
                       }}
                     >
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
                           <Typography variant="h2">
-                            {appetizer.title}
+                            {titleTrunc(appetizer.title)}
                           </Typography>
                         </ThemeProvider>
                       </Grid>
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
                           <Typography variant="subtitle1">
                             {truncate(appetizer.description)}
@@ -405,15 +425,16 @@ const Home = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        height: "10.5rem",
                       }}
                     >
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
-                          <Typography variant="h2">{entree.title}</Typography>
+                          <Typography variant="h2">
+                            {titleTrunc(entree.title)}
+                          </Typography>
                         </ThemeProvider>
                       </Grid>
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
                           <Typography variant="subtitle1">
                             {truncate(entree.description)}
@@ -505,15 +526,16 @@ const Home = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        height: "10.5rem",
                       }}
                     >
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
-                          <Typography variant="h2">{dessert.title}</Typography>
+                          <Typography variant="h2">
+                            {titleTrunc(dessert.title)}
+                          </Typography>
                         </ThemeProvider>
                       </Grid>
-                      <Grid item sx={{ m: 1.5 }}>
+                      <Grid item sx={{ m: 2 }}>
                         <ThemeProvider theme={theme}>
                           <Typography variant="subtitle1">
                             {truncate(dessert.description)}
