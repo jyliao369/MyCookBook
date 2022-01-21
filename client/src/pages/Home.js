@@ -146,7 +146,7 @@ const Home = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.15rem",
-      height: "4.80rem",
+      height: "5rem",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
