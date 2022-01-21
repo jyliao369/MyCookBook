@@ -16,9 +16,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-// import CardActions from '@mui/material/CardActions';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Home = () => {
   // THESE NEXT LINES SHOULD BE ABLE TO GET 10 RANDOMLY GENERATED USER
@@ -111,6 +109,37 @@ const Home = () => {
     return description;
   };
 
+  const theme = createTheme();
+
+  theme.typography.h2 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1.45rem",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: ".5rem",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.34rem",
+    },
+  };
+
+  theme.typography.subtitle1 = {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1.15rem",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: ".5rem",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.25rem",
+    },
+  };
+
   if (loading) {
     return <Box>Grabbing Recipes...</Box>;
   }
@@ -186,23 +215,27 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid>
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 20,
-                        }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        sx={{ height: 75, p: 1.5 }}
-                        title={drink.title}
-                        subheader={drink.createdAt}
-                      />
-                      <CardContent>
-                        <Typography sx={{ fontSize: 12 }}>
-                          {truncate(drink.description)}
-                        </Typography>
-                      </CardContent>
+                    <Grid
+                      item
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "10.5rem",
+                      }}
+                    >
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="h2">{drink.title}</Typography>
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="subtitle1">
+                            {truncate(drink.description)}
+                          </Typography>
+                        </ThemeProvider>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Link>
@@ -273,23 +306,29 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid>
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 20,
-                        }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        sx={{ height: 75, p: 1.5 }}
-                        title={appetizer.title}
-                        subheader={appetizer.createdAt}
-                      />
-                      <CardContent>
-                        <Typography sx={{ fontSize: 12 }}>
-                          {truncate(appetizer.description)}
-                        </Typography>
-                      </CardContent>
+                    <Grid
+                      item
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "10.5rem",
+                      }}
+                    >
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="h2">
+                            {appetizer.title}
+                          </Typography>
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="subtitle1">
+                            {truncate(appetizer.description)}
+                          </Typography>
+                        </ThemeProvider>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Link>
@@ -360,23 +399,27 @@ const Home = () => {
                         />
                       )}
                     </CardMedia>
-                    <Grid>
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 20,
-                        }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        sx={{ height: 75, p: 1.5 }}
-                        title={entree.title}
-                        subheader={entree.createdAt}
-                      />
-                      <CardContent>
-                        <Typography sx={{ fontSize: 12 }}>
-                          {truncate(entree.description)}
-                        </Typography>
-                      </CardContent>
+                    <Grid
+                      item
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "10.5rem",
+                      }}
+                    >
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="h2">{entree.title}</Typography>
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="subtitle1">
+                            {truncate(entree.description)}
+                          </Typography>
+                        </ThemeProvider>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Link>
@@ -456,23 +499,27 @@ const Home = () => {
                         </Image>
                       )}
                     </CardMedia>
-                    <Grid>
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 20,
-                        }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        sx={{ height: 75, p: 1.5 }}
-                        title={dessert.title}
-                        subheader={dessert.createdAt}
-                      />
-                      <CardContent>
-                        <Typography sx={{ fontSize: 12 }}>
-                          {truncate(dessert.description)}
-                        </Typography>
-                      </CardContent>
+                    <Grid
+                      item
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "10.5rem",
+                      }}
+                    >
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="h2">{dessert.title}</Typography>
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid item sx={{ m: 1.5 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="subtitle1">
+                            {truncate(dessert.description)}
+                          </Typography>
+                        </ThemeProvider>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Link>
@@ -481,6 +528,9 @@ const Home = () => {
           ))}
         </Grid>
       </Grid>
+      <br />
+      <br />
+      <br />
     </Box>
   );
 };

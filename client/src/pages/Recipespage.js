@@ -25,6 +25,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Collapse } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Recipespage = () => {
   // THIS GRABS THE RECIPES CREATED BY THE USER OR AT LEAST IS MADE
@@ -178,6 +179,27 @@ const Recipespage = () => {
   const breakpoints = {
     default: 4,
     700: 2,
+  };
+
+  const theme = createTheme();
+
+  theme.typography.h3 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.only("xs")]: {
+      fontSize: "5rem",
+    },
+    // THIS IS FROM 600 - 900
+    [theme.breakpoints.only("sm")]: {
+      fontSize: "1rem",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.only("md")]: {
+      fontSize: "45rem",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.only("lg")]: {
+      fontSize: "60rem",
+    },
   };
 
   if (loading) {
@@ -545,9 +567,12 @@ const Recipespage = () => {
                               pr: 1.25,
                             }}
                           >
-                            <Typography sx={{ fontSize: 16 }}>
-                              Cuisine: {recipe.cuisine}
-                            </Typography>
+                            <ThemeProvider theme={theme}>
+                              <Typography variant="h3">
+                                Cuisine: {recipe.cuisine}
+                              </Typography>
+                            </ThemeProvider>
+
                             <Typography sx={{ fontSize: 16 }}>
                               Servings: {recipe.servings}
                             </Typography>
