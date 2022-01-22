@@ -213,7 +213,7 @@ const Recipespage = () => {
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: "1.1em",
+      fontSize: "1.225em",
       height: "2rem",
     },
     // THIS IS FROM 1200 - UPWARD
@@ -232,8 +232,8 @@ const Recipespage = () => {
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: "1em",
-      height: "3.5rem",
+      fontSize: "1.15em",
+      height: "6.3rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1800")]: {
@@ -249,7 +249,7 @@ const Recipespage = () => {
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("900")]: {
-      fontSize: ".5em",
+      fontSize: "1.1em",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1400")]: {

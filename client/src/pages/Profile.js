@@ -36,6 +36,7 @@ import {
   FactCheckOutlined,
   LocalDiningOutlined,
 } from "@mui/icons-material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Profile = () => {
   const { userId } = useParams();
@@ -132,6 +133,40 @@ const Profile = () => {
     element.style.color = "black";
   };
 
+  const theme = createTheme();
+
+  theme.typography.h2 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1.5em",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.1em",
+      height: "2rem",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "1.75em",
+    },
+  };
+
+  theme.typography.sub1 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1.35em",
+      fontWeight: 400,
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1em",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "1.15rem",
+    },
+  };
+
   return (
     <Box>
       <Grid sx={{ display: "flex" }}>
@@ -199,9 +234,10 @@ const Profile = () => {
         </Button>
       </Grid>
 
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Grid
           item
+          md={10.5}
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -211,7 +247,7 @@ const Profile = () => {
         >
           {userrecipe &&
             userrecipe.map((recipe) => (
-              <Grid key={recipe._id} item md={5}>
+              <Grid key={recipe._id} item md={5.5}>
                 <Card
                   key={recipe._id}
                   elevation={5}
@@ -225,9 +261,10 @@ const Profile = () => {
                       display: "flex",
                       flexDirection: "row",
                       flexWrap: "wrap",
+                      p: 1,
                     }}
                   >
-                    <Grid item md={3.5} sx={{ display: "flex", p: 1.25 }}>
+                    <Grid item md={4.5} sx={{ display: "flex", p: 1 }}>
                       {recipe.imageid ? (
                         <Image
                           width="100%"
@@ -251,59 +288,71 @@ const Profile = () => {
                     </Grid>
                     <Grid
                       item
-                      md={7.5}
+                      md={6.5}
                       sx={{
                         display: "flex",
-                        flexDirection: "row",
-                        flexWrap: "wrap",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        p: 1,
                       }}
                     >
-                      <CardHeader
-                        titleTypographyProps={{
-                          fontSize: 22,
+                      <Grid item sx={{ mb: 2 }}>
+                        <ThemeProvider theme={theme}>
+                          <Typography variant="h2">{recipe.title}</Typography>
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid
+                        item
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
                         }}
-                        subheaderTypographyProps={{
-                          fontSize: 15,
-                        }}
-                        title={recipe.title}
-                        subheader={recipe.createdAt}
-                      />
-
-                      <CardContent
-                        sx={{ display: "flex", flexDirection: "row" }}
                       >
-                        <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                          <Grid item sx={{ mr: 5 }}>
-                            <Typography sx={{ fontSize: 18 }}>
+                        <ThemeProvider theme={theme}>
+                          <Grid
+                            item
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              mr: 2,
+                            }}
+                          >
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Prep Time: {recipe.prepTime}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Cook Time: {recipe.cookTime}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Total Time: {recipe.totalTime}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Servings: {recipe.servings}
                             </Typography>
                           </Grid>
-                          <Grid>
-                            <Typography sx={{ fontSize: 18 }}>
+                          <Grid
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Category: {recipe.category}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Cuisine: {recipe.cuisine}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Diet: {recipe.diettype}
                             </Typography>
-                            <Typography sx={{ fontSize: 18 }}>
+                            <Typography sx={{ mb: 0.5 }} variant="sub1">
                               Yield Per Serving: {recipe.yield}
                             </Typography>
                           </Grid>
-                        </Grid>
-                      </CardContent>
+                        </ThemeProvider>
+                      </Grid>
                     </Grid>
+
                     <Grid
                       item
                       md={1}
