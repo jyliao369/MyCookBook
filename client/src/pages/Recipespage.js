@@ -232,7 +232,7 @@ const Recipespage = () => {
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".5em",
+      fontSize: "1em",
       height: "3.5rem",
     },
     // THIS IS FROM 1200 - UPWARD
@@ -248,11 +248,11 @@ const Recipespage = () => {
       fontSize: ".8em",
     },
     // THIS IS FROM 900 - 1200
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("900")]: {
       fontSize: ".5em",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("1800")]: {
+    [theme.breakpoints.up("1400")]: {
       fontSize: "1.2em",
     },
   };
