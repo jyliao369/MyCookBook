@@ -208,8 +208,8 @@ const Recipespage = () => {
   theme.typography.h2 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: ".8em",
-      height: "1.25rem",
+      fontSize: ".9em",
+      height: "1.5rem",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
@@ -227,7 +227,7 @@ const Recipespage = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: ".8rem",
-      height: "5.75rem",
+      height: "6rem",
       fontWeight: 400,
     },
     // THIS IS FROM 900 - 1200
@@ -245,7 +245,7 @@ const Recipespage = () => {
   theme.typography.sub1 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: ".8em",
+      fontSize: ".9em",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("900")]: {
@@ -584,7 +584,7 @@ const Recipespage = () => {
                           item
                           sx={{ display: "flex", flexDirection: "column" }}
                         >
-                          <Grid item sx={{ m: 1.5 }}>
+                          <Grid item sx={{ m: 1 }}>
                             <ThemeProvider theme={theme}>
                               <Typography variant="h2">
                                 {shortTitle(recipe.title)}
@@ -592,7 +592,7 @@ const Recipespage = () => {
                             </ThemeProvider>
                           </Grid>
 
-                          <Grid item sx={{ m: 1.5 }}>
+                          <Grid item sx={{ m: 1 }}>
                             <ThemeProvider theme={theme}>
                               <Typography variant="subtitle1">
                                 {shortDes(recipe.description)}
@@ -605,7 +605,7 @@ const Recipespage = () => {
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              m: 1.5,
+                              m: 1,
                             }}
                           >
                             <ThemeProvider theme={theme}>
