@@ -133,13 +133,13 @@ const Home = () => {
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".80rem",
-      height: "5rem",
+      fontSize: "1.2em",
+      height: "2.5rem",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("1400")]: {
       fontSize: "1.7rem",
-      height: "3.75rem",
+      height: "3rem",
     },
   };
 
@@ -147,17 +147,18 @@ const Home = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.15rem",
-      height: "6.25rem",
+      height: "5rem",
+      fontWeight: 400,
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".75rem",
-      height: "8.5rem",
+      fontSize: "1.1em",
+      height: "7.50rem",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "1.1rem",
-      height: "5rem",
+    [theme.breakpoints.up("1400")]: {
+      fontSize: "1.125rem",
+      height: "4rem",
     },
   };
 
