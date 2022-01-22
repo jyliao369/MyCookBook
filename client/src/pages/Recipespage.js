@@ -162,18 +162,42 @@ const Recipespage = () => {
   const addYes = () => {
     yesList.push(yesIng);
   };
-  console.log("hello");
-  console.log(yesList);
+  // console.log("hello");
+  // console.log(yesList);
 
-  const short = (string) => {
-    // console.log(string);
-    // return string.substring(0, 60);
+  const shortDes = (str) => {
+    let array = str.split(" ");
+    let description = "";
+    let desLength = 20;
 
-    let array = string.split(" ");
-    // console.log(array);
-    let joined = array.slice(0, 15).join(" ");
-    // console.log(joined + "...");
-    return joined + "...";
+    if (array.length < desLength) {
+      return str;
+    } else {
+      for (let a = 0; a < desLength; a++) {
+        if (a === desLength - 1) {
+          description = description + array[a] + "...";
+        } else {
+          description = description + array[a] + " ";
+        }
+      }
+    }
+
+    return description;
+  };
+
+  const shortTitle = (str) => {
+    let array = str.split(" ");
+    let title = "";
+    let titleLength = 5;
+
+    if (array.length < titleLength) {
+      return str;
+    } else {
+      for (let a = 0; a < titleLength; a++) {
+        title = title + array[a] + " ";
+      }
+    }
+    return title;
   };
 
   const breakpoints = {
@@ -183,22 +207,53 @@ const Recipespage = () => {
 
   const theme = createTheme();
 
-  theme.typography.h3 = {
+  theme.typography.h2 = {
     // THIS IS FROM 0 - 600
-    [theme.breakpoints.only("xs")]: {
-      fontSize: "5rem",
-    },
-    // THIS IS FROM 600 - 900
-    [theme.breakpoints.only("sm")]: {
-      fontSize: "1rem",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: ".6rem",
+      height: "1.5rem",
     },
     // THIS IS FROM 900 - 1200
-    [theme.breakpoints.only("md")]: {
-      fontSize: "45rem",
+    [theme.breakpoints.up("md")]: {
+      height: "2rem",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.only("lg")]: {
-      fontSize: "60rem",
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.57rem",
+      height: "3rem",
+    },
+  };
+
+  theme.typography.subtitle1 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      fontSize: ".5rem",
+      height: "6.75rem",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: ".5rem",
+      height: "6.5rem",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.15rem",
+      height: "4.75rem",
+    },
+  };
+
+  theme.typography.sub1 = {
+    // THIS IS FROM 0 - 600
+    // [theme.breakpoints.up("xs")]: {
+    //   fontSize: "1.15rem",
+    // },
+    // THIS IS FROM 900 - 1200
+    // [theme.breakpoints.up("md")]: {
+    //   fontSize: ".75rem",
+    // },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.25rem",
     },
   };
 
@@ -475,7 +530,7 @@ const Recipespage = () => {
             justifyContent: "center",
           }}
         >
-          <Grid item md={9}>
+          <Grid item md={9.5}>
             <Masonry
               breakpointCols={breakpoints}
               className="my-masonry-grid"
@@ -529,63 +584,48 @@ const Recipespage = () => {
                           item
                           sx={{ display: "flex", flexDirection: "column" }}
                         >
-                          <CardHeader
-                            titleTypographyProps={{
-                              fontSize: 15,
-                              fontWeight: "bold",
-                            }}
-                            title={recipe.title}
-                            sx={{
-                              height: 40,
-                              p: 1,
-                              pl: 1.25,
-                              pr: 1.25,
-                              alignItems: "flex-start",
-                            }}
-                          />
-                          <CardContent
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "space-between",
-                              height: 135,
-                              p: 1,
-                              pl: 1.25,
-                              pr: 1.25,
-                            }}
-                          >
-                            <Typography sx={{ fontSize: 15 }}>
-                              {short(recipe.description)}
-                            </Typography>
-                          </CardContent>
-                          <CardContent
+                          <Grid item sx={{ m: 1.5 }}>
+                            <ThemeProvider theme={theme}>
+                              <Typography variant="h2">
+                                {shortTitle(recipe.title)}
+                              </Typography>
+                            </ThemeProvider>
+                          </Grid>
+
+                          <Grid item sx={{ m: 1.5 }}>
+                            <ThemeProvider theme={theme}>
+                              <Typography variant="subtitle1">
+                                {shortDes(recipe.description)}
+                              </Typography>
+                            </ThemeProvider>
+                          </Grid>
+
+                          <Grid
+                            item
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              p: 1,
-                              pl: 1.25,
-                              pr: 1.25,
+                              m: 1.5,
                             }}
                           >
                             <ThemeProvider theme={theme}>
-                              <Typography variant="h3">
+                              <Typography variant="sub1">
                                 Cuisine: {recipe.cuisine}
                               </Typography>
+                              <Typography variant="sub1">
+                                Servings: {recipe.servings}
+                              </Typography>
+                              <Typography variant="sub1">
+                                Total Time: {recipe.totalTime}
+                              </Typography>
                             </ThemeProvider>
-
-                            <Typography sx={{ fontSize: 16 }}>
-                              Servings: {recipe.servings}
-                            </Typography>
-                            <Typography sx={{ fontSize: 16 }}>
-                              Total Time: {recipe.totalTime}
-                            </Typography>
-                          </CardContent>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Link>
-                    <Grid>
+                    {/* <Grid>
                       <Link to={`/update/${recipe._id}`}>update</Link>
-                    </Grid>
+                    </Grid> */}
                   </Card>
                 </Grid>
               ))}
