@@ -17,9 +17,7 @@ import { Transformation } from "cloudinary-react";
 // MUI COMPONENTS FOR LOGIN AND SIGNUP
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -210,50 +208,52 @@ const Recipespage = () => {
   theme.typography.h2 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: ".6rem",
-      height: "1.5rem",
+      fontSize: ".8em",
+      height: "1.25rem",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
+      fontSize: "1.1em",
       height: "2rem",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "1.57rem",
-      height: "3rem",
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "1.45em",
+      height: "2.5rem",
     },
   };
 
   theme.typography.subtitle1 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: ".5rem",
-      height: "6.75rem",
+      fontSize: ".8rem",
+      height: "5.75rem",
+      fontWeight: 400,
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: ".5rem",
-      height: "6.5rem",
+      fontSize: ".5em",
+      height: "3.5rem",
     },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("1800")]: {
       fontSize: "1.15rem",
-      height: "4.75rem",
+      height: "3.25rem",
     },
   };
 
   theme.typography.sub1 = {
     // THIS IS FROM 0 - 600
-    // [theme.breakpoints.up("xs")]: {
-    //   fontSize: "1.15rem",
-    // },
+    [theme.breakpoints.up("xs")]: {
+      fontSize: ".8em",
+    },
     // THIS IS FROM 900 - 1200
-    // [theme.breakpoints.up("md")]: {
-    //   fontSize: ".75rem",
-    // },
+    [theme.breakpoints.up("md")]: {
+      fontSize: ".5em",
+    },
     // THIS IS FROM 1200 - UPWARD
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "1.25rem",
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "1.2em",
     },
   };
 
@@ -524,13 +524,13 @@ const Recipespage = () => {
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Grid
           item
-          md={10.5}
+          md={9.5}
           sx={{
             display: "flex",
             justifyContent: "center",
           }}
         >
-          <Grid item md={9.5}>
+          <Grid>
             <Masonry
               breakpointCols={breakpoints}
               className="my-masonry-grid"

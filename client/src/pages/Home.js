@@ -134,7 +134,7 @@ const Home = () => {
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
       fontSize: "1.2em",
-      height: "2.5rem",
+      height: "1.75rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1400")]: {
@@ -153,7 +153,7 @@ const Home = () => {
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
       fontSize: "1.1em",
-      height: "7.50rem",
+      height: "6.50rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1400")]: {
@@ -210,7 +210,7 @@ const Home = () => {
           }}
         >
           {drinksOfDay.map((drink) => (
-            <Grid item md={2.25} sx={{ m: 2 }}>
+            <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
                 <Link to={`/recipes/${drink._id}`}>
                   <Grid>
@@ -302,7 +302,7 @@ const Home = () => {
           }}
         >
           {appetizersOfDay.map((appetizer) => (
-            <Grid item md={2.25} sx={{ m: 2 }}>
+            <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
                 <Link to={`/recipes/${appetizer._id}`}>
                   <Grid>
@@ -394,7 +394,7 @@ const Home = () => {
           }}
         >
           {entreesOfDay.map((entree) => (
-            <Grid item md={2.25} sx={{ m: 2 }}>
+            <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
                 <Link to={`/recipes/${entree._id}`}>
                   <Grid>
@@ -487,7 +487,7 @@ const Home = () => {
           }}
         >
           {dessertsOfDay.map((dessert) => (
-            <Grid item md={2.25} sx={{ m: 2 }}>
+            <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
                 <Link to={`/recipes/${dessert._id}`}>
                   <Grid>
