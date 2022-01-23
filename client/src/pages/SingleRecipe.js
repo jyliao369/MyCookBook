@@ -20,6 +20,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const SingleRecipe = () => {
   const { recipeId } = useParams();
@@ -28,8 +29,6 @@ const SingleRecipe = () => {
     variables: { recipeId: recipeId },
   });
   const recipe = data?.recipe || {};
-
-  console.log(recipe);
 
   // THIS SHOULD, ON PAPER ADD THE CURRENT OBJECT WHICH IS THE 'recipe'
   // FROM ABOVE AND ADD TO THE USER THAT IS CURRENTLY LOGGED. THAT'S WHAT THE
@@ -67,6 +66,41 @@ const SingleRecipe = () => {
     }
   };
 
+  const theme = createTheme();
+
+  theme.typography.title = {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "2.25em",
+      fontFamily: "Arvo",
+    },
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "3em",
+    },
+  };
+
+  theme.typography.des = {
+    [theme.breakpoints.up("xs")]: {
+      fontFamily: "Quicksand",
+      fontSize: "1.18em",
+    },
+    [theme.breakpoints.up("1800")]: { fontSize: "1.45em" },
+  };
+
+  theme.typography.info = {
+    [theme.breakpoints.up("xs")]: { fontFamily: "Dongle", fontSize: "1.15em" },
+    [theme.breakpoints.up("1800")]: { fontSize: "2.15em" },
+  };
+
+  theme.typography.header = {
+    [theme.breakpoints.up("xs")]: { fontFamily: "Arvo", fontSize: "2em" },
+    [theme.breakpoints.up("1800")]: { fontSize: "3em" },
+  };
+
+  theme.typography.info1 = {
+    [theme.breakpoints.up("xs")]: { fontFamily: "Quicksand" },
+    [theme.breakpoints.up("1800")]: { fontSize: "1.15em" },
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -88,93 +122,114 @@ const SingleRecipe = () => {
             sx={{ mt: 4, mb: 2, p: 3.5, background: "#DDF5FF" }}
           >
             <Grid item sx={{ display: "flex", justifyContent: "center" }}>
-              <Typography sx={{ fontSize: 25, pr: 1.5, pl: 1.5 }}>
-                {recipe.title}
-              </Typography>
+              <ThemeProvider theme={theme}>
+                <Typography variant="title"> {recipe.title}</Typography>
+              </ThemeProvider>
             </Grid>
-            <Grid>
-              <Typography sx={{ fontSize: 20, pb: 3, pt: 2 }}>
-                Description: {recipe.description}
-              </Typography>
+            <Grid item sx={{ mt: 3, mb: 3 }}>
+              <ThemeProvider theme={theme}>
+                <Typography variant="des">
+                  Description: {recipe.description}
+                </Typography>
+              </ThemeProvider>
             </Grid>
             <hr />
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                pt: 2,
-                pb: 2,
-              }}
-            >
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>PREP TIME:</Typography>
-                <Typography>{recipe.prepTime} mins</Typography>
+            <Grid item sx={{ mt: 1, mb: 1 }}>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  mt: 0.5,
+                  mb: 0.5,
+                }}
+              >
+                <ThemeProvider theme={theme}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">PREP TIME:</Typography>
+                    <Typography variant="info">
+                      {recipe.prepTime} mins
+                    </Typography>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">COOK TIME: </Typography>
+                    <Typography variant="info">
+                      {recipe.cookTime} mins
+                    </Typography>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">TOTAL TIME: </Typography>
+                    <Typography variant="info">
+                      {recipe.totalTime} mins
+                    </Typography>
+                  </Grid>
+                </ThemeProvider>
               </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>COOK TIME: </Typography>
-                <Typography>{recipe.cookTime} mins</Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  mt: 0.5,
+                  mb: 0.5,
+                }}
+              >
+                <ThemeProvider theme={theme}>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">CATEGORY: </Typography>
+                    <Typography variant="info">{recipe.category}</Typography>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">YIELD: </Typography>
+                    <Typography variant="info">{recipe.yield}</Typography>
+                  </Grid>
+                  <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography variant="info">SERVINGS:</Typography>
+                    <Typography variant="info">{recipe.servings}</Typography>
+                  </Grid>
+                </ThemeProvider>
               </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>TOTAL TIME: </Typography>
-                <Typography>{recipe.totalTime}</Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                pt: 2,
-                pb: 2,
-              }}
-            >
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>CATEGORY: </Typography>
-                <Typography>{recipe.category}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>YIELD: </Typography>
-                <Typography>{recipe.yield}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>SERVINGS:</Typography>
-                <Typography>{recipe.servings}</Typography>
-              </Grid>
-            </Grid>
 
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                flexWrap: "wrap",
-                pt: 2,
-                pb: 2,
-              }}
-            >
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>COURSE:</Typography>
-                <Typography>{recipe.mealofday}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>CUISINE:</Typography>
-                <Typography>{recipe.cuisine}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>COOKING STYLE: </Typography>
-                <Typography>{recipe.cookstyle}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ fontSize: 15 }}>DIET TYPE: </Typography>
-                <Typography>{recipe.diettype}</Typography>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  flexWrap: "wrap",
+                  mt: 0.5,
+                  mb: 0.5,
+                }}
+              >
+                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <ThemeProvider theme={theme}>
+                    <Typography variant="info">COURSE:</Typography>
+                    <Typography variant="info">{recipe.mealofday}</Typography>
+                  </ThemeProvider>
+                </Grid>
+                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <ThemeProvider theme={theme}>
+                    <Typography variant="info">CUISINE:</Typography>
+                    <Typography variant="info">{recipe.cuisine}</Typography>
+                  </ThemeProvider>
+                </Grid>
+                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <ThemeProvider theme={theme}>
+                    <Typography variant="info">COOKING STYLE:</Typography>
+                    <Typography variant="info">{recipe.cookstyle}</Typography>
+                  </ThemeProvider>
+                </Grid>
+                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  <ThemeProvider theme={theme}>
+                    <Typography variant="info">DIET TYPE:</Typography>
+                    <Typography variant="info">{recipe.diettype}</Typography>
+                  </ThemeProvider>
+                </Grid>
               </Grid>
             </Grid>
             <hr />
-            <br />
             <br />
             <br />
             <Grid item sx={{ display: "flex", justifyContent: "center" }}>
@@ -196,50 +251,54 @@ const SingleRecipe = () => {
             </Grid>
             <br />
             <br />
-            <br />
-            <Grid
-              item
-              sx={{ display: "flex", flexDirection: "column", pt: 4.5 }}
-            >
-              <Grid>
-                <Typography sx={{ fontSize: 40 }}>Ingredidents:</Typography>
+            <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Grid item sx={{ mt: 1, mb: 1 }}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="header">Ingredidents:</Typography>
+                </ThemeProvider>
               </Grid>
               <hr />
-              <Grid>
-                {recipe.ingredients.map((ingredient) => (
-                  <Typography sx={{ fontSize: 20, pt: 1, pb: 1.5 }}>
-                    {ingredient}
-                  </Typography>
-                ))}
+              <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                <ThemeProvider theme={theme}>
+                  {recipe.ingredients.map((ingredient) => (
+                    <Typography variant="info1" sx={{ mt: 1, mb: 1.5 }}>
+                      {ingredient}
+                    </Typography>
+                  ))}
+                </ThemeProvider>
               </Grid>
             </Grid>
             <br />
             <br />
             <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-              <Grid>
-                <Typography sx={{ fontSize: 40 }}>Instructions:</Typography>
-              </Grid>
-              <hr />
-              <Grid>
-                {recipe.directions.map((direction) => (
-                  <Typography sx={{ fontSize: 20, pt: 1, pb: 1.5 }}>
-                    {direction}
-                  </Typography>
-                ))}
-              </Grid>
+              <ThemeProvider theme={theme}>
+                <Grid item sx={{ mt: 1, mb: 1 }}>
+                  <Typography variant="header">Instructions:</Typography>
+                </Grid>
+                <hr />
+                <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+                  {recipe.directions.map((direction) => (
+                    <Typography variant="info1" sx={{ mt: 1, mb: 1.5 }}>
+                      {direction}
+                    </Typography>
+                  ))}
+                </Grid>
+              </ThemeProvider>
             </Grid>
             <br />
             <br />
             <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-              <Grid>
-                <Typography sx={{ fontSize: 40 }}>Additional Notes:</Typography>
-              </Grid>
-              <hr />
-              <Grid>
-                <Typography sx={{ fontSize: 20, pt: 1, pb: 1 }}>
-                  {recipe.notes}
-                </Typography>
-              </Grid>
+              <ThemeProvider theme={theme}>
+                <Grid item sx={{ mt: 1, mb: 1 }}>
+                  <Typography variant="header">Additional Notes:</Typography>
+                </Grid>
+                <hr />
+                <Grid>
+                  <Typography variant="info1" sx={{ mt: 1, mb: 1.5 }}>
+                    {recipe.notes}
+                  </Typography>
+                </Grid>
+              </ThemeProvider>
             </Grid>
           </Paper>
         </Grid>

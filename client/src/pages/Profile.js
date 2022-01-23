@@ -269,7 +269,7 @@ const Profile = () => {
                       p: 1,
                     }}
                   >
-                    <Grid item md={4.5} sx={{ display: "flex", p: 1 }}>
+                    <Grid item md={4.5} sx={{ display: "flex" }}>
                       <Link to={`/recipes/${recipe._id}`}>
                         {recipe.imageid ? (
                           <Image
