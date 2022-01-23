@@ -22,14 +22,13 @@ import Auth from "../utils/auth";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
+
 // import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 // import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import { Collapse } from "@mui/material";
-import Paper from "@mui/material/Paper";
 import {
   DeleteForeverOutlined,
   EditOutlined,
@@ -133,12 +132,17 @@ const Profile = () => {
     element.style.color = "black";
   };
 
-  const theme = createTheme();
+  const theme = createTheme({
+    typography: {
+      fontFamily: "Arvo",
+    },
+  });
 
   theme.typography.h2 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.5em",
+      fontFamily: "Arvo",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
@@ -154,16 +158,17 @@ const Profile = () => {
   theme.typography.sub1 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
-      fontSize: "1.35em",
+      fontSize: "1.1em",
+      fontFamily: "Quicksand",
       fontWeight: 400,
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: "1em",
+      fontSize: ".9em",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1800")]: {
-      fontSize: "1.15rem",
+      fontSize: "1.25rem",
     },
   };
 

@@ -130,6 +130,7 @@ const Home = () => {
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.48rem",
       height: "2.5rem",
+      fontFamily: "Arvo",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
@@ -147,18 +148,34 @@ const Home = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.15rem",
-      height: "5rem",
+      height: "7.25rem",
       fontWeight: 400,
+      fontFamily: "Quicksand",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
       fontSize: "1.1em",
-      height: "6.50rem",
+      height: "8.5rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1400")]: {
       fontSize: "1.125rem",
-      height: "4rem",
+      height: "6rem",
+    },
+  };
+
+  theme.typography.title = {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "2.75em",
+      fontFamily: "Lobster Two",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: "3em",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("1400")]: {
+      fontSize: "4em",
     },
   };
 
@@ -191,12 +208,14 @@ const Home = () => {
               item
               sx={{
                 display: "flex",
-                fontSize: 40,
                 background: "white",
-                p: 2,
               }}
             >
-              Coolest Drinks
+              <ThemeProvider theme={theme}>
+                <Typography variant="title" sx={{ p: 2, color: "#1565c0" }}>
+                  Coolest Drinks
+                </Typography>
+              </ThemeProvider>
             </Grid>
           </Grid>
         </Grid>
@@ -283,12 +302,14 @@ const Home = () => {
               item
               sx={{
                 display: "flex",
-                fontSize: 40,
                 background: "white",
-                p: 2,
               }}
             >
-              Tasty Appetizers
+              <ThemeProvider theme={theme}>
+                <Typography variant="title" sx={{ p: 2, color: "#1565c0" }}>
+                  Tasty Appetizers
+                </Typography>
+              </ThemeProvider>
             </Grid>
           </Grid>
         </Grid>
@@ -375,12 +396,14 @@ const Home = () => {
               item
               sx={{
                 display: "flex",
-                fontSize: 40,
                 background: "white",
-                p: 2,
               }}
             >
-              Savory Entrees
+              <ThemeProvider theme={theme}>
+                <Typography variant="title" sx={{ p: 2, color: "#1565c0" }}>
+                  Savory Entrees
+                </Typography>
+              </ThemeProvider>
             </Grid>
           </Grid>
         </Grid>
@@ -467,12 +490,14 @@ const Home = () => {
               item
               sx={{
                 display: "flex",
-                fontSize: 40,
                 background: "white",
-                p: 2,
               }}
             >
-              Delicious Desserts
+              <ThemeProvider theme={theme}>
+                <Typography variant="title" sx={{ p: 2, color: "#1565c0" }}>
+                  Delicious Desserts
+                </Typography>
+              </ThemeProvider>
             </Grid>
           </Grid>
         </Grid>

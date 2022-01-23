@@ -4,17 +4,37 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 // THESE ARE ALL MUI COMPONENTS
-// import ButtonGroup from '@mui/material/ButtonGroup';
-// import Button from '@mui/material/Button'
-// import AppBar from '@mui/material/AppBar';
 import Box from "@mui/material/Box";
-// import Toolbar from '@mui/material/Toolbar';
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+  };
+
+  const theme = createTheme({});
+
+  theme.typography.h1 = {
+    fontFamily: "Lobster Two",
+  };
+
+  theme.typography.sub1 = {
+    // THIS IS FROM 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1em",
+      fontFamily: "Quicksand",
+    },
+    // THIS IS FROM 900 - 1200
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.25em",
+    },
+    // THIS IS FROM 1200 - UPWARD
+    [theme.breakpoints.up("1800")]: {
+      fontSize: "1.4em",
+    },
   };
 
   return (
@@ -32,11 +52,11 @@ const Header = () => {
       >
         <Box>
           <Link to="/">
-            <Typography
-              sx={{ fontSize: 35, fontWeight: "bold", color: "primary.dark" }}
-            >
-              mmm!Book
-            </Typography>
+            <ThemeProvider theme={theme}>
+              <Typography variant="h1" sx={{ fontSize: 50, color: "#1565c0" }}>
+                mmm!Book
+              </Typography>
+            </ThemeProvider>
           </Link>
         </Box>
         {Auth.loggedIn() ? (
@@ -50,58 +70,36 @@ const Header = () => {
                 pb: 1,
               }}
             >
-              <Link to="/recipes">
-                <Typography
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: "bold",
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                  }}
-                >
-                  Recipes
-                </Typography>
-              </Link>
-              <Link className="" to="/add">
-                <Typography
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: "bold",
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                  }}
-                >
-                  Add Recipe
-                </Typography>
-              </Link>
-              <Link className="" to="/myprofile">
-                <Typography
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: "bold",
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                  }}
-                >
-                  My Cookbook
-                </Typography>
-              </Link>
-              <Link className="" onClick={logout} to="/">
-                <Typography
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: "bold",
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                  }}
-                >
-                  Log Out
-                </Typography>
-              </Link>
+              <ThemeProvider theme={theme}>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link to="/recipes">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Recipes
+                    </Typography>
+                  </Link>
+                </Grid>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link className="" to="/add">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Add Recipe
+                    </Typography>
+                  </Link>
+                </Grid>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link className="" to="/myprofile">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      My Cookbook
+                    </Typography>
+                  </Link>
+                </Grid>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link className="" onClick={logout} to="/">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Log Out
+                    </Typography>
+                  </Link>
+                </Grid>
+              </ThemeProvider>
             </Box>
           </>
         ) : (
@@ -115,45 +113,29 @@ const Header = () => {
                 pb: 1,
               }}
             >
-              <Link to="/recipes">
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Recipes
-                </Typography>
-              </Link>
-              <Link className="" to="/login">
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Log In
-                </Typography>
-              </Link>
-              <Link className="" to="/signup">
-                <Typography
-                  sx={{
-                    fontSize: 17,
-                    mr: 0.7,
-                    ml: 0.7,
-                    color: "primary.dark",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sign Up{" "}
-                </Typography>
-              </Link>
+              <ThemeProvider theme={theme}>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link to="/recipes">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Recipes
+                    </Typography>
+                  </Link>
+                </Grid>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link className="" to="/login">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Log In
+                    </Typography>
+                  </Link>
+                </Grid>
+                <Grid item sx={{ mr: 0.75, ml: 0.75 }}>
+                  <Link className="" to="/signup">
+                    <Typography variant="sub1" sx={{ color: "#1565c0" }}>
+                      Sign Up
+                    </Typography>
+                  </Link>
+                </Grid>
+              </ThemeProvider>
             </Box>
           </>
         )}

@@ -203,23 +203,24 @@ const Recipespage = () => {
     700: 2,
   };
 
-  const theme = createTheme();
+  const theme = createTheme({});
 
   theme.typography.h2 = {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: ".9em",
-      height: "1.5rem",
+      height: "2.6rem",
+      fontFamily: "Arvo",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
-      fontSize: "1.225em",
-      height: "2rem",
+      fontSize: "1.2em",
+      height: "3rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1800")]: {
-      fontSize: "1.45em",
-      height: "2.5rem",
+      fontSize: "1.30em",
+      height: "3rem",
     },
   };
 
@@ -227,18 +228,19 @@ const Recipespage = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: ".8rem",
-      height: "6rem",
+      height: "8.5rem",
+      fontFamily: "Quicksand",
       fontWeight: 400,
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("md")]: {
       fontSize: "1.15em",
-      height: "6.3rem",
+      height: "9rem",
     },
     // THIS IS FROM 1200 - UPWARD
     [theme.breakpoints.up("1800")]: {
       fontSize: "1.15rem",
-      height: "3.25rem",
+      height: "6rem",
     },
   };
 
@@ -246,6 +248,7 @@ const Recipespage = () => {
     // THIS IS FROM 0 - 600
     [theme.breakpoints.up("xs")]: {
       fontSize: ".9em",
+      fontFamily: "Quicksand",
     },
     // THIS IS FROM 900 - 1200
     [theme.breakpoints.up("900")]: {
