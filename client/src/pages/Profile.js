@@ -270,26 +270,28 @@ const Profile = () => {
                     }}
                   >
                     <Grid item md={4.5} sx={{ display: "flex", p: 1 }}>
-                      {recipe.imageid ? (
-                        <Image
-                          width="100%"
-                          cloudName="du119g90a"
-                          public_id={recipe.imageid}
-                        >
-                          <Transformation
-                            width="750"
-                            height="750"
-                            gravity="center"
-                            crop="crop"
+                      <Link to={`/recipes/${recipe._id}`}>
+                        {recipe.imageid ? (
+                          <Image
+                            width="100%"
+                            cloudName="du119g90a"
+                            public_id={recipe.imageid}
+                          >
+                            <Transformation
+                              width="750"
+                              height="750"
+                              gravity="center"
+                              crop="crop"
+                            />
+                          </Image>
+                        ) : (
+                          <Image
+                            width="100%"
+                            cloudName="du119g90a"
+                            public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                           />
-                        </Image>
-                      ) : (
-                        <Image
-                          width="100%"
-                          cloudName="du119g90a"
-                          public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
-                        />
-                      )}
+                        )}
+                      </Link>
                     </Grid>
                     <Grid
                       item

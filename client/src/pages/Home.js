@@ -42,8 +42,6 @@ const Home = () => {
       uniqueRecipes.push(recipes[a]);
     }
   }
-  // console.log("unique");
-  // console.log(uniqueRecipes);
 
   // THESE ARRAYS SHOULD HOLD RECIPES BASED ON THE CATEGORY
   // THINK OF IT LIKE AN FILTERING
@@ -231,9 +229,9 @@ const Home = () => {
           {drinksOfDay.map((drink) => (
             <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
-                <Link to={`/recipes/${drink._id}`}>
-                  <Grid>
-                    <CardMedia>
+                <Grid>
+                  <CardMedia>
+                    <Link to={`/recipes/${drink._id}`}>
                       {drink.imageid ? (
                         <Image
                           width="100%"
@@ -255,32 +253,32 @@ const Home = () => {
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
-                    </CardMedia>
-                    <Grid
-                      item
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="h2">
-                            {titleTrunc(drink.title)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="subtitle1">
-                            {truncate(drink.description)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
+                    </Link>
+                  </CardMedia>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="h2">
+                          {titleTrunc(drink.title)}
+                        </Typography>
+                      </ThemeProvider>
+                    </Grid>
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="subtitle1">
+                          {truncate(drink.description)}
+                        </Typography>
+                      </ThemeProvider>
                     </Grid>
                   </Grid>
-                </Link>
+                </Grid>
               </Card>
             </Grid>
           ))}
@@ -325,9 +323,9 @@ const Home = () => {
           {appetizersOfDay.map((appetizer) => (
             <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
-                <Link to={`/recipes/${appetizer._id}`}>
-                  <Grid>
-                    <CardMedia>
+                <Grid>
+                  <CardMedia>
+                    <Link to={`/recipes/${appetizer._id}`}>
                       {appetizer.imageid ? (
                         <Image
                           width="100%"
@@ -349,32 +347,32 @@ const Home = () => {
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
-                    </CardMedia>
-                    <Grid
-                      item
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="h2">
-                            {titleTrunc(appetizer.title)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="subtitle1">
-                            {truncate(appetizer.description)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
+                    </Link>
+                  </CardMedia>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="h2">
+                          {titleTrunc(appetizer.title)}
+                        </Typography>
+                      </ThemeProvider>
+                    </Grid>
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="subtitle1">
+                          {truncate(appetizer.description)}
+                        </Typography>
+                      </ThemeProvider>
                     </Grid>
                   </Grid>
-                </Link>
+                </Grid>
               </Card>
             </Grid>
           ))}
@@ -419,9 +417,9 @@ const Home = () => {
           {entreesOfDay.map((entree) => (
             <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
-                <Link to={`/recipes/${entree._id}`}>
-                  <Grid>
-                    <CardMedia>
+                <Grid>
+                  <CardMedia>
+                    <Link to={`/recipes/${entree._id}`}>
                       {entree.imageid ? (
                         <Image
                           width="100%"
@@ -443,32 +441,32 @@ const Home = () => {
                           public_id="https://res.cloudinary.com/du119g90a/image/upload/v1636841468/noimage_w8jxmo.jpg"
                         />
                       )}
-                    </CardMedia>
-                    <Grid
-                      item
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="h2">
-                            {titleTrunc(entree.title)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="subtitle1">
-                            {truncate(entree.description)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
+                    </Link>
+                  </CardMedia>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="h2">
+                          {titleTrunc(entree.title)}
+                        </Typography>
+                      </ThemeProvider>
+                    </Grid>
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="subtitle1">
+                          {truncate(entree.description)}
+                        </Typography>
+                      </ThemeProvider>
                     </Grid>
                   </Grid>
-                </Link>
+                </Grid>
               </Card>
             </Grid>
           ))}
@@ -514,9 +512,9 @@ const Home = () => {
           {dessertsOfDay.map((dessert) => (
             <Grid item md={2.4} sx={{ m: 1.5 }}>
               <Card elevation={5}>
-                <Link to={`/recipes/${dessert._id}`}>
-                  <Grid>
-                    <CardMedia>
+                <Grid>
+                  <CardMedia>
+                    <Link to={`/recipes/${dessert._id}`}>
                       {dessert.imageid ? (
                         <Image
                           width="100%"
@@ -546,32 +544,32 @@ const Home = () => {
                           />
                         </Image>
                       )}
-                    </CardMedia>
-                    <Grid
-                      item
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="h2">
-                            {titleTrunc(dessert.title)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
-                      <Grid item sx={{ m: 2 }}>
-                        <ThemeProvider theme={theme}>
-                          <Typography variant="subtitle1">
-                            {truncate(dessert.description)}
-                          </Typography>
-                        </ThemeProvider>
-                      </Grid>
+                    </Link>
+                  </CardMedia>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="h2">
+                          {titleTrunc(dessert.title)}
+                        </Typography>
+                      </ThemeProvider>
+                    </Grid>
+                    <Grid item sx={{ m: 2 }}>
+                      <ThemeProvider theme={theme}>
+                        <Typography variant="subtitle1">
+                          {truncate(dessert.description)}
+                        </Typography>
+                      </ThemeProvider>
                     </Grid>
                   </Grid>
-                </Link>
+                </Grid>
               </Card>
             </Grid>
           ))}

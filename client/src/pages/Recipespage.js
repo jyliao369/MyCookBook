@@ -160,8 +160,6 @@ const Recipespage = () => {
   const addYes = () => {
     yesList.push(yesIng);
   };
-  // console.log("hello");
-  // console.log(yesList);
 
   const shortDes = (str) => {
     let array = str.split(" ");
@@ -547,13 +545,13 @@ const Recipespage = () => {
                   sx={{ m: 1, mt: 1.5, mb: 1.5 }}
                 >
                   <Card elevation={3}>
-                    <Link to={`/recipes/${recipe._id}`}>
-                      <Grid
-                        item
-                        sx={{ display: "flex", flexDirection: "column" }}
-                      >
-                        <Grid>
-                          <CardMedia>
+                    <Grid
+                      item
+                      sx={{ display: "flex", flexDirection: "column" }}
+                    >
+                      <Grid>
+                        <CardMedia>
+                          <Link to={`/recipes/${recipe._id}`}>
                             {recipe.imageid ? (
                               <Image
                                 width="100%"
@@ -581,51 +579,52 @@ const Recipespage = () => {
                                 />
                               </Image>
                             )}
-                          </CardMedia>
+                          </Link>
+                        </CardMedia>
+                      </Grid>
+                      <Grid
+                        item
+                        sx={{ display: "flex", flexDirection: "column" }}
+                      >
+                        <Grid item sx={{ m: 1 }}>
+                          <ThemeProvider theme={theme}>
+                            <Typography variant="h2">
+                              {shortTitle(recipe.title)}
+                            </Typography>
+                          </ThemeProvider>
                         </Grid>
+
+                        <Grid item sx={{ m: 1 }}>
+                          <ThemeProvider theme={theme}>
+                            <Typography variant="subtitle1">
+                              {shortDes(recipe.description)}
+                            </Typography>
+                          </ThemeProvider>
+                        </Grid>
+
                         <Grid
                           item
-                          sx={{ display: "flex", flexDirection: "column" }}
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            m: 1,
+                          }}
                         >
-                          <Grid item sx={{ m: 1 }}>
-                            <ThemeProvider theme={theme}>
-                              <Typography variant="h2">
-                                {shortTitle(recipe.title)}
-                              </Typography>
-                            </ThemeProvider>
-                          </Grid>
-
-                          <Grid item sx={{ m: 1 }}>
-                            <ThemeProvider theme={theme}>
-                              <Typography variant="subtitle1">
-                                {shortDes(recipe.description)}
-                              </Typography>
-                            </ThemeProvider>
-                          </Grid>
-
-                          <Grid
-                            item
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              m: 1,
-                            }}
-                          >
-                            <ThemeProvider theme={theme}>
-                              <Typography variant="sub1">
-                                Cuisine: {recipe.cuisine}
-                              </Typography>
-                              <Typography variant="sub1">
-                                Servings: {recipe.servings}
-                              </Typography>
-                              <Typography variant="sub1">
-                                Total Time: {recipe.totalTime}
-                              </Typography>
-                            </ThemeProvider>
-                          </Grid>
+                          <ThemeProvider theme={theme}>
+                            <Typography variant="sub1">
+                              Cuisine: {recipe.cuisine}
+                            </Typography>
+                            <Typography variant="sub1">
+                              Servings: {recipe.servings}
+                            </Typography>
+                            <Typography variant="sub1">
+                              Total Time: {recipe.totalTime}
+                            </Typography>
+                          </ThemeProvider>
                         </Grid>
                       </Grid>
-                    </Link>
+                    </Grid>
+
                     {/* <Grid>
                       <Link to={`/update/${recipe._id}`}>update</Link>
                     </Grid> */}
