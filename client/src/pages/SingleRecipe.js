@@ -121,10 +121,36 @@ const SingleRecipe = () => {
             elevation={3}
             sx={{ mt: 4, mb: 2, p: 3.5, background: "#DDF5FF" }}
           >
-            <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
               <ThemeProvider theme={theme}>
                 <Typography variant="title"> {recipe.title}</Typography>
               </ThemeProvider>
+              <Grid item sx={{ display: "flex", justifyContent: "center" }}>
+                {Auth.loggedIn() ? (
+                  <>
+                    <Box>
+                      <Button
+                        onClick={handleAddto}
+                        variant="contained"
+                        color="error"
+                      >
+                        <Typography sx={{ color: "white", fontSize: 20 }}>
+                          Add to Cookbook
+                        </Typography>
+                      </Button>
+                    </Box>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </Grid>
             </Grid>
             <Grid item sx={{ mt: 3, mb: 3 }}>
               <ThemeProvider theme={theme}>
